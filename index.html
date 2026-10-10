@@ -1,43 +1,57 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<link rel="stylesheet" href="style.css">
-</head>
+<title>RIMURU MOBA FINAL - FULL SET</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;touch-action:none;-webkit-touch-callout:none;user-select:none}
+body{background:#020a1a;overflow:hidden;font-family:Arial,system-ui;color:#fff}
+#game{position:fixed;inset:0;width:100vw;height:100vh;background:radial-gradient(ellipse at 50% 20%,#0e3a7a 0%,#020a1a 75%)}
+#arena{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);width:94%;height:70%;border:3px solid #00e5ff;border-radius:32px;background:linear-gradient(180deg,#103a7a 0%,#061a3a 100%);box-shadow:0 0 50px rgba(0,229,255,.5),inset 0 0 40px rgba(0,229,255,.15)}
+#throne{position:absolute;left:50%;top:6%;transform:translateX(-50%);width:220px;height:86px;background:linear-gradient(180deg,#00e5ff 0%,#0077aa 100%);border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;font-size:11px;letter-spacing:1px;box-shadow:0 0 30px #00e5ff,0 8px 20px rgba(0,0,0,.5);border:2px solid rgba(255,255,255,.3)}
+#player{position:absolute;left:50%;top:60%;font-size:52px;z-index:12;filter:drop-shadow(0 0 18px #00e5ff);will-change:transform;text-shadow:0 0 10px #0ff}
+.enemy{position:absolute;font-size:38px;z-index:6;will-change:transform;filter:drop-shadow(0 0 10px #f00)}
+.hp{position:absolute;width:46px;height:7px;background:#000;border:1px solid #fff;border-radius:10px;top:-12px;left:50%;transform:translateX(-50%);overflow:hidden}
+.hpf{height:100%;background:linear-gradient(90deg,#ff0000,#ffff00);width:100%;transition:width .2s}
+.orb{position:absolute;width:24px;height:24px;background:radial-gradient(circle at 30% 30%,#fff,#00e5ff 70%);border-radius:50%;box-shadow:0 0 18px #00e5ff,0 0 30px #00e5ff;z-index:8}
+.hit{position:absolute;color:#ff0;font-weight:900;font-size:14px;text-shadow:0 0 5px #000;z-index:15;pointer-events:none}
+#top{position:absolute;top:0;left:0;right:0;height:44px;background:rgba(0,0,0,.92);display:flex;justify-content:space-between;align-items:center;padding:0 14px;z-index:30;border-bottom:2px solid #00e5ff;font-size:11px;font-weight:900;backdrop-filter:blur(6px)}
+#msg{position:absolute;top:54px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.75);border:1px solid #00e5ff;padding:7px 16px;border-radius:20px;color:#00e5ff;font-weight:900;font-size:11px;z-index:20;text-align:center;box-shadow:0 0 15px rgba(0,229,255,.4)}
+#joy{position:absolute;bottom:22px;left:22px;width:120px;height:120px;background:rgba(255,255,255,.06);border-radius:50%;border:2px solid rgba(0,229,255,.4);z-index:30;box-shadow:inset 0 0 20px rgba(0,229,255,.1)}
+#stick{position:absolute;left:35px;top:35px;width:50px;height:50px;background:radial-gradient(circle at 30% 30%,#fff,#00e5ff);border-radius:50%;box-shadow:0 0 20px #00e5ff}
+#skills{position:absolute;bottom:22px;right:14px;display:flex;gap:10px;z-index:30}
+.btn{width:68px;height:68px;border-radius:50%;border:3px solid gold;background:radial-gradient(circle at 30% 30%,#1a2a5a,#0a1430);color:#fff;font-weight:900;font-size:9px;box-shadow:0 0 15px rgba(255,215,0,.4);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1}
+.btn:active{transform:scale(.88)}
+.btn.cd{opacity:.4;pointer-events:none}
+#shop{position:absolute;inset:0;background:#040a1a;z-index:100;display:none;overflow-y:auto}
+#shopHead{position:sticky;top:0;background:#0a1430;padding:14px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #00e5ff;font-weight:900;z-index:2}
+.shopTitle{padding:14px 12px 6px;color:#7aa0ff;font-size:11px;letter-spacing:2px;font-weight:900}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 10px 10px}
+.card{background:linear-gradient(180deg,#112050,#0a1430);border:2px solid #1e3a7a;border-radius:16px;padding:12px;text-align:center;position:relative;overflow:hidden}
+.card.own{border-color:#00ff88}.card.eq{border-color:gold;box-shadow:0 0 15px rgba(255,215,0,.4)}
+.card .icon{font-size:34px}.card .ch{font-size:30px;margin:2px 0}
+.card b{display:block;font-size:10px;margin:4px 0;letter-spacing:.5px}.card small{font-size:8px;color:#00e5ff;display:block}
+.price{color:gold;font-size:10px;font-weight:900;margin:6px 0}
+.buy{width:100%;padding:7px;border:none;border-radius:10px;font-weight:900;font-size:9px;margin-top:4px}
+</style></head>
 <body>
 <div id="game">
-<div id="arena"><div id="throne">👑 SLIME KING THRONE 👑</div></div>
+<div id="arena"><div id="throne"><span>👑 SLIME KING 👑</span><span style="font-size:9px;opacity:.9">RIMURU TEMPEST</span></div></div>
 <div id="player">🧙‍♂️</div>
-
-<div id="topBar">
-<span style="color:#00e5ff">RIMURU MOBA FINAL</span>
-<div style="display:flex;gap:10px">
-<span style="color:gold">💰<span id="gold">99999</span></span>
-<span style="color:#0f0">KILL<span id="kills">0</span></span>
-<span style="color:#f55">HP<span id="hpTxt">1000</span></span>
-</div>
-</div>
-
-<div id="centerMsg">I-DRAG ANG JOYSTICK PARA GUMALAW!</div>
-
+<div id="top"><span style="color:#00e5ff;letter-spacing:1px">RIMURU MOBA FINAL FULL</span><span>💰<b id="gold">99999</b> | 💀<b id="kill">0</b> | ❤️<b id="hp">1000</b> | LV<b id="lv">1</b></span></div>
+<div id="msg">⬅️ DRAG JOYSTICK PARA GUMALAW • TAP SK1/ULTI PARA TUMIRA!</div>
 <div id="joy"><div id="stick"></div></div>
-
 <div id="skills">
-<button class="skill" onclick="useSkill1()">💧<br>SK1</button>
-<button class="skill" onclick="useUlti()" style="border-color:#ff00ff">💥<br>ULTI</button>
-<button class="skill" onclick="openShop()" style="border-color:#00ff88">🛒<br>SHOP</button>
+<button class="btn" id="b1" onclick="useSkill(1)">💧<span>SK1</span></button>
+<button class="btn" id="b2" onclick="useSkill(2)" style="border-color:#ff00ff">💥<span>ULTI</span></button>
+<button class="btn" onclick="toggleShop()" style="border-color:#00ff88">🛒<span>SHOP</span></button>
 </div>
-
-<div id="shopBox">
-<div id="shopTop"><span>SHOP - 99999 GOLD</span><button onclick="openShop()">X CLOSE</button></div>
-<div class="shopTitle">SKILL UPGRADES</div>
-<div class="grid" id="skillGrid"></div>
-<div class="shopTitle">SKINS</div>
-<div class="grid" id="skinGrid"></div>
+<div id="shop">
+<div id="shopHead"><span>🛒 SHOP - 💰<span id="sgold">99999</span> GOLD</span><button onclick="toggleShop()" style="padding:8px 16px;background:#222;color:#fff;border:1px solid #555;border-radius:20px;font-weight:900">✕ CLOSE</button></div>
+<div class="shopTitle">⚔️ SKILLS - PAMPALAKAS NG DAMAGE</div><div class="grid" id="sGrid"></div>
+<div class="shopTitle">👑 FORMS - RIMURU EVOLUTION - PAMPATAAS NG HP</div><div class="grid" id="kGrid"></div>
+<div style="height:30px"></div>
 </div>
-
 </div>
-<script src="main.js"></script>
-</body>
-</html>
+<script>
+var pEl=document.getElementById('player'),game=document
