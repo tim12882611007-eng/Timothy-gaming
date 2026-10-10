@@ -1,10 +1,24 @@
-// COMBO SKILL EDITION - 3 SKILLS + COMBO HUNT
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Timothy Isekai Adventure</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050510;overflow:hidden;touch-action:none}
+#gameCanvas{width:100vw;height:100vh;display:block}
+</style>
+</head>
+<body>
+<canvas id="gameCanvas"></canvas>
+<script>
+// COMBO SKILL EDITION - FIXED FOR GITHUB
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 let W,H;
 let diamonds=400, level=1, exp=0, need=100;
 let kills=0, combo=0, comboTime=0, maxCombo=0;
-
 let selHero=0, selGun=0, selArm=0;
 let heroes=[
  {n:'TIMOTHY', p:0, o:true, c1:'#ff4444', c2:'#880000', d:10, s:5},
@@ -24,14 +38,11 @@ let arms=[
  {n:'KEVLAR', p:500, o:false, hp:80},
  {n:'GOD ARMOR', p:1000, o:false, hp:160}
 ];
-
-// SKILLS
 let skills=[
- {name:'DASH', key:'Q', cd:0, maxCd:90, icon:'💨', desc:'Dash + iwas'},
- {name:'SLASH', key:'W', cd:0, maxCd:150, icon:'⚔️', desc:'360 Slash'},
- {name:'ULTIMATE', key:'E', cd:0, maxCd:400, icon:'🔥', desc:'Meteor Rain'}
+ {name:'DASH', cd:0, maxCd:90, icon:'💨'},
+ {name:'SLASH', cd:0, maxCd:150, icon:'⚔️'},
+ {name:'ULTI', cd:0, maxCd:400, icon:'🔥'}
 ];
-
 let MAP=5000, px=2500, py=2500, php=100, mhp=100, pcd=0;
 let cx=0, cy=0, jx=0, jy=0, jactive=false, keys={};
 let bullets=[], effects=[];
@@ -44,103 +55,30 @@ let buildings=[
 let mons=[];
 for(let i=0;i<35;i++) mons.push({x:Math.random()*MAP,y:Math.random()*MAP,hp:70,mh:70,d:10,alive:true,t:i%3});
 let shopOpen=null;
-let quest={k:0, need:8, done:false};
+let quest={k:0, need:8};
 
 function resize(){ let r=canvas.parentElement.getBoundingClientRect(); W=r.width; H=r.height; canvas.width=W; canvas.height=H; }
 function rrect(x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r); ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h); ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r); ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y); ctx.closePath(); ctx.fill(); }
 function getDmg(){ let base=heroes[selHero].d+guns[selGun].dmg; let mult=1+combo*0.15; return Math.floor(base*mult); }
 function getMhp(){ return 100+arms[selArm].hp+level*12; }
 function getSpd(){ return heroes[selHero].s; }
-
 function useSkill(id){
-  let sk=skills[id];
-  if(sk.cd>0) return;
-  sk.cd=sk.maxCd;
-  if(id==0){ // DASH
-    let ang=Math.atan2(jy,jx); if(jx==0&&jy==0) ang=0;
-    px+=Math.cos(ang)*180; py+=Math.sin(ang)*180;
-    if(px<0) px=0; if(px>MAP) px=MAP; if(py<0) py=0; if(py>MAP) py=MAP;
-    effects.push({x:px,y:py,t:20,type:'dash'});
-  }
-  if(id==1){ // SLASH 360
-    for(let m of mons){
-      if(!m.alive) continue;
-      let d=Math.hypot(px-m.x, py-m.y);
-      if(d<110){
-        m.hp-=getDmg()*1.8;
-        effects.push({x:m.x,y:m.y,t:15,type:'hit'});
-        if(m.hp<=0){ killMonster(m); }
-      }
-    }
-    effects.push({x:px,y:py,t:18,type:'slash'});
-  }
-  if(id==2){ // ULTIMATE METEOR
-    for(let k=0;k<6;k++){
-      setTimeout(function(){
-        let rx=px+(Math.random()-0.5)*400;
-        let ry=py+(Math.random()-0.5)*400;
-        effects.push({x:rx,y:ry,t:30,type:'meteor'});
-        for(let m of mons){
-          if(!m.alive) continue;
-          if(Math.hypot(rx-m.x, ry-m.y)<90){
-            m.hp-=getDmg()*2.5;
-            if(m.hp<=0) killMonster(m);
-          }
-        }
-      }, k*120);
-    }
-  }
+  let sk=skills[id]; if(sk.cd>0) return; sk.cd=sk.maxCd;
+  if(id==0){ let ang=Math.atan2(jy,jx); if(jx==0&&jy==0) ang=0; px+=Math.cos(ang)*180; py+=Math.sin(ang)*180; effects.push({x:px,y:py,t:20,type:'dash'}); }
+  if(id==1){ for(let m of mons){ if(!m.alive) continue; let d=Math.hypot(px-m.x, py-m.y); if(d<110){ m.hp-=getDmg()*1.8; effects.push({x:m.x,y:m.y,t:15,type:'hit'}); if(m.hp<=0){ killM(m); } } } effects.push({x:px,y:py,t:18,type:'slash'}); }
+  if(id==2){ for(let k=0;k<6;k++){ setTimeout(function(){ let rx=px+(Math.random()-0.5)*400; let ry=py+(Math.random()-0.5)*400; effects.push({x:rx,y:ry,t:30,type:'meteor'}); for(let m of mons){ if(!m.alive) continue; if(Math.hypot(rx-m.x, ry-m.y)<90){ m.hp-=getDmg()*2.5; if(m.hp<=0) killM(m); } } }, k*120); } }
 }
-
-function killMonster(m){
-  m.alive=false; kills++; combo++; comboTime=180;
-  if(combo>maxCombo) maxCombo=combo;
-  diamonds+=18; exp+=28; quest.k++;
-  if(exp>=need){ level++; exp=0; need+=60; mhp=getMhp(); php=mhp; }
-  setTimeout(function(){ m.x=Math.random()*MAP; m.y=Math.random()*MAP; m.hp=m.mh; m.alive=true; }, 4000);
-}
-
-function shoot(tx,ty){
-  if(pcd>0) return;
-  pcd=guns[selGun].cd;
-  let ang=Math.atan2(ty-H/2, tx-W/2);
-  bullets.push({x:px,y:py,a:ang,dmg:getDmg(),life:22});
-}
+function killM(m){ m.alive=false; kills++; combo++; comboTime=180; if(combo>maxCombo) maxCombo=combo; diamonds+=18; exp+=28; quest.k++; if(exp>=need){ level++; exp=0; need+=60; mhp=getMhp(); php=mhp; } setTimeout(function(){ m.x=Math.random()*MAP; m.y=Math.random()*MAP; m.hp=m.mh; m.alive=true; }, 4000); }
+function shoot(tx,ty){ if(pcd>0) return; pcd=guns[selGun].cd; let ang=Math.atan2(ty-H/2, tx-W/2); bullets.push({x:px,y:py,a:ang,dmg:getDmg(),life:22}); }
 
 function update(){
-  let mx=jx, my=jy;
-  if(keys['w']) my=-1; if(keys['s']) my=1; if(keys['a']) mx=-1; if(keys['d']) mx=1;
-  if(mx&&my){mx*=0.7; my*=0.7;}
-  px+=mx*getSpd(); py+=my*getSpd();
-  if(px<0) px=0; if(px>MAP) px=MAP; if(py<0) py=0; if(py>MAP) py=MAP;
-  if(pcd>0) pcd--;
-  for(let s of skills) if(s.cd>0) s.cd--;
-
-  if(comboTime>0){ comboTime--; if(comboTime==0) combo=0; }
-
-  for(let i=bullets.length-1;i>=0;i--){
-    let b=bullets[i]; b.x+=Math.cos(b.a)*13; b.y+=Math.sin(b.a)*13; b.life--;
-    if(b.life<=0){ bullets.splice(i,1); continue; }
-    for(let m of mons){
-      if(!m.alive) continue;
-      if(Math.hypot(b.x-m.x, b.y-m.y)<18){
-        m.hp-=b.dmg; effects.push({x:m.x,y:m.y,t:10,type:'hit'}); bullets.splice(i,1);
-        if(m.hp<=0) killMonster(m);
-        break;
-      }
-    }
-  }
+  let mx=jx, my=jy; if(keys['w']) my=-1; if(keys['s']) my=1; if(keys['a']) mx=-1; if(keys['d']) mx=1; if(mx&&my){mx*=0.7; my*=0.7;}
+  px+=mx*getSpd(); py+=my*getSpd(); if(px<0) px=0; if(px>MAP) px=MAP; if(py<0) py=0; if(py>MAP) py=MAP;
+  if(pcd>0) pcd--; for(let s of skills) if(s.cd>0) s.cd--; if(comboTime>0){ comboTime--; if(comboTime==0) combo=0; }
+  for(let i=bullets.length-1;i>=0;i--){ let b=bullets[i]; b.x+=Math.cos(b.a)*13; b.y+=Math.sin(b.a)*13; b.life--; if(b.life<=0){ bullets.splice(i,1); continue; } for(let m of mons){ if(!m.alive) continue; if(Math.hypot(b.x-m.x, b.y-m.y)<18){ m.hp-=b.dmg; effects.push({x:m.x,y:m.y,t:10,type:'hit'}); bullets.splice(i,1); if(m.hp<=0) killM(m); break; } } }
   for(let i=effects.length-1;i>=0;i--){ effects[i].t--; if(effects[i].t<=0) effects.splice(i,1); }
-
-  for(let m of mons){
-    if(!m.alive) continue;
-    let d=Math.hypot(px-m.x, py-m.y);
-    if(d<320){ let a=Math.atan2(py-m.y, px-m.x); m.x+=Math.cos(a)*1.4; m.y+=Math.sin(a)*1.4;
-      if(d<36 && pcd<5){ php-=m.d; pcd=15; if(php<=0){ php=getMhp(); px=2500; py=2500; combo=0; diamonds=Math.max(0,diamonds-25); } }
-    }
-  }
-  cx=px-W/2; cy=py-H/2;
-  if(cx<0) cx=0; if(cx>MAP-W) cx=MAP-W; if(cy<0) cy=0; if(cy>MAP-H) cy=MAP-H;
+  for(let m of mons){ if(!m.alive) continue; let d=Math.hypot(px-m.x, py-m.y); if(d<320){ let a=Math.atan2(py-m.y, px-m.x); m.x+=Math.cos(a)*1.4; m.y+=Math.sin(a)*1.4; if(d<36 && pcd<5){ php-=m.d; pcd=15; if(php<=0){ php=getMhp(); px=2500; py=2500; combo=0; } } } }
+  cx=px-W/2; cy=py-H/2; if(cx<0) cx=0; if(cx>MAP-W) cx=MAP-W; if(cy<0) cy=0; if(cy>MAP-H) cy=MAP-H;
 }
 
 function draw(){
@@ -148,9 +86,7 @@ function draw(){
   ctx.fillStyle='#0c160c'; ctx.fillRect(0,0,W,H);
   ctx.strokeStyle='#ffffff07'; ctx.beginPath();
   for(let x=-cx%80;x<W;x+=80){ ctx.moveTo(x,0); ctx.lineTo(x,H); }
-  for(let y=-cy%80;y<H;y+=80){ ctx.moveTo(0,y); ctx.lineTo(W,y); }
-  ctx.stroke();
-
+  for(let y=-cy%80;y<H;y+=80){ ctx.moveTo(0,y); ctx.lineTo(W,y); } ctx.stroke();
   for(let b of buildings){
     let sx=b.x-cx, sy=b.y-cy;
     if(sx>-300&&sx<W+300&&sy>-300&&sy<H+300){
@@ -159,37 +95,66 @@ function draw(){
       ctx.fillStyle='#00ff88'; rrect(sx+18,sy+b.h-30,b.w-36,22,7); ctx.fillStyle='black'; ctx.font='bold 10px Arial'; ctx.fillText('E OPEN',sx+b.w/2,sy+b.h-16);
     }
   }
-  for(let m of mons){
-    if(!m.alive) continue;
-    let sx=m.x-cx, sy=m.y-cy;
-    if(sx>-50&&sx<W+50&&sy>-50&&sy<H+50){
-      let col=m.t==0?'#ff3333':m.t==1?'#33ff66':'#aa44ff';
-      ctx.fillStyle=col; ctx.beginPath(); ctx.arc(sx,sy,14,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle='white'; ctx.fillRect(sx-13,sy-24,26,4); ctx.fillStyle='red'; ctx.fillRect(sx-13,sy-24,26*m.hp/m.mh,4);
-    }
-  }
+  for(let m of mons){ if(!m.alive) continue; let sx=m.x-cx, sy=m.y-cy; if(sx>-50&&sx<W+50&&sy>-50&&sy<H+50){ let col=m.t==0?'#ff3333':m.t==1?'#33ff66':'#aa44ff'; ctx.fillStyle=col; ctx.beginPath(); ctx.arc(sx,sy,14,0,Math.PI*2); ctx.fill(); ctx.fillStyle='white'; ctx.fillRect(sx-13,sy-24,26,4); ctx.fillStyle='red'; ctx.fillRect(sx-13,sy-24,26*m.hp/m.mh,4); } }
   for(let b of bullets){ let sx=b.x-cx, sy=b.y-cy; ctx.fillStyle='#ffff00'; ctx.beginPath(); ctx.arc(sx,sy,4,0,Math.PI*2); ctx.fill(); }
-  for(let e of effects){
-    let sx=e.x-cx, sy=e.y-cy;
-    if(e.type=='hit'){ ctx.fillStyle='#ffcc00'; ctx.font='bold 12px Arial'; ctx.textAlign='center'; ctx.fillText('-'+getDmg(),sx,sy); }
-    if(e.type=='slash'){ ctx.strokeStyle='#00ffff'; ctx.lineWidth=3; ctx.beginPath(); ctx.arc(sx,sy, e.t*6,0,Math.PI*2); ctx.stroke(); }
-    if(e.type=='dash'){ ctx.fillStyle='rgba(100,255,255,0.3)'; ctx.beginPath(); ctx.arc(sx,sy,20,0,Math.PI*2); ctx.fill(); }
-    if(e.type=='meteor'){ ctx.fillStyle='#ff4400'; ctx.beginPath(); ctx.arc(sx,sy,18,0,Math.PI*2); ctx.fill(); ctx.fillStyle='#ffaa00'; ctx.beginPath(); ctx.arc(sx,sy,10,0,Math.PI*2); ctx.fill(); }
-  }
+  for(let e of effects){ let sx=e.x-cx, sy=e.y-cy; if(e.type=='hit'){ ctx.fillStyle='#ffcc00'; ctx.font='bold 12px Arial'; ctx.textAlign='center'; ctx.fillText('-'+getDmg(),sx,sy); } if(e.type=='slash'){ ctx.strokeStyle='#00ffff'; ctx.lineWidth=3; ctx.beginPath(); ctx.arc(sx,sy, e.t*6,0,Math.PI*2); ctx.stroke(); } if(e.type=='dash'){ ctx.fillStyle='rgba(100,255,255,0.3)'; ctx.beginPath(); ctx.arc(sx,sy,20,0,Math.PI*2); ctx.fill(); } if(e.type=='meteor'){ ctx.fillStyle='#ff4400'; ctx.beginPath(); ctx.arc(sx,sy,18,0,Math.PI*2); ctx.fill(); ctx.fillStyle='#ffaa00'; ctx.beginPath(); ctx.arc(sx,sy,10,0,Math.PI*2); ctx.fill(); } }
+  let h=heroes[selHero]; ctx.save(); ctx.translate(W/2,H/2); if(pcd>10) ctx.globalAlpha=0.6; ctx.fillStyle='rgba(0,0,0,0.25)'; ctx.beginPath(); ctx.ellipse(0,26,13,3,0,0,Math.PI*2); ctx.fill(); ctx.fillStyle=h.c2; ctx.fillRect(-7,11,6,13); ctx.fillRect(1,11,6,13); ctx.fillStyle=h.c1; rrect(-12,-5,24,17,4); ctx.fillStyle='#ffdbac'; ctx.beginPath(); ctx.arc(0,-11,9,0,Math.PI*2); ctx.fill(); ctx.fillStyle=h.c2; ctx.beginPath(); ctx.arc(0,-17,9,Math.PI,Math.PI*2); ctx.fill(); ctx.fillStyle='#333'; ctx.fillRect(11,-3,20,4); ctx.restore();
+  ctx.fillStyle='#000000cc'; rrect(6,6,W-12,50,10); ctx.textAlign='left'; ctx.fillStyle='#00e5ff'; ctx.font='bold 12px Arial'; ctx.fillText('💎'+diamonds+' LVL'+level+' EXP'+exp+'/'+need+' KILL'+kills, 14,22); ctx.fillStyle=combo>0?'#ffdd00':'#aaa'; ctx.font='bold 13px Arial'; let comboTxt = combo>0? 'COMBO x'+combo+' ('+Math.floor(combo*15)+'% BONUS!)' : 'PATAY SUNOD SUNOD PARA COMBO!'; ctx.fillText(comboTxt, 14, 40);
+  ctx.fillStyle='#ffffff18'; ctx.beginPath(); ctx.arc(76,H-76,42,0,Math.PI*2); ctx.fill(); ctx.fillStyle='#ffffffdd'; ctx.beginPath(); ctx.arc(76+jx*26, H-76+jy*26, 14,0,Math.PI*2); ctx.fill();
+  for(let i=0;i<3;i++){ let bx=W-68-i*62, by=H-78, sk=skills[i]; ctx.fillStyle= sk.cd>0? '#444444aa' : '#ffffff22'; ctx.beginPath(); ctx.arc(bx, by, 26,0,Math.PI*2); ctx.fill(); ctx.strokeStyle= sk.cd>0? '#555' : '#00ff88'; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(bx, by, 26,0,Math.PI*2); ctx.stroke(); if(sk.cd>0){ ctx.fillStyle='rgba(0,0,0,0.6)'; ctx.beginPath(); ctx.arc(bx,by,26,0,Math.PI*2); ctx.fill(); ctx.fillStyle='white'; ctx.textAlign='center'; ctx.font='bold 11px Arial'; ctx.fillText(Math.ceil(sk.cd/60)+'s', bx, by+4); } else { ctx.fillStyle='white'; ctx.textAlign='center'; ctx.font='bold 14px Arial'; ctx.fillText(sk.icon, bx, by+5); } }
+  ctx.fillStyle='#ff3333dd'; ctx.beginPath(); ctx.arc(W-68, H-150, 28,0,Math.PI*2); ctx.fill(); ctx.fillStyle='white'; ctx.textAlign='center'; ctx.font='bold 10px Arial'; ctx.fillText('SHOOT', W-68, H-146);
+  if(shopOpen) drawShop(); requestAnimationFrame(draw);
+}
+function drawShop(){
+  ctx.fillStyle='rgba(0,0,0,0.9)'; ctx.fillRect(0,0,W,H); ctx.fillStyle='#15152a'; rrect(10,10,W-20,H-20,14);
+  ctx.fillStyle='white'; ctx.textAlign='center'; ctx.font='bold 17px Arial'; ctx.fillText(shopOpen.toUpperCase()+' SHOP', W/2, 44);
+  ctx.fillStyle='#00e5ff'; ctx.font='12px Arial'; ctx.fillText('💎 '+diamonds+' COMBO x'+combo, W/2, 64);
+  if(shopOpen=='guild'){ ctx.fillStyle='white'; ctx.font='12px Arial'; ctx.fillText('QUEST: Patay '+quest.need+' monsters '+quest.k+'/'+quest.need, W/2, 110); ctx.fillText('MAX COMBO: '+maxCombo, W/2, 135); ctx.fillStyle='#ff4444'; rrect(20,H-42,W-40,32,8); ctx.fillStyle='white'; ctx.fillText('CLOSE X', W/2, H-22); return; }
+  let list=shopOpen=='hero'?heroes:shopOpen=='weapon'?guns:arms;
+  for(let i=0;i<list.length;i++){ let y=78+i*66; ctx.fillStyle='#222240'; rrect(16,y,W-32,56,10); ctx.textAlign='left'; ctx.fillStyle='white'; ctx.font='bold 11px Arial'; ctx.fillText(list[i].n, 26, y+18); ctx.font='10px Arial'; ctx.fillStyle='#aaa'; let st=shopOpen=='armor'?'HP+'+list[i].hp:'DMG '+list[i].dmg; if(shopOpen=='hero') st='DMG+'+list[i].d; ctx.fillText(st+' Price:'+list[i].p, 26, y+36); let owned=list[i].o; let eq=(shopOpen=='hero'&&selHero==i)||(shopOpen=='weapon'&&selGun==i)||(shopOpen=='armor'&&selArm==i); if(eq) ctx.fillStyle='#444'; else if(owned) ctx.fillStyle='#22ff88'; else ctx.fillStyle='#ffaa00'; rrect(W-88,y+8,68,38,8); ctx.fillStyle=eq?'#999':'black'; ctx.textAlign='center'; ctx.font='bold 9px Arial'; ctx.fillText(eq?'EQUIPPED':owned?'EQUIP':'BUY '+list[i].p, W-54, y+31); }
+  ctx.fillStyle='#ff4444'; rrect(16,H-42,W-32,32,8); ctx.fillStyle='white'; ctx.textAlign='center'; ctx.font='bold 12px Arial'; ctx.fillText('CLOSE X', W/2, H-22);
+}
+function openShopCheck(){ for(let b of buildings){ let d=Math.hypot(px-(b.x+b.w/2), py-(b.y+b.h/2)); if(d<150){ shopOpen=b.t; } } }
+function shopClick(x,y){ if(y>H-48){ shopOpen=null; return true; } if(shopOpen=='guild') return true; let list=shopOpen=='hero'?heroes:shopOpen=='weapon'?guns:arms; for(let i=0;i<list.length;i++){ let yy=78+i*66; if(x>W-88&&x<W-20&&y>yy+8&&y<yy+46){ if(list[i].o){ if(shopOpen=='hero') selHero=i; if(shopOpen=='weapon') selGun=i; if(shopOpen=='armor'){ selArm=i; mhp=getMhp(); } } else if(diamonds>=list[i].p){ diamonds-=list[i].p; list[i].o=true; } return true; } } return true; }
 
-  // player
-  let h=heroes[selHero];
-  ctx.save(); ctx.translate(W/2,H/2); if(pcd>10) ctx.globalAlpha=0.6;
-  ctx.fillStyle='rgba(0,0,0,0.25)'; ctx.beginPath(); ctx.ellipse(0,26,13,3,0,0,Math.PI*2); ctx.fill();
-  ctx.fillStyle=h.c2; ctx.fillRect(-7,11,6,13); ctx.fillRect(1,11,6,13);
-  ctx.fillStyle=h.c1; rrect(-12,-5,24,17,4);
-  ctx.fillStyle='#ffdbac'; ctx.beginPath(); ctx.arc(0,-11,9,0,Math.PI*2); ctx.fill();
-  ctx.fillStyle=h.c2; ctx.beginPath(); ctx.arc(0,-17,9,Math.PI,Math.PI*2); ctx.fill();
-  ctx.fillStyle='#333'; ctx.fillRect(11,-3,20,4); ctx.restore();
-
-  // TOP UI
-  ctx.fillStyle='#000000cc'; rrect(6,6,W-12,50,10);
-  ctx.textAlign='left'; ctx.fillStyle='#00e5ff'; ctx.font='bold 12px Arial';
-  ctx.fillText('💎'+diamonds+' LVL'+level+' EXP'+exp+'/'+need+' KILL'+kills, 14,22);
-  ctx.fillStyle=combo>0?'#ffdd00':'#aaa'; ctx.font='bold 13px Arial';
-  let comboTxt = combo>0? 'COMBO x'+
+resize(); window.addEventListener('resize', resize);
+window.addEventListener('keydown', function(e){
+  let k=e.key.toLowerCase(); keys[k]=true;
+  if(k=='e') openShopCheck(); if(k=='x') shopOpen=null;
+  if(k=='q') useSkill(0); if(k=='w') useSkill(1); if(k=='e'&&!shopOpen) useSkill(2);
+  if(k==' ') shoot(W/2+100, H/2);
+});
+window.addEventListener('keyup', function(e){ keys[e.key.toLowerCase()]=false; });
+canvas.addEventListener('touchstart', function(e){
+  let r=canvas.getBoundingClientRect(); let t=e.touches[0]; let x=t.clientX-r.left, y=t.clientY-r.top;
+  if(shopOpen){ shopClick(x,y); return; }
+  if(x<140&&y>H-140){ jactive=true; return; }
+  for(let i=0;i<3;i++){ let bx=W-68-i*62, by=H-78; if(Math.hypot(x-bx, y-by)<28){ useSkill(i); return; } }
+  if(Math.hypot(x-(W-68), y-(H-150))<28){ shoot(W/2+50, H/2); return; }
+  shoot(x,y);
+},{passive:false});
+canvas.addEventListener('touchmove', function(e){
+  if(!jactive) return; e.preventDefault();
+  let r=canvas.getBoundingClientRect(); let t=e.touches[0]; let x=t.clientX-r.left, y=t.clientY-r.top;
+  let dx=x-76, dy=y-(H-76); let d=Math.hypot(dx,dy); let m=42; if(d>m){dx=dx/d*m; dy=dy/d*m;} jx=dx/m; jy=dy/m;
+},{passive:false});
+canvas.addEventListener('touchend', function(){ jactive=false; jx=0; jy=0; });
+canvas.addEventListener('mousedown', function(e){
+  let r=canvas.getBoundingClientRect(); let x=e.clientX-r.left, y=e.clientY-r.top;
+  if(shopOpen){ shopClick(x,y); return; }
+  if(x<140&&y>H-140){ jactive=true; return; }
+  for(let i=0;i<3;i++){ let bx=W-68-i*62, by=H-78; if(Math.hypot(x-bx, y-by)<28){ useSkill(i); return; } }
+  if(Math.hypot(x-(W-68), y-(H-150))<30){ shoot(W/2+50, H/2); return; }
+  shoot(x,y);
+});
+canvas.addEventListener('mousemove', function(e){
+  if(!jactive||shopOpen) return;
+  let r=canvas.getBoundingClientRect(); let x=e.clientX-r.left, y=e.clientY-r.top;
+  let dx=x-76, dy=y-(H-76); let d=Math.hypot(dx,dy); let m=42; if(d>m){dx=dx/d*m; dy=dy/d*m;} jx=dx/m; jy=dy/m;
+});
+window.addEventListener('mouseup', function(){ jactive=false; jx=0; jy=0; });
+mhp=getMhp(); php=mhp;
+draw();
+</script>
+</body>
+</html>
