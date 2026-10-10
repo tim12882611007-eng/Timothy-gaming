@@ -1,1 +1,63 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RIMURU FIXED</title><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#02030a;color:#fff;font-family:Arial;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:15px}#c{width:100%;max-width:380px;background:linear-gradient(145deg,#151a3a,#0e1230);border:2px solid #2a5aff;border-radius:22px;padding:16px;text-align:center;box-shadow:0 0 35px #2a5aff99}h1{color:#0ff;font-size:19px;text-shadow:0 0 12px #0ff}.w{border:2px solid #f0f;background:#1a0033;border-radius:14px;padding:10px;margin:10px 0}.w b{color:#ffd700}button{width:100%;border:none;border-radius:14px;padding:14px 0;font-weight:900;font-size:12px;margin-bottom:8px;cursor:pointer}.b1{background:linear-gradient(90deg,#00e5ff,#0072ff);color:#000}.b2{background:linear-gradient(90deg,#ffaa00,#ff6600);color:#000}.b3{background:linear-gradient(90deg,#ff00ff,#aa00ff);color:#fff}#lobby{display:none;position:fixed;inset:0;background:#02030a;flex-direction:column;padding:0;overflow-y:auto}.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:10px}.hero{background:#1a1f4a;border:2px solid #2a4aff;border-radius:10px;padding:8px;text-align:center}.hero.sel{border-color:#0ff;box-shadow:0 0 12px #0ff}</style></head><body><div id="home"><div id="c"><div style="font-size:48px">👑</div><h1>RIMURU MOBA FINAL</h1><div style="color:#888;font-size:9px">30 Heroes | 100 Skins | Shop | Stats - FIXED!</div><div class="w"><b>💎 9,999,999 | 🪙 999,999</b><div style="font-size:8px;color:#ccc">Timothy Owner</div></div><button class="b1" onclick="enter()">▶️ ENTER LOBBY - CLICK ME!</button><button class="b2" onclick="alert('SHOP - OPEN! Shop gumagana boss!')">🛒 SHOP - HERO & SKIN</button><button class="b3" onclick="alert('STATS - Wins:0 Loss:0 Kills:0 - Gumagana boss!')">📊 MY STATS & STALK PLAYERS</button></div></div><div id="lobby"><div style="background:#0a0e2a;border-bottom:2px solid #2a5aff;padding:10px;text-align:center;position:sticky;top:0"><div style="color:#0ff;font-weight:900">30 HUMAN HEROES - NAGANA NA!</div><button onclick="goHome()" style="margin-top:8px;background:#222;color:#fff;border:none;padding:8px 16px;border-radius:20px;font-weight:900">⬅️ BACK</button></div><div class="grid" id="g"></div><div style="padding:10px"><button class="b1" style="background:linear-gradient(90deg,#00ff88,#00aa66)" onclick="alert('START BATTLE! Panalo ka boss! Wins +1');goHome()">▶️ START BATTLE - 5v5!</button></div></div><script>function enter(){document.getElementById('home').style.display='none';document.getElementById('lobby').style.display='flex';let grid=document.getElementById('g');grid.innerHTML='';let heroes=["Rimuru","Benimaru","Shion","Milim","Veldora","Diablo","Shuna","Souei","Hakurou","Gobta","Ranga","Geld","Gabiru","Guy Crimson","Ramiris","Hinata","Leon","Chloe","Velzard","Velgrynd","Veldanava","Timothy GOD 99,999!"];heroes.forEach((n,i)=>{let d=document.createElement('div');d.className='hero'+(i==0?' sel':'');d.innerHTML='<div style="font-size:24px">🧍</div><div style="font-size:7px;font-weight:900;margin-top:4px">'+n+'</div><div style="font-size:6px;opacity:.7">💥'+(i==21?99999:90+i)+' ❤️'+(i==21?99999:500+i*10)+'</div>';d.onclick=function(){document.querySelectorAll(".hero").forEach(x=>x.classList.remove("sel"));d.classList.add("sel");};grid.appendChild(d);});}function goHome(){document.getElementById('lobby').style.display='none';document.getElementById('home').style.display='block';}console.log('FIXED CODE LOADED BOSS!');</script></body></html>
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>RIMURU DUEL - WITH RECORD SAVE</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;touch-action:manipulation}
+body{background:#02030a;color:#fff;font-family:Arial;overflow:hidden}
+#bg{position:fixed;inset:0;background:radial-gradient(ellipse at center,#1a0a2a,#02030a)}
+.screen{position:fixed;inset:0;overflow-y:auto;z-index:10;display:flex;justify-content:center;padding:0}
+#home{display:flex;align-items:center;padding:14px}
+.card{width:100%;max-width:420px;background:linear-gradient(145deg,#151a3a,#0e1230);border:2px solid #2a5aff;border-radius:22px;padding:16px;box-shadow:0 0 30px #2a5aff99;text-align:center;height:fit-content;margin:auto}
+h1{color:#00f7ff;font-size:19px;text-shadow:0 0 12px #0ff}
+.wallet{border:2px solid #ff00ff;background:linear-gradient(90deg,#1a0033,#2a0044);border-radius:14px;padding:10px;margin:10px 0}
+.wallet b{color:#ffd700;font-size:14px}
+.btn{width:100%;border:none;border-radius:14px;padding:13px 0;font-weight:900;font-size:11px;margin-bottom:7px;pointer-events:auto;z-index:999;position:relative}
+.btn:active{transform:translateY(2px)}
+.b1{background:linear-gradient(90deg,#00e5ff,#0072ff);color:#000;box-shadow:0 4px 0 #003399}
+.b2{background:linear-gradient(90deg,#ffaa00,#ff6600);color:#000;box-shadow:0 4px 0 #884400}
+.b3{background:linear-gradient(90deg,#ff00ff,#aa00ff);color:#fff}
+.b4{background:linear-gradient(90deg,#00ff88,#00aa66);color:#000}
+.b5{background:linear-gradient(90deg,#ffffff,#aaaaaa);color:#000}
+.record{border:1px solid #00f7ff;background:#000a;border-radius:12px;padding:10px;margin:8px 0;text-align:left;font-size:10px;line-height:1.7}
+.record b{color:#00f7ff}
+#lobby,#shop,#records{display:none;flex-direction:column;background:#02030a}
+.head{position:sticky;top:0;background:linear-gradient(#0a0e2a,#02030a);border-bottom:2px solid #2a5aff;padding:10px;text-align:center;z-index:5;width:100%}
+.tabs{display:flex;gap:5px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+.tab{padding:6px 12px;border-radius:20px;border:2px solid #2a5aff;background:#000a;color:#fff;font-size:9px;font-weight:900}
+.tab.active{background:#2a5aff}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;padding:10px;width:100%;max-width:600px;margin:0 auto}
+.hero{background:linear-gradient(145deg,#1a1f4a,#0f1433);border:2px solid #2a4aff;border-radius:12px;padding:8px;text-align:center;min-height:110px}
+.hero.sel{border-color:#00f7ff;box-shadow:0 0 14px #0ff}
+.hero.op{border-color:#ff00ff;box-shadow:0 0 18px #f0f}
+.shopGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px;width:100%;max-width:700px;margin:0 auto}
+.item{background:linear-gradient(145deg,#1a1f3a,#0f1433);border:2px solid #2a4aff;border-radius:12px;padding:10px;text-align:center;min-height:160px}
+.item.god{border-color:#ff00ff;box-shadow:0 0 14px #f0f}
+.item.vip{border-color:#ffaa00}
+.item.owned{border-color:#00ff88;box-shadow:0 0 10px #0f88}
+.buy{width:100%;border:none;border-radius:8px;padding:7px 0;font-weight:900;font-size:9px;margin-top:5px}
+.buy{background:linear-gradient(#ffd700,#ff8c00);color:#000}
+.buy.eq{background:linear-gradient(#00ff88,#00aa66)}
+.buy.have{background:#333;color:#666}
+.human{width:36px;height:44px;margin:0 auto;position:relative}
+.head{width:15px;height:15px;background:#ffdbac;border-radius:50%;margin:0 auto}
+.body{width:19px;height:15px;background:var(--c1);margin:1px auto 0;border-radius:3px}
+.legs{display:flex;gap:2px;justify-content:center;margin-top:1px}
+.leg{width:7px;height:11px;background:var(--c2);border-radius:0 0 3px 3px}
+#duel{display:none;position:fixed;inset:0;background:radial-gradient(ellipse at center,#1a2a0a,#02030a);z-index:30;flex-direction:column}
+#arena{flex:1;position:relative;display:flex;justify-content:space-between;align-items:flex-end;padding:20px 20px 140px}
+.fighter{width:130px;text-align:center}
+.fighter .human{width:70px;height:90px}.fighter .human .head{width:30px;height:30px}.fighter .human .body{width:40px;height:32px}.fighter .human .legs .leg{width:14px;height:22px}
+.hpbar{width:100%;height:14px;background:#000;border:2px solid #fff;border-radius:10px;overflow:hidden;margin:6px 0}
+.hpfill{height:100%;width:100%;transition:width 0.3s}
+#myHp{ background:linear-gradient(90deg,#0f0,#0a0)}#enHp{background:linear-gradient(90deg,#f00,#800)}
+#center{position:absolute;left:50%;top:30%;transform:translate(-50%,-50%);font-size:30px;font-weight:900;text-shadow:0 0 20px #fff;z-index:5;text-align:center}
+#controls{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(#000a,#000);border-top:2px solid #2a5aff;padding:10px;display:flex;gap:8px;justify-content:center}
+.skill{width:66px;height:66px;border-radius:16px;border:2px solid #fff;font-size:20px;font-weight:900;position:relative}
+#voice{position:absolute;top:60px;left:50%;transform:translateX(-50%);background:#1a0033;border:2px solid #f0f;border-radius:20px;padding:8px 16px;font-size:12px;font-weight:900;color:#fcc;display:none;z-index:60}
+@keyframes hit{0%{transform:translateX(0)}25%{transform:translateX(-8px)}50%{transform:translateX(8px)}100%{transform:translateX(0)}}.hit{animation:hit 0.2s}
+.log{font-size:7px;color:#aaa;background:#000a;border-radius:8px;padding:6px;margin:4px 0;text-align:left;max-height:120px;overflow-y:auto}
+</style>
+</head>.
