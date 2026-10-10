@@ -1,63 +1,82 @@
 <!DOCTYPE html>
-<html lang="tl">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>RIMURU DUEL - WITH RECORD SAVE</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RIMURU DUEL 500 ITEMS - FIXED BLACKSCREEN</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;touch-action:manipulation}
-body{background:#02030a;color:#fff;font-family:Arial;overflow:hidden}
-#bg{position:fixed;inset:0;background:radial-gradient(ellipse at center,#1a0a2a,#02030a)}
-.screen{position:fixed;inset:0;overflow-y:auto;z-index:10;display:flex;justify-content:center;padding:0}
-#home{display:flex;align-items:center;padding:14px}
-.card{width:100%;max-width:420px;background:linear-gradient(145deg,#151a3a,#0e1230);border:2px solid #2a5aff;border-radius:22px;padding:16px;box-shadow:0 0 30px #2a5aff99;text-align:center;height:fit-content;margin:auto}
-h1{color:#00f7ff;font-size:19px;text-shadow:0 0 12px #0ff}
-.wallet{border:2px solid #ff00ff;background:linear-gradient(90deg,#1a0033,#2a0044);border-radius:14px;padding:10px;margin:10px 0}
-.wallet b{color:#ffd700;font-size:14px}
-.btn{width:100%;border:none;border-radius:14px;padding:13px 0;font-weight:900;font-size:11px;margin-bottom:7px;pointer-events:auto;z-index:999;position:relative}
-.btn:active{transform:translateY(2px)}
-.b1{background:linear-gradient(90deg,#00e5ff,#0072ff);color:#000;box-shadow:0 4px 0 #003399}
-.b2{background:linear-gradient(90deg,#ffaa00,#ff6600);color:#000;box-shadow:0 4px 0 #884400}
-.b3{background:linear-gradient(90deg,#ff00ff,#aa00ff);color:#fff}
-.b4{background:linear-gradient(90deg,#00ff88,#00aa66);color:#000}
-.b5{background:linear-gradient(90deg,#ffffff,#aaaaaa);color:#000}
-.record{border:1px solid #00f7ff;background:#000a;border-radius:12px;padding:10px;margin:8px 0;text-align:left;font-size:10px;line-height:1.7}
-.record b{color:#00f7ff}
-#lobby,#shop,#records{display:none;flex-direction:column;background:#02030a}
-.head{position:sticky;top:0;background:linear-gradient(#0a0e2a,#02030a);border-bottom:2px solid #2a5aff;padding:10px;text-align:center;z-index:5;width:100%}
-.tabs{display:flex;gap:5px;justify-content:center;margin-top:8px;flex-wrap:wrap}
-.tab{padding:6px 12px;border-radius:20px;border:2px solid #2a5aff;background:#000a;color:#fff;font-size:9px;font-weight:900}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0e2a;color:#fff;font-family:Arial}
+.top{position:sticky;top:0;background:#0a0e2a;border-bottom:2px solid #2a5aff;padding:10px;text-align:center;z-index:99}
+.wallet{border:2px solid #ff00ff;background:#1a0033;border-radius:12px;padding:8px;margin:8px auto;max-width:400px;text-align:center}
+.wallet b{color:#ffd700}
+.tabs{display:flex;gap:5px;justify-content:center;margin:8px 0;flex-wrap:wrap}
+.tab{padding:8px 14px;border-radius:20px;border:2px solid #2a5aff;background:#000;color:#fff;font-weight:900;font-size:9px}
 .tab.active{background:#2a5aff}
-.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;padding:10px;width:100%;max-width:600px;margin:0 auto}
-.hero{background:linear-gradient(145deg,#1a1f4a,#0f1433);border:2px solid #2a4aff;border-radius:12px;padding:8px;text-align:center;min-height:110px}
-.hero.sel{border-color:#00f7ff;box-shadow:0 0 14px #0ff}
-.hero.op{border-color:#ff00ff;box-shadow:0 0 18px #f0f}
-.shopGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px;width:100%;max-width:700px;margin:0 auto}
-.item{background:linear-gradient(145deg,#1a1f3a,#0f1433);border:2px solid #2a4aff;border-radius:12px;padding:10px;text-align:center;min-height:160px}
-.item.god{border-color:#ff00ff;box-shadow:0 0 14px #f0f}
-.item.vip{border-color:#ffaa00}
-.item.owned{border-color:#00ff88;box-shadow:0 0 10px #0f88}
-.buy{width:100%;border:none;border-radius:8px;padding:7px 0;font-weight:900;font-size:9px;margin-top:5px}
-.buy{background:linear-gradient(#ffd700,#ff8c00);color:#000}
-.buy.eq{background:linear-gradient(#00ff88,#00aa66)}
-.buy.have{background:#333;color:#666}
-.human{width:36px;height:44px;margin:0 auto;position:relative}
-.head{width:15px;height:15px;background:#ffdbac;border-radius:50%;margin:0 auto}
-.body{width:19px;height:15px;background:var(--c1);margin:1px auto 0;border-radius:3px}
-.legs{display:flex;gap:2px;justify-content:center;margin-top:1px}
-.leg{width:7px;height:11px;background:var(--c2);border-radius:0 0 3px 3px}
-#duel{display:none;position:fixed;inset:0;background:radial-gradient(ellipse at center,#1a2a0a,#02030a);z-index:30;flex-direction:column}
-#arena{flex:1;position:relative;display:flex;justify-content:space-between;align-items:flex-end;padding:20px 20px 140px}
-.fighter{width:130px;text-align:center}
-.fighter .human{width:70px;height:90px}.fighter .human .head{width:30px;height:30px}.fighter .human .body{width:40px;height:32px}.fighter .human .legs .leg{width:14px;height:22px}
-.hpbar{width:100%;height:14px;background:#000;border:2px solid #fff;border-radius:10px;overflow:hidden;margin:6px 0}
-.hpfill{height:100%;width:100%;transition:width 0.3s}
-#myHp{ background:linear-gradient(90deg,#0f0,#0a0)}#enHp{background:linear-gradient(90deg,#f00,#800)}
-#center{position:absolute;left:50%;top:30%;transform:translate(-50%,-50%);font-size:30px;font-weight:900;text-shadow:0 0 20px #fff;z-index:5;text-align:center}
-#controls{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(#000a,#000);border-top:2px solid #2a5aff;padding:10px;display:flex;gap:8px;justify-content:center}
-.skill{width:66px;height:66px;border-radius:16px;border:2px solid #fff;font-size:20px;font-weight:900;position:relative}
-#voice{position:absolute;top:60px;left:50%;transform:translateX(-50%);background:#1a0033;border:2px solid #f0f;border-radius:20px;padding:8px 16px;font-size:12px;font-weight:900;color:#fcc;display:none;z-index:60}
-@keyframes hit{0%{transform:translateX(0)}25%{transform:translateX(-8px)}50%{transform:translateX(8px)}100%{transform:translateX(0)}}.hit{animation:hit 0.2s}
-.log{font-size:7px;color:#aaa;background:#000a;border-radius:8px;padding:6px;margin:4px 0;text-align:left;max-height:120px;overflow-y:auto}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:10px;max-width:600px;margin:0 auto}
+.shop{grid-template-columns:1fr 1fr}
+.card{background:#1a1f4a;border:2px solid #2a4aff;border-radius:12px;padding:10px;text-align:center;min-height:110px}
+.card.sel{border-color:#0ff;box-shadow:0 0 12px #0ff}
+.card.god{border-color:#f0f;box-shadow:0 0 12px #f0f}
+.card.owned{border-color:#0f8}
+.btn{width:100%;border:none;border-radius:12px;padding:12px 0;font-weight:900;font-size:11px;margin:5px 0}
+.b1{background:linear-gradient(90deg,#0ff,#07f);color:#000}
+.b2{background:linear-gradient(90deg,#fa0,#f60);color:#000}
+.b3{background:linear-gradient(90deg,#f0f,#a0f);color:#fff}
+.b4{background:linear-gradient(90deg,#0f8,#0a6);color:#000}
+.price{color:#ffd700;font-size:8px;font-weight:900;border:1px solid #ffd700;border-radius:8px;padding:2px 6px;display:inline-block;margin:3px 0}
+.buy{padding:6px 0;font-size:9px;border-radius:8px;border:none;font-weight:900;width:100%;margin-top:4px}
+.buy-y{background:linear-gradient(#ffd700,#ff8c00);color:#000}
+.buy-g{background:#333;color:#666}
+#duel{display:none;position:fixed;inset:0;background:#0a1a0a;z-index:100;flex-direction:column}
+.hp{width:100%;height:12px;background:#000;border:1px solid #fff;border-radius:10px;overflow:hidden;margin:5px 0}
+.fill{height:100%;background:#0f0;width:100%;transition:0.3s}
+.fill.e{background:#f00}
+.human{width:50px;height:60px;margin:5px auto;position:relative}
+.head{width:18px;height:18px;background:#ffdbac;border-radius:50%;margin:0 auto}
+.body{width:24px;height:20px;background:var(--c1);margin:1px auto 0;border-radius:4px}
+.legs{display:flex;gap:2px;justify-content:center}
+.leg{width:8px;height:14px;background:var(--c2);border-radius:0 0 3px 3px}
+@keyframes hit{0%{transform:translateX(0)}50%{transform:translateX(-10px)}100%{transform:translateX(0)}}
+.hit{animation:hit 0.2s}
 </style>
-</head>.
+</head>
+<body>
+
+<div id="home">
+<div class="top">
+<div style="font-size:28px">⚔️ RIMURU DUEL - 500 ITEMS</div>
+<div class="wallet"><b id="dTxt">💎 999,999 Diamonds</b><br><span style="font-size:8px" id="eqTxt">⚔️ Sword: None | 🛡️ Armor: None | DMG: 95</span><br><span style="font-size:8px">WINS: <span id="wTxt">0</span> | ITEMS: <span id="iTxt">0</span>/500</span></div>
+<div class="tabs"><button class="tab active" onclick="showTab('hero')">HEROES 22</button><button class="tab" onclick="showTab('shop')">SHOP 500</button></div>
+</div>
+<div id="heroBox" class="grid"></div>
+<div id="shopBox" class="grid shop" style="display:none"></div>
+<div style="padding:10px;max-width:600px;margin:0 auto">
+<button class="btn b4" onclick="startDuel()">⚔️ DUEL NOW - 1V1 BAKBAKAN!</button>
+<button class="btn b1" onclick="quickDuel()">⚡ QUICK RANDOM DUEL!</button>
+</div>
+</div>
+
+<div id="duel">
+<div style="height:50px;background:#000;border-bottom:2px solid #f00;display:flex;justify-content:space-between;align-items:center;padding:0 12px;font-weight:900">
+<span id="myN">RIMURU</span><span id="vs">VS</span><span id="enN">ENEMY</span>
+</div>
+<div style="flex:1;display:flex;justify-content:space-between;align-items:flex-end;padding:20px 20px 120px">
+<div style="width:120px;text-align:center" id="myBox"><div class="hp"><div class="fill" id="myHp"></div></div><div id="myHpT" style="font-size:8px">600/600</div><div class="human" id="myH" style="--c1:#3a6aff;--c2:#1a2a5a"><div class="head"></div><div class="body"></div><div class="legs"><div class="leg"></div><div class="leg"></div></div></div><div id="myFN" style="font-size:10px;font-weight:900">RIMURU</div></div>
+<div id="center" style="font-size:30px;font-weight:900;text-align:center"></div>
+<div style="width:120px;text-align:center" id="enBox"><div class="hp"><div class="fill e" id="enHp"></div></div><div id="enHpT" style="font-size:8px">600/600</div><div class="human" id="enH" style="--c1:#f44;--c2:#800"><div class="head"></div><div class="body"></div><div class="legs"><div class="leg"></div><div class="leg"></div></div></div><div id="enFN" style="font-size:10px;font-weight:900">ENEMY</div></div>
+</div>
+<div id="voice" style="position:absolute;top:70px;left:50%;transform:translateX(-50%);background:#1a0033;border:2px solid #f0f;border-radius:20px;padding:8px 16px;font-size:12px;font-weight:900;display:none"></div>
+<div style="position:absolute;bottom:0;left:0;right:0;background:#000;border-top:2px solid #2a5aff;padding:10px;display:flex;gap:8px;justify-content:center">
+<button class="btn b1" style="width:70px;height:65px" onclick="atk(0)">👊<br><span style="font-size:6px">PUNCH</span></button>
+<button class="btn b2" style="width:70px;height:65px" onclick="atk(1)">💥<br><span style="font-size:6px" id="s1">SKILL1</span></button>
+<button class="btn b3" style="width:70px;height:65px" onclick="atk(2)">🔥<br><span style="font-size:6px" id="s2">ULTI</span></button>
+<button class="btn" style="width:70px;height:65px;background:#222;color:#fff" onclick="backHome()">⬅️<br><span style="font-size:6px">BACK</span></button>
+</div>
+</div>
+
+<script>
+let diamonds=999999,wins=parseInt(localStorage.getItem('dw')||'0'),owned=JSON.parse(localStorage.getItem('do')||'[0,1,2]'),sel=0,equipped={sword:null,armor:null,skin:null},bonusDmg=0,bonusHp=0;
+let heroes=[
+{name:"Rimuru",hp:600,dmg:95,c1:"#3a6aff",c2:"#1a2a5a",s1:"Water Blade",s2:"Beelzebuth!",v1:"Mizukiri!",v2:"BEELZEBUTH!"},
+{name:"Benimaru",hp:580,dmg:92,c1:"#f44",c2:"#500",s1:"Flame Slash",s2:"Prominence!",v1:"Enzan!",v2:"SHA
