@@ -2,117 +2,73 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Red vs Purple - Armored Battle</title>
+<title>Armored Battle - Red vs Purple</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0f2a;overflow:hidden;height:100vh;font-family:Arial}
-#game{width:100%;height:100vh;background:radial-gradient(at 50% 10%,#1a2a5a 0%,#0a0f2a 60%,#000 100%);display:flex;flex-direction:column}
-#top{height:50px;display:flex;justify-content:space-between;align-items:center;padding:0 14px;color:#fff;font-weight:900;font-size:11px;z-index:10}
-.bar{width:125px;height:14px;background:#111;border:2px solid #444;border-radius:12px;overflow:hidden;box-shadow:inset 0 0 4px #000}
+body{background:#080d24;overflow:hidden;height:100vh;font-family:Arial}
+#game{width:100%;height:100vh;background:radial-gradient(at 50% 0%,#1a2a5a,#080d24 70%,#000 100%);display:flex;flex-direction:column}
+#top{height:52px;display:flex;justify-content:space-between;align-items:center;padding:0 14px;color:#fff;font-weight:900;font-size:11px;letter-spacing:1px}
+.bar{width:130px;height:14px;background:#111;border:2px solid #333;border-radius:12px;overflow:hidden}
 .fill{height:100%;transition:width .35s cubic-bezier(.34,1.56,.64,1)}
-#arena{flex:1;position:relative;display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:90px;overflow:hidden}
-.char{position:absolute;bottom:85px;width:155px;height:340px;transition:all .3s cubic-bezier(.34,1.56,.64,1);filter:drop-shadow(0 0 12px rgba(255,0,0,.6))}
-.char img{width:100%;height:100%;object-fit:contain;object-position:bottom;mix-blend-mode:screen}
-#you{left:15px;filter:drop-shadow(0 0 15px rgba(255,50,50,.8)) drop-shadow(0 5px 10px #000)}
-#boss{right:15px;filter:drop-shadow(0 0 15px rgba(150,0,255,.8)) drop-shadow(0 5px 10px #000)}
-.vs{position:absolute;left:50%;top:18%;transform:translateX(-50%);color:gold;font-size:24px;font-weight:900;text-shadow:0 0 12px gold,0 0 20px orange;letter-spacing:2px}
-#fx{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);font-size:24px;font-weight:900;pointer-events:none;z-index:20;text-shadow:0 0 10px #000;opacity:0;transition:all .4s}
-#ctrl{display:flex;justify-content:center;gap:10px;padding:12px 10px 16px;background:linear-gradient(#111,#000);border-top:3px solid #222;z-index:20}
-.btn{width:72px;height:68px;border-radius:18px;border:3px solid #334;background:linear-gradient(145deg,#1e2e6a,#0f1a3a);color:#fff;font-weight:900;font-size:10px;box-shadow:0 4px 0 #000,0 0 10px rgba(0,100,255,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+#arena{flex:1;position:relative;overflow:hidden}
+.char{position:absolute;bottom:88px;width:160px;height:360px;transition:all .3s cubic-bezier(.34,1.56,.64,1)}
+.char img{width:100%;height:100%;object-fit:contain;object-position:bottom;filter:drop-shadow(0 8px 12px #000)}
+#you{left:10px}
+#boss{right:10px}
+.vs{position:absolute;left:50%;top:16%;transform:translateX(-50%);color:gold;font-size:22px;font-weight:900;text-shadow:0 0 12px gold;letter-spacing:3px}
+#fx{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-size:22px;font-weight:900;pointer-events:none;z-index:20;text-shadow:0 2px 8px #000;opacity:0;transition:all .4s;text-align:center}
+#ctrl{display:flex;justify-content:center;gap:10px;padding:12px 10px 18px;background:#000;border-top:3px solid #222}
+.btn{width:74px;height:68px;border-radius:18px;border:3px solid #2a3a6a;background:linear-gradient(145deg,#1e2e6a,#0f1a3a);color:#fff;font-weight:900;font-size:11px;letter-spacing:.5px;box-shadow:0 4px 0 #000}
 .btn:active{transform:translateY(4px);box-shadow:0 0 0 #000}
 .btn.ulti{background:linear-gradient(145deg,#ffcc00,#ff8800);color:#000;border-color:gold;box-shadow:0 0 18px gold,0 4px 0 #000}
-#lobby{position:absolute;bottom:88px;left:50%;transform:translateX(-50%);background:linear-gradient(145deg,#1a2a5a,#0f1a3a);border:2px solid #556;padding:9px 20px;border-radius:24px;font-weight:900;font-size:11px;color:#fff;box-shadow:0 0 10px rgba(100,100,255,.5)}
+#lobby{position:absolute;bottom:92px;left:50%;transform:translateX(-50%);background:#1a2a5a;border:2px solid #445;padding:9px 20px;border-radius:24px;font-weight:900;font-size:11px;color:#fff;letter-spacing:1px}
 </style>
 </head>
 <body>
 <div id="game">
 <div id="top">
-<div>❤️ YOU<div class="bar"><div id="hpYou" class="fill" style="width:100%;background:linear-gradient(90deg,#0f8,#0cf)"></div></div></div>
-<div style="color:gold;font-size:14px">VS</div>
-<div style="text-align:right">💜 BOSS<div class="bar"><div id="hpBoss" class="fill" style="width:100%;background:linear-gradient(90deg,#f0f,#f00)"></div></div></div>
+<div>YOU<div class="bar"><div id="hpYou" class="fill" style="width:100%;background:linear-gradient(90deg,#00ff88,#00ccff)"></div></div></div>
+<div>VS</div>
+<div>BOSS<div class="bar"><div id="hpBoss" class="fill" style="width:100%;background:linear-gradient(90deg,#ff00ff,#ff0000)"></div></div></div>
 </div>
+
 <div id="arena">
-<div class="vs">⚔️ BATTLE ⚔️</div>
-<div id="you" class="char"><img src="you.png" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=font-size:80px>🤖</div>'"></div>
-<div id="boss" class="char"><img src="boss.png" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=font-size:80px>👿</div>'"></div>
+<div class="vs">BATTLE</div>
+<div id="you" class="char"><img src="you.png" alt="YOU"></div>
+<div id="boss" class="char"><img src="boss.png" alt="BOSS"></div>
 <div id="fx"></div>
 </div>
+
 <div id="ctrl">
-<button class="btn" onclick="punch()">👊<br>PUNCH</button>
-<button class="btn" onclick="skill()">🔥<br>SKILL</button>
-<button class="btn ulti" onclick="ulti()">⚡<br>ULTI</button>
-<button class="btn" onclick="sword()">⚔️<br>SWORD</button>
+<button class="btn" onclick="punch()">PUNCH</button>
+<button class="btn" onclick="skill()">SKILL</button>
+<button class="btn ulti" onclick="ulti()">ULTI</button>
+<button class="btn" onclick="sword()">SWORD</button>
 </div>
-<button id="lobby" onclick="location.reload()">🏠 LOBBY</button>
+
+<button id="lobby" onclick="location.reload()">LOBBY</button>
 </div>
 
 <script>
 let youHp=100,bossHp=100;
 let you=document.getElementById('you'),boss=document.getElementById('boss');
-function fx(t,c){
-let f=document.getElementById('fx');f.style.opacity='1';f.style.color=c||'gold';f.innerText=t;f.style.transform='translate(-50%,-50%) scale(1.5)';
-setTimeout(()=>{f.style.transform='translate(-50%,-90px) scale(1)';f.style.opacity='0'},350);
+
+function showFx(text,color){
+let f=document.getElementById('fx');
+f.style.opacity='1';f.style.color=color||'gold';f.innerText=text;
+f.style.transform='translate(-50%,-50%) scale(1.5)';
+setTimeout(()=>{f.style.transform='translate(-50%,-90px) scale(1)';f.style.opacity='0'},380);
 }
+
 function punch(){
-you.style.transform='translateX(45px) scale(1.1)';you.style.filter='drop-shadow(0 0 25px red) drop-shadow(0 0 40px gold)';
+you.style.transform='translateX(48px) scale(1.12)';
+you.style.filter='drop-shadow(0 0 25px #ff0000)';
 setTimeout(()=>{
-let d=16;bossHp-=d;if(bossHp<0)bossHp=0;
+let dmg=16;
+bossHp-=dmg;if(bossHp<0)bossHp=0;
 document.getElementById('hpBoss').style.width=bossHp+'%';
-boss.style.transform='translateX(-25px) scale(.9) rotate(-5deg)';setTimeout(()=>boss.style.transform='',220);
-fx('💥 PUNCH -'+d+'!','gold');
-you.style.transform='';you.style.filter='drop-shadow(0 0 15px rgba(255,50,50,.8))';
-if(bossHp<=0){fx('🏆 YOU WIN! RED WINS!','gold');setTimeout(()=>{bossHp=100;document.getElementById('hpBoss').style.width='100%';},1300);}
-},180);
-}
-function skill(){
-you.style.transform='translateY(-35px) scale(1.2) rotate(-8deg)';you.style.filter='drop-shadow(0 0 30px orange)';
-setTimeout(()=>{
-let d=24;bossHp-=d;if(bossHp<0)bossHp=0;
-document.getElementById('hpBoss').style.width=bossHp+'%';
-boss.style.transform='translateX(-30px) scale(.85)';boss.style.filter='hue-rotate(40deg)';setTimeout(()=>{boss.style.transform='';boss.style.filter='';},300);
-fx('🔥 FIRE SKILL -'+d+'!','orange');
-you.style.transform='';you.style.filter='drop-shadow(0 0 15px rgba(255,50,50,.8))';
-},260);
-}
-function ulti(){
-you.style.transform='scale(1.35)';you.style.filter='drop-shadow(0 0 40px gold) drop-shadow(0 0 60px red)';
-fx('⚡ CHARGING...','gold');
-setTimeout(()=>{
-let d=42;bossHp-=d;if(bossHp<0)bossHp=0;
-document.getElementById('hpBoss').style.width=bossHp+'%';
-boss.style.transform='translateX(60px) rotate(15deg) scale(.7)';setTimeout(()=>boss.style.transform='',500);
-fx('💥 ULTIMATE -'+d+'!!','gold');
-you.style.transform='';you.style.filter='drop-shadow(0 0 15px rgba(255,50,50,.8))';
-},400);
-}
-function sword(){
-you.style.transform='translateX(38px) rotate(-12deg) scale(1.15)';
-setTimeout(()=>{
-let d=20;bossHp-=d;if(bossHp<0)bossHp=0;
-document.getElementById('hpBoss').style.width=bossHp+'%';
-boss.style.transform='translateX(-28px) scale(.88)';setTimeout(()=>boss.style.transform='',200);
-fx('⚔️ SWORD SLASH -'+d+'!','cyan');
-you.style.transform='';
-},180);
-}
-// BOSS AI - FLEXIBLE GALAW!
-setInterval(()=>{
-if(Math.random()<0.05 && bossHp>0){
-boss.style.bottom=(85+Math.random()*30)+'px';
-boss.style.right=(15+Math.random()*25)+'px';
-setTimeout(()=>{boss.style.bottom='85px';boss.style.right='15px';},500);
-}
-},700);
-setInterval(()=>{
-if(bossHp<=0||youHp<=0)return;
-if(Math.random()<0.035){
-let d=11;youHp-=d;if(youHp<0)youHp=0;
-document.getElementById('hpYou').style.width=youHp+'%';
-you.style.transform='translateX(-22px) scale(.92)';setTimeout(()=>you.style.transform='',200);
-fx('💢 PURPLE STRIKE -'+d,'#a0f');
-if(youHp<=0){fx('💀 PURPLE WINS!','red');setTimeout(()=>{youHp=100;document.getElementById('hpYou').style.width='100%';},1300);}
-}
-},1100);
-</script>
-</body>
-</html>
+boss.style.transform='translateX(-28px) scale(.9)';
+setTimeout(()=>boss.style.transform='',220);
+showFx('PUNCH -'+dmg,'#ffcc00');
+you.style.transform='';you.style.filter='';
+if(bossHp<=0){showFx('YOU WIN','gold');set
