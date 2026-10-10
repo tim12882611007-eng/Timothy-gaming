@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RIMURU DUEL 500 ITEMS - SURE GAGANA</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0e2a;color:#fff;font-family:Arial}
+.top{padding:12px;text-align:center;background:#0a0e2a;border-bottom:2px solid #2a5aff;position:sticky;top:0;z-index:10}
+.wallet{border:2px solid #f0f;background:#1a0033;border-radius:12px;padding:8px;margin:8px auto;max-width:360px}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:8px;max-width:600px;margin:0 auto}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:8px;max-width:600px;margin:0 auto}
+.card{background:#1a1f4a;border:2px solid #2a4aff;border-radius:10px;padding:8px;text-align:center}
+.card.sel{border-color:#0ff;box-shadow:0 0 10px #0ff}
+.card.own{border-color:#0f8}
+.btn{width:96%;max-width:360px;border:none;border-radius:12px;padding:12px;font-weight:900;margin:5px auto;display:block}
+.b1{background:#0ff;color:#000}.b2{background:#fa0;color:#000}.b3{background:#f0f;color:#fff}.b4{background:#0f8;color:#000}
+.badge{color:#ffd700;font-size:7px;border:1px solid #ffd700;border-radius:8px;padding:1px 5px;display:inline-block;margin:2px}
+#duel{display:none;position:fixed;inset:0;background:#0a1a0a;z-index:50}
+.hp{width:100%;height:12px;background:#000;border:1px solid #fff;border-radius:10px;overflow:hidden}
+.fill{height:100%;background:#0f0;width:100%}
+.fill.e{background:#f00}
+</style>
+</head>
+<body>
+<div class="top">
+<div style="font-size:22px;font-weight:900">⚔️ RIMURU DUEL - 500 ITEMS</div>
+<div style="font-size:8px;color:#888">500 ITEMS SHOP - SWORD SKIN ARMOR - LAHAT MAY STATS SA LABAN!</div>
+<div class="wallet">
+<b style="color:#ffd700" id="diam">💎 999,999 Diamonds</b><br>
+<span style="font-size:8px">WINS: <span id="wins">0</span> | OWNED: <span id="owned">0</span>/500 | DMG: <span id="dmg">95</span></span><br>
+<span style="font-size:7px;color:#0ff" id="eq">⚔️ Sword: None | 🛡️ Armor: None</span>
+</div>
+<div style="display:flex;gap:5px;justify-content:center;margin-top:6px">
+<button onclick="showHero()" style="padding:6px 12px;border-radius:20px;border:2px solid #2a5aff;background:#2a5aff;color:#fff;font-size:9px;font-weight:900">HEROES 22</button>
+<button onclick="showShop()" style="padding:6px 12px;border-radius:20px;border:2px solid #2a5aff;background:#000;color:#fff;font-size:9px;font-weight:900">SHOP 500</button>
+</div>
+</div>
+
+<div id="home">
+<div style="padding:8px;text-align:center">
+<button class="btn b4" onclick="startDuel()">⚔️ START DUEL 1V1!</button>
+<button class="btn b1" onclick="quick()">⚡ QUICK RANDOM DUEL</button>
+</div>
+<div id="heroGrid" class="grid"></div>
+<div id="shopGrid" class="grid2" style="display:none"></div>
+<div id="shopMore" style="text-align:center;padding:10px;display:none">
+<button class="btn b2" onclick="loadMore()">LOAD MORE ITEMS - 500 LAHAT!</button>
+<div style="font-size:8px;color:#aaa">Page <span id="page">1</span> of 25 - 20 items per page para di mag blackscreen!</div>
+</div>
+</div>
+
+<div id="duel">
+<div style="height:50px;background:#000;border-bottom:2px solid #f00;display:flex;justify-content:space-between;align-items:center;padding:0 10px;font-weight:900;font-size:12px">
+<span id="myN">RIMURU</span><span>VS</span><span id="enN">ENEMY</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:20px 15px 100px">
+<div style="width:120px;text-align:center"><div class="hp"><div class="fill" id="myHp"></div></div><div id="myHpT" style="font-size:8px">600/600</div><div style="font-size:50px">🧍</div><div id="myF" style="font-size:10px;font-weight:900">RIMURU</div></div>
+<div id="center" style="font-size:28px;font-weight:900;min-width:80px;text-align:center"></div>
+<div style="width:120px;text-align:center"><div class="hp"><div class="fill e" id="enHp"></div></div><div id="enHpT" style="font-size:8px">600/600</div><div style="font-size:50px">👹</div><div id="enF" style="font-size:10px;font-weight:900">ENEMY</div></div>
+</div>
+<div style="position:absolute;bottom:0;left:0;right:0;background:#000;border-top:2px solid #2a5aff;padding:10px;display:flex;gap:8px;justify-content:center">
+<button class="btn b1" style="width:70px;height:60px;padding:5px" onclick="hit(0)">👊<br><span style="font-size:6px">PUNCH<br>95 DMG</span></button>
+<button class="btn b2" style="width:70px;height:60px;padding:5px" onclick="hit(1)">💥<br><span style="font-size:6px">SKILL<br>x1.5</span></button>
+<button class="btn b3" style="width:70px;height:60px;padding:5px" onclick="hit(2)">🔥<br><span style="font-size:6px">ULTI<br>x2.5</span></button>
+<button class="btn" style="width:70px;height:60px;padding:5px;background:#222;color:#fff" onclick="closeDuel()">⬅️<br><span style="font-size:6px">BACK</span></button>
+</div>
+</div>
+
+<script>
+// ULTRA SAFE CODE - WALANG BLACKSCREEN
+let diamonds=999999,wins=0,owned=[],sel=0,page=0,equip={sword:null,armor:null,skin:null,effect:null},bonusD=0,bonusH=0;
+try{wins=parseInt(localStorage.getItem('rimuru_wins')||'0');owned=JSON.parse(localStorage.getItem('rimuru_owned')||'[0,1,2]');let e=localStorage.getItem('rimuru_eq');if(e)equip=JSON.parse(e);}catch(e){wins=0;owned=[0,1,2];}
+
+let heroes=[
+{name:"Rimuru",d:95,h:600},{name:"Benimaru",d:92,h:580},{name:"Shion",d:85,h:750},{name:"Milim",d:115,h:820},{name:"Veldora",d:110,h:900},
+{name:"Diablo",d:118,h:700},{name:"Shuna",d:80,h:500},{name:"Souei",d:98,h:560},{name:"Hakurou",d:96,h:660},{name:"Ranga",d:94,h:720},
+{name:"Geld",d:70,h:850},{name:"Gabiru",d:90,h:600},{name:"Guy Crimson",d:135,h:1000},{name:"Ramiris",d:102,h:480},{name:"Hinata",d:110,h:700},
+{name:"Leon",d:125,h:880},{name:"Chloe",d:118,h:740},{name:"Velzard",d:145,h:980},{name:"Velgrynd",d:150,h:960},{name:"Veldanava",d:160,h:1050},
+{name:"TIMOTHY GOD 99999",d:9999,h:9999},{name:"Timothy Owner",d:500,h:2000}
+];
+
+// GENERATE 500 ITEMS - LAHAT MAY STATS
+let shop=[];
+let count=0;
+function addItems(type,icon,name,total,basePrice,baseD,baseH){
+for(let i=0;i<total;i++){
+shop.push({id:count++,type:type,icon:icon,name:name+" "+icon+" #"+(i+1),price:basePrice+i*3,dmg:baseD+Math.floor(i/8),hp:baseH+Math.floor(i/8)*2});
+}
+}
+addItems("sword","⚔️","SWORD",100,100,5,0);
+addItems("sword","🗡️","KATANA",50,150,8,0);
+addItems("armor","🛡️","ARMOR",100,120,0,20);
+addItems("armor","🥋","GI",50,140,2,25);
+addItems("skin","👘","SKIN",70,200,10,10);
+addItems("skin","👑","GOD SKIN",30,500,25,30);
+addItems("effect","💥","EFFECT",50,80,8,5);
+addItems("effect","🔥","FIRE EFFECT",50,100,12,0);
+
+function save(){try{localStorage.setItem('rimuru_wins',wins);localStorage.setItem('rimuru_owned',JSON.stringify(owned));localStorage.setItem('rimuru_eq',JSON.stringify(equip));}catch(e){}}
+function calcBonus(){bonusD=0;bonusH=0;for(let k in equip){if(equip[k]!==null){let it=shop.find(x=>x.id===equip[k]);if(it){bonusD+=it.dmg;bonusH+=it.hp;}}}}
+function updateTop(){document.getElementById('diam').innerText="💎 "+diamonds.toLocaleString()+" Diamonds";document.getElementById('wins').innerText=wins;document.getElementById('owned').innerText=owned.length;document.getElementById('dmg').innerText=heroes[sel].d+bonusD;let s=equip.sword!==null?shop.find(x=>x.id===equip.sword).name:"None";let a=equip.armor!==null?shop.find(x=>x.id===equip.armor).name:"None";document.getElementById('eq').innerText="⚔️ "+s.substring(0,18)+" | 🛡️ "+a.substring(0,18);}
+
+function showHero(){document.getElementById('heroGrid').style.display='grid';document.getElementById('shopGrid').style.display='none';document.getElementById('shopMore').style.display='none';renderHero();}
+function showShop(){document.getElementById('heroGrid').style.display='none';document.getElementById('shopGrid').style.display='grid';document.getElementById('shopMore').style.display='block';page=0;renderShop();}
+
+function renderHero(){
+let g=document.getElementById('heroGrid');g.innerHTML='';
+heroes.forEach((h,i)=>{
+let d=document.createElement('div');d.className='card'+(i===sel?' sel':'');
+d.innerHTML="<div style='font-size:24px'>🧍</div><div style='font-size:7px;font-weight:900'>"+h.name+"</div><div style='font-size:6px'>💥"+(h.d+bonusD)+" ❤️"+(h.h+bonusH)+"</div>";
+d.onclick=function(){sel=i;renderHero();calcBonus();updateTop();};
+g.appendChild(d);
+});
+}
+
+function renderShop(){
+let g=document.getElementById('shopGrid');g.innerHTML='';
+let start=page*20,end=start+20;
+let slice=shop.slice(start,end);
+slice.forEach(it=>{
+let isOwn=owned.includes(it.id);let isEq=equip[it.type]===it.id;
+let d=document.createElement('div');d.className='card'+(isOwn?' own':'');
+d.innerHTML="<div style='font-size:26px'>"+it.icon+"</div><div style='font-size:6px;font-weight:900'>"+it.name+"</div><div style='font-size:6px;color:#0ff'>+"+it.dmg+" DMG +"+it.hp+" HP</div><div class='badge'>💎 "+it.price+"</div><br><button class='btn "+(isOwn?(isEq?'b1':'b4'):'b2')+"' style='padding:4px;font-size:7px;margin-top:4px' onclick='buy("+it.id+")'>"+(isOwn?(isEq?'EQUIPPED':'EQUIP'):'BUY')+"</button>";
+g.appendChild(d);
+});
+document.getElementById('page').innerText=(page+1);
+}
+
+window.loadMore=function(){page++;if(page*20>=shop.length)page=0;renderShop();window.scrollTo(0,0);}
+
+window.buy=function(id){
+let it=shop.find(x=>x.id===id);
+if(owned.includes(id)){equip[it.type]=id;save();calcBonus();updateTop();renderShop();alert("EQUIPPED! "+it.name+" +"+it.dmg+" DMG +"+it.hp+" HP - Lalakas ka sa duel!");return;}
+if(diamonds>=it.price){diamonds-=it.price;owned.push(id);equip[it.type]=id;save();calcBonus();updateTop();renderShop();alert("NABILI MO "+it.name+"! +"+it.dmg+" DMG +"+it.hp+" HP - EQUIPPED NA!");}
+else alert("Kulang diamonds boss! Meron ka lang "+diamonds);
+}
+
+let my={hp:0,max:0,dmg:0},en={hp:0,max:0,dmg:0},canHit=true;
+window.startDuel=function(){
+let h=heroes[sel];my={hp:h.h+bonusH,max:h.h+bonusH,dmg:h.d+bonusD};en={hp:600,max:600,dmg:90};
+document.getElementById('home').style.display='none';document.getElementById('duel').style.display='block';
+document.getElementById('myN').innerText=h.name;document.getElementById('myF').innerText=h.name;
+updateHp();canHit=true;document.getElementById('center').innerText="FIGHT!";
+setTimeout(()=>document.getElementById('center').innerText='',1000);
+}
+window.quick=function(){sel=Math.floor(Math.random()*heroes.length);startDuel();}
+window.closeDuel=function(){document.getElementById('duel').style.display='none';document.getElementById('home').style.display='block';}
+function updateHp(){document.getElementById('myHp').style.width=(my.hp/my.max*100)+'%';document.getElementById('enHp').style.width=(en.hp/en.max*100)+'%';document.getElementById('myHpT').innerText=Math.floor(my.hp)+"/"+my.max;document.getElementById('enHpT').innerText=Math.floor(en.hp)+"/"+en.max;}
+window.hit=function(t){
+if(!canHit)return;canHit=false;
+let d=t===0?my.dmg:t===1?my.dmg*1.5:my.dmg*2.5;
+en.hp-=d;document.getElementById('center').innerText="💥 -"+Math.floor(d);updateHp();
+if(en.hp<=0){wins++;save();updateTop();document.getElementById('center').innerText="🏆 WIN!";setTimeout(()=>{alert("Panalo ka boss! Wins +1!");closeDuel();},600);return;}
+setTimeout(()=>{
+let ed=en.dmg*(0.8+Math.random()*0.6);my.hp-=ed;document.getElementById('center').innerText="💢 -"+Math.floor(ed);updateHp();
+if(my.hp<=0){document.getElementById('center').innerText="💀 LOSE!";setTimeout(()=>{alert("Talo boss! Bili ka mas malakas na equipment sa shop!");closeDuel();},600);}
+else{canHit=true;setTimeout(()=>document.getElementById('center').innerText='',300);}
+},600);
+}
+
+renderHero();calcBonus();updateTop();
+</script>
+</body>
+</html>
