@@ -2,140 +2,69 @@
 <html lang="tl">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Rimuru MOBA Online - 30 Heroes - Timothy Owner 9999999</title>
+<title>Rimuru MOBA FINAL COMPLETE SET</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;touch-action:none}body{background:#050a14;overflow:hidden;font-family:Arial;color:#fff}
-#game{position:absolute;inset:0;width:100%;height:100%}
-.screen{position:absolute;inset:0;background:radial-gradient(ellipse at top,#0a1830,#04080f);display:none;overflow-y:auto;padding:0;z-index:10}
-.screen.active{display:block}
-#loginScreen{display:flex;align-items:center;justify-content:center}
-.loginBox{background:linear-gradient(145deg,#1a1f3d,#0f1430);border:2px solid #3a6aff;border-radius:20px;padding:20px;width:90%;max-width:360px;text-align:center;box-shadow:0 0 30px #3a6aff88}
-.topBar{position:sticky;top:0;background:linear-gradient(#0f1830,#070a14);border-bottom:2px solid #3a6aff;padding:10px 8px;display:flex;justify-content:space-between;align-items:center;z-index:5}
-.badge{background:#000c;border:1px solid #3a6aff;padding:4px 8px;border-radius:20px;font-size:9px;font-weight:900}
-.btn{background:linear-gradient(#3a6aff,#00ffff);color:#000;border:none;padding:8px 16px;border-radius:20px;font-weight:900;font-size:11px}
-.btnGold{background:linear-gradient(#ffd700,#ff8c00);color:#000}
-.btnPink{background:linear-gradient(#ff00ff,#aa00ff);color:#fff}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px;max-width:720px;margin:0 auto}
-.card{background:linear-gradient(145deg,#1a1f3d,#0f1430);border:2px solid #2a4aff;border-radius:12px;padding:8px;text-align:center;min-height:140px;position:relative}
-.card.owned{border-color:#00ffff;box-shadow:0 0 10px #0ff6}.card.vip{border-color:#ffd700;box-shadow:0 0 12px #fa06}.card.op{border-color:#ff00ff;box-shadow:0 0 20px #f0f;animation:glow 1s infinite}
-@keyframes glow{0%,100%{box-shadow:0 0 15px #f0f}50%{box-shadow:0 0 30px #f0f}}
-.ic{font-size:30px}.card h3{font-size:9px;margin:3px 0}.card p{font-size:7px;opacity:.8;min-height:18px}
-.pr{border:1px solid #ffd700;color:#ffd700;padding:2px 6px;border-radius:10px;font-size:8px;font-weight:900;display:inline-block;margin:2px}
-.buy{margin-top:4px;background:linear-gradient(#ffd700,#ff8c00);border:none;width:100%;padding:6px 0;border-radius:8px;font-weight:900;color:#000;font-size:9px}
-.eq{background:linear-gradient(#00ffaa,#00aa66)}
-.skinDot{width:10px;height:10px;border-radius:50%;display:inline-block;margin:2px;border:1px solid #fff}
-.tabs{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin:8px 0}
-.tab{padding:6px 12px;border-radius:20px;border:2px solid #3a6aff;background:#000a;color:#fff;font-size:10px;font-weight:900}.tab.active{background:#3a6aff}
-#joyW{position:absolute;bottom:14px;left:14px;width:118px;height:118px;background:radial-gradient(#ffffff12,#00000030);border:2px solid #ffffff22;border-radius:50%;pointer-events:auto;z-index:20}
-#joy{position:absolute;width:50px;height:50px;background:radial-gradient(#8af,#24a);border-radius:50%;left:34px;top:34px}
-#skills{position:absolute;bottom:10px;right:6px;display:flex;gap:5px;pointer-events:auto;z-index:20;flex-wrap:wrap;max-width:190px;justify-content:flex-end}
-.sk{width:54px;height:54px;border-radius:12px;border:2px solid #fff;font-size:16px;font-weight:900;box-shadow:0 3px 0 #0008;position:relative}
-#lobbyStats{background:#000a;border:1px solid #3a6aff;border-radius:12px;padding:10px;margin:10px}
-.matchRow{background:#111a33;border:1px solid #2a4aff;border-radius:8px;padding:6px;margin:4px 0;font-size:9px;display:flex;justify-content:space-between}
-input{width:100%;background:#000a;border:1px solid #3a6aff;color:#fff;padding:8px;border-radius:10px;margin:4px 0;font-size:12px}
-#mini{position:absolute;top:54px;right:6px;width:86px;height:86px;background:#000c;border:2px solid #3a6aff;border-radius:8px;pointer-events:none;z-index:20}
-#endScreen{position:absolute;inset:0;background:#000000ee;display:none;align-items:center;justify-content:center;z-index:30;flex-direction:column;text-align:center}
+*{margin:0;padding:0;box-sizing:border-box;touch-action:manipulation}body{background:#02030a;color:#fff;font-family:Arial;overflow:hidden}
+#bg{position:fixed;inset:0;background:radial-gradient(ellipse at center,#0e1a40,#02030a)}
+.screen{position:fixed;inset:0;display:none;flex-direction:column;z-index:10;overflow-y:auto}.screen.active{display:flex}
+#wrap{justify-content:center;align-items:center;padding:12px}
+.card{width:100%;max-width:400px;background:linear-gradient(145deg,#151a3a,#0e1230);border:2px solid #2a5aff;border-radius:22px;padding:14px;box-shadow:0 0 35px #2a5aff99;text-align:center;margin:auto}
+.crown{font-size:44px}h1{color:#00f7ff;font-size:18px;text-shadow:0 0 12px #0ff}.sub{color:#888;font-size:9px;margin-bottom:10px}
+.owner{border:2px solid #ff00ff;background:linear-gradient(90deg,#1a0033,#2a0044);border-radius:14px;padding:8px;margin-bottom:10px}
+.owner b{font-size:12px}.stats{display:flex;gap:5px;justify-content:center;margin:8px 0;flex-wrap:wrap}
+.stat{background:#000a;border:1px solid #2a5aff;border-radius:10px;padding:4px 8px;font-size:8px;font-weight:900}
+.input{width:100%;background:#000c;border:2px solid #2a5aff;border-radius:12px;padding:11px 12px;color:#fff;font-size:12px;outline:none;margin-bottom:8px}
+.btn{width:100%;background:linear-gradient(90deg,#00e5ff,#0072ff);border:none;border-radius:14px;padding:12px 0;color:#000;font-weight:900;font-size:12px;cursor:pointer;pointer-events:auto!important;z-index:999;margin-bottom:6px;box-shadow:0 3px 0 #003399;display:block;text-align:center}
+.btn:active{transform:translateY(2px)} .btn2{background:linear-gradient(90deg,#ffaa00,#ff6600)} .btn3{background:linear-gradient(90deg,#ff00ff,#aa00ff);color:#fff}
+.head{position:sticky;top:0;background:linear-gradient(#0a0e2a,#02030a);border-bottom:2px solid #2a5aff;padding:8px;text-align:center;z-index:5}
+.tabs{display:flex;gap:4px;justify-content:center;margin-top:6px;flex-wrap:wrap}
+.tab{padding:5px 10px;border-radius:20px;border:2px solid #2a5aff;background:#000a;color:#fff;font-size:8px;font-weight:900;pointer-events:auto}.tab.active{background:#2a5aff;color:#fff}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:8px;overflow-y:auto;flex:1}
+.shopGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px;overflow-y:auto;max-width:720px;margin:0 auto;width:100%;flex:1}
+.hero{background:linear-gradient(145deg,#1a1f4a,#0f1433);border:2px solid #2a4aff;border-radius:10px;padding:6px;text-align:center;pointer-events:auto;min-height:115px}
+.hero.selected{border-color:#00f7ff;box-shadow:0 0 12px #0ff}.hero.op{border-color:#ff00ff;box-shadow:0 0 16px #f0f8}.hero.vip{border-color:#ffaa00}
+.human{width:36px;height:46px;margin:0 auto;position:relative}.hhead{width:16px;height:16px;background:#ffdbac;border-radius:50%;margin:0 auto}.body{width:20px;height:16px;background:var(--c1);margin:1px auto 0;border-radius:3px}.legs{display:flex;gap:2px;justify-content:center;margin-top:1px}.leg{width:7px;height:12px;background:var(--c2);border-radius:0 0 3px 3px}
+.scard{background:linear-gradient(145deg,#1a1f3a,#0f1433);border:2px solid #2a4aff;border-radius:12px;padding:8px;text-align:center;min-height:145px}
+.scard.vip{border-color:#ffaa00;box-shadow:0 0 12px #fa06}.scard.god{border-color:#ff00ff;box-shadow:0 0 18px #f0f;animation:glow 1.5s infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 18px #f0f}50%{box-shadow:0 0 28px #f0f}}
+.ic{font-size:24px}.scard h3{font-size:7px;margin:3px 0}.scard p{font-size:6px;opacity:.8;min-height:16px}
+.pr{border:1px solid #ffd700;color:#ffd700;padding:2px 6px;border-radius:10px;font-size:8px;font-weight:900;display:inline-block;margin-top:2px}.pr2{border-color:#ffaa00;color:#ffaa00}
+.buy{margin-top:4px;background:linear-gradient(#ffd700,#ff8c00);border:none;width:100%;padding:5px 0;border-radius:7px;font-weight:900;color:#000;font-size:8px;pointer-events:auto}.eq{background:linear-gradient(#00ffaa,#00aa66)}
+.playerRow{display:flex;align-items:center;gap:8px;background:#000a;border:1px solid #2a4aff;border-radius:12px;padding:8px;margin:4px 0;pointer-events:auto}
+#game{position:fixed;inset:0;background:#0c1a0c;display:none;z-index:30}
+#cvs{position:absolute;inset:0;width:100%;height:100%}
+#hud{position:absolute;top:0;left:0;right:0;height:46px;background:#000e;border-bottom:2px solid #2aff2a;display:flex;justify-content:space-between;align-items:center;padding:0 8px;font-size:8px;font-weight:900;z-index:5}
+#voiceBox{position:absolute;top:50px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#1a0033,#0a0e2a);border:2px solid #ff00ff;border-radius:20px;padding:6px 14px;font-size:11px;font-weight:900;color:#ffccff;display:none;z-index:60;box-shadow:0 0 15px #f0f}
+#joyW{position:absolute;bottom:16px;left:16px;width:110px;height:110px;background:#ffffff12;border:2px solid #ffffff22;border-radius:50%;z-index:40;pointer-events:auto}
+#joy{position:absolute;width:48px;height:48px;background:radial-gradient(#8f8,#2a2);border-radius:50%;left:31px;top:31px}
+#atk{position:absolute;bottom:18px;right:16px;width:70px;height:70px;background:radial-gradient(#f44,#800);border:2px solid #fff;border-radius:50%;font-size:22px;z-index:40;pointer-events:auto}
+#skills{position:absolute;bottom:18px;right:94px;display:flex;gap:6px;z-index:40}.sk{width:54px;height:54px;border-radius:12px;border:2px solid #fff;font-size:16px;pointer-events:auto;position:relative}.sk b{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);background:#000;font-size:4px;padding:1px 3px;border-radius:6px;border:1px solid #fff;white-space:nowrap}
+#endScreen{position:fixed;inset:0;background:#000000f0;backdrop-filter:blur(12px);z-index:100;display:none;align-items:center;justify-content:center;padding:16px}
+#endCard{width:100%;max-width:380px;background:linear-gradient(145deg,#1a2a4a,#0f1433);border:3px solid #00ff88;border-radius:22px;padding:18px;text-align:center;box-shadow:0 0 40px #0f86}
 </style>
 </head>
 <body>
-<canvas id="game"></canvas><canvas id="mini"></canvas>
+<div id="bg"></div>
 
-<!-- LOGIN / OWNER AUTO -->
-<div id="loginScreen" class="screen active">
-<div class="loginBox">
-<div style="font-size:42px">👑</div>
-<div style="font-size:18px;font-weight:900;color:#00ffff">RIMURU MOBA ONLINE</div>
-<div style="font-size:10px;color:#aaa;margin:6px 0">30 Heroes + Skins + Voice + Effects</div>
-<div style="background:#000a;border:1px solid #ff00ff;border-radius:10px;padding:8px;margin:10px 0">
-<div style="color:#ff00ff;font-size:11px;font-weight:900">👑 OWNER ACCOUNT DETECTED!</div>
-<div style="font-size:9px">Timothy - Unli Diamonds & Coins</div>
-<div style="color:#ffd700;font-size:12px;font-weight:900;margin-top:4px">💎 9,999,999 | 🪙 9,999,999</div>
-</div>
-<input id="playerName" placeholder="Enter name (Timothy auto owner)" value="Timothy">
-<button class="btn" style="width:100%;margin-top:8px" onclick="enterLobby()">▶️ ENTER LOBBY - ONLINE</button>
-<div style="font-size:8px;color:#666;margin-top:8px">Online game - real players worldwide (simulated)</div>
-</div>
-</div>
+<!-- START SCREEN -->
+<div class="screen active" id="startScreen"><div class="card" style="margin:auto">
+<div class="crown">👑</div><h1>RIMURU MOBA FINAL</h1><div class="sub">30 Heroes | 100 Skins | Shop | Stats | Send Diamonds</div>
+<div class="owner"><div style="color:#ffd700;font-weight:900" id="topCurr">💎 9,999,999 | 🪙 999,999</div><div style="font-size:8px;color:#ccc">Timothy Owner Account</div></div>
+<div class="stats"><div class="stat">🏆 WINS: <span id="wins">0</span></div><div class="stat">💀 LOSS: <span id="loss">0</span></div><div class="stat">⚔️ KILLS: <span id="tkills">0</span></div><div class="stat">📊 WR: <span id="wr">0%</span></div></div>
+<input id="pname" class="input" value="Timothy moba"><button class="btn" id="enterBtn">▶️ ENTER LOBBY</button>
+<button class="btn btn2" onclick="showScreen('shopScreen')">🛒 SHOP - HERO (🪙) & SKIN (💎)</button>
+<button class="btn btn3" onclick="showScreen('statsScreen')">📊 MY STATS & STALK PLAYERS</button>
+<div style="color:#555;font-size:7px;margin-top:8px">Coins 999,999 pang bili HERO | Diamonds 9,999,999 pang bili SKIN - FINAL COMPLETE SET!</div>
+</div></div>
 
 <!-- LOBBY -->
-<div id="lobbyScreen" class="screen">
-<div class="topBar"><div class="badge">💎<span id="lDiam">9999999</span> | 🪙<span id="lCoin">9999999</span> | <span id="lName">Timothy</span> 👑</div><button class="btn btnGold" onclick="openSend()">📤 SEND DIAMOND</button></div>
-<div style="text-align:center;padding:12px 8px 0"><div style="font-size:20px;font-weight:900;color:#00ffff">🏰 LOBBY - RIMURU TEMPEST</div><div style="font-size:9px;color:#aaa">30 Heroes | Skins with effects & voice | Online</div></div>
-<div class="tabs"><button class="tab active" onclick="setLobbyTab('heroes')" id="lt-heroes">HEROES (30)</button><button class="tab" onclick="setLobbyTab('skins')" id="lt-skins">SKINS SHOP</button><button class="tab" onclick="setLobbyTab('stats')" id="lt-stats">STATS & MATCHES</button><button class="tab" onclick="setLobbyTab('achieve')" id="lt-achieve">ACHIEVEMENT</button></div>
-<div id="lobbyContent"></div>
-<div style="padding:0 10px 20px;max-width:720px;margin:0 auto"><button class="btn" style="width:100%;padding:12px;font-size:14px" onclick="startMatch()">⚔️ START RANK MATCH - ONLINE 5v5!</button><div style="font-size:8px;color:#666;text-align:center;margin-top:4px">Auto matchmaking - 10 players online</div></div>
-</div>
+<div class="screen" id="lobbyScreen"><div class="head"><div style="color:#00f7ff;font-weight:900">🧍 30 HUMAN HEROES - FINAL!</div><div style="color:#ffd700;font-size:9px" id="lobbyCurr">💎 9,999,999 | 🪙 999,999</div><div class="tabs"><button class="tab active" onclick="setFilter('all',this)">ALL (30)</button><button class="tab" onclick="setFilter('tank',this)">TANK</button><button class="tab" onclick="setFilter('mage',this)">MAGE</button><button class="tab" onclick="setFilter('marks',this)">MARKS</button></div></div><div class="grid" id="heroGrid"></div><button class="btn" style="margin:10px;background:linear-gradient(90deg,#00ff88,#00aa66);color:#000" id="startBtn">▶️ START BATTLE - 5v5!</button><button class="btn" style="margin:0 10px 10px;background:#222;color:#fff" onclick="showScreen('startScreen')">⬅️ BACK TO MENU</button></div>
 
-<!-- SEND DIAMOND MODAL -->
-<div id="sendScreen" class="screen" style="background:#000000f0;display:none;align-items:center;justify-content:center;z-index:15">
-<div class="loginBox">
-<div style="font-size:16px;font-weight:900">📤 SEND DIAMONDS TO PLAYER</div>
-<input id="sendTo" placeholder="Player name (ex: Benimaru123)">
-<input id="sendAmt" type="number" placeholder="Amount (ex: 100)">
-<button class="btn btnGold" style="width:100%;margin-top:6px" onclick="doSend()">SEND 💎</button>
-<button class="btn" style="width:100%;margin-top:6px;background:#333;color:#fff" onclick="closeSend()">CLOSE</button>
-<div style="font-size:8px;color:#aaa;margin-top:6px">Online transfer - instant!</div>
-</div>
-</div>
+<!-- SHOP -->
+<div class="screen" id="shopScreen"><div class="head"><div style="color:#ffaa00;font-weight:900;font-size:14px">🛒 FINAL SHOP - 100 SKINS + 30 HEROES!</div><div style="color:#fff;font-size:9px"><span style="color:#ffd700">💎 <span id="shopDiam">9,999,999</span> pang SKIN</span> | <span style="color:#ffaa00">🪙 <span id="shopCoin">999,999</span> pang HERO</span></div><div class="tabs"><button class="tab active" onclick="setShopTab('skin',this)">SKINS (100) - 💎</button><button class="tab" onclick="setShopTab('hero',this)">HEROES (30) - 🪙</button><button class="tab" onclick="setShopTab('send',this)">SEND 💎</button></div></div><div class="shopGrid" id="shopGrid"></div><button class="btn" style="margin:10px;background:#222;color:#fff" onclick="showScreen('startScreen')">✕ BACK TO MENU</button></div>
 
-<!-- GAME UI -->
-<div id="gameUI" style="position:absolute;inset:0;pointer-events:none;display:none;z-index:5">
-<div class="topBar" style="pointer-events:auto"><div class="badge">💎<span id="gDiam">9999999</span> | 🪙<span id="gCoin">9999999</span> | LV<span id="gLvl">1</span></div><button class="btn" style="padding:4px 8px;font-size:9px" onclick="goLobby()">🏠 LOBBY</button><div class="badge">❤️<span id="gHp">1000</span> | K<span id="gKills">0</span> | <span id="gHero">Rimuru</span></div></div>
-<div id="joyW"><div id="joy"></div></div>
-<div id="skills">
-<button class="sk" id="sAtk" ontouchstart="doAtk()" onmousedown="doAtk()">👊<b>ATK</b></button>
-<button class="sk" id="s1" ontouchstart="cast(0)" onmousedown="cast(0)">💥<b>SK1</b></button>
-<button class="sk" id="s2" ontouchstart="cast(1)" onmousedown="cast(1)">⚡<b>SK2</b></button>
-<button class="sk" id="s3" ontouchstart="cast(2)" onmousedown="cast(2)">🔥<b>ULTI</b></button>
-</div>
-</div>
+<!-- STATS / STALK -->
+<div class="screen" id="statsScreen"><div class="head"><div style="color:#00ff88;font-weight:900">📊 STATS & STALK PLAYERS</div><div class="tabs"><button class="tab active" onclick="setStatsTab('me',this)">MY STATS</button><button class="tab" onclick="setStatsTab('players',this)">OTHER PLAYERS (STALK)</button></div></div><div style="padding:10px;overflow-y:auto;flex:1;max-width:600px;margin:0 auto;width:100%" id="statsContent"></div><button class="btn" style="margin:10px;background:#222;color:#fff" onclick="showScreen('startScreen')">⬅️ BACK</button></div>
 
-<div id="endScreen">
-<div style="font-size:28px;font-weight:900" id="endTitle">VICTORY!</div>
-<div style="font-size:14px;margin:8px 0" id="endDesc">Base destroyed!</div>
-<div id="endStats" style="background:#111a33;border:1px solid #3a6aff;border-radius:12px;padding:10px;margin:10px;width:80%;max-width:320px;font-size:11px"></div>
-<button class="btn" style="padding:10px 24px;font-size:14px" onclick="backToLobbyAfter()">🏰 BACK TO LOBBY</button>
-</div>
-
-<script>
-const cvs=document.getElementById('game'),ctx=cvs.getContext('2d');
-const mini=document.getElementById('mini'),mctx=mini.getContext('2d');
-let W=innerWidth,H=innerHeight,dpr=Math.min(devicePixelRatio,2);
-function resize(){W=innerWidth;H=innerHeight;cvs.width=W*dpr;cvs.height=H*dpr;cvs.style.width=W+'px';cvs.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);mini.width=86*dpr;mini.height=86*dpr;mini.style.width='86px';mini.style.height='86px';mctx.setTransform(dpr,0,0,dpr,0,0);}resize();addEventListener('resize',resize);
-
-let diamonds=9999999,coins=9999999,playerName="Timothy",isOwner=true;
-let ownedHeroes=[0,1,2,3,4,5,6,7,8,9],ownedSkins=[0],equippedHero=0,equippedSkin=0;
-let lobbyTab='heroes',gameActive=false,player={x:0,y:0,vx:0,vy:0,angle:0},camera={x:0,y:0},keys={},joy={dx:0,dy:0,active:false},bullets=[],enemies=[],towers=[],minions=[],particles=[],skillCd=[0,0,0],atkCd=0,hp=1000,maxHp=1000,level=1,exp=0,kills=0,matchTimer=0;
-let stats={matches:0,wins:0,losses:0,kills:0,deaths:0,mvp:0,history:[]},achievements={firstWin:false,killer10:false,collector:false,rich:false};
-
-const HEROES=[
-{id:0,name:"Rimuru Tempest",icon:"🍥",priceCoin:0,role:"Mage/Tank",voice:"Kukuku! Beelzebuth!",desc:"Slime Demon Lord - Predator"},
-{id:1,name:"Benimaru",icon:"🔥👹",priceCoin:0,role:"Fighter",voice:"Flare Lord!",desc:"Ogre fire commander"},
-{id:2,name:"Shion",icon:"💜👹",priceCoin:500,role:"Tank",voice:"Shion's cooking!",desc:"Wrath - big sword"},
-{id:3,name:"Shuna",icon:"🌸👹",priceCoin:500,role:"Support",voice:"Bless you!",desc:"Princess - barrier"},
-{id:4,name:"Souei",icon:"🌑👹",priceCoin:600,role:"Assassin",voice:"Shadow move!",desc:"Spy - fast"},
-{id:5,name:"Hakurou",icon:"⚔️👴",priceCoin:600,role:"Fighter",voice:"Sword art!",desc:"Sword master"},
-{id:6,name:"Gabiru",icon:"🐉",priceCoin:700,role:"Fighter",voice:"Gabiru-sama!",desc:"Lizard spear"},
-{id:7,name:"Diablo",icon:"😈🖤",priceCoin:1000,role:"Mage",voice:"My Lord Rimuru!",desc:"Black primordial - OP"},
-{id:8,name:"Milim Nava",icon:"🐉💥",priceCoin:1200,role:"Mage",voice:"Milim Burst!",desc:"Dragonoid - destroyer"},
-{id:9,name:"Veldora Tempest",icon:"🐉🌪️",priceCoin:1200,role:"Tank/Mage",voice:"Kwahaha!",desc:"Storm dragon"},
-{id:10,name:"Gobta",icon:"🐺",priceCoin:800,role:"Assassin",voice:"Gobta run!",desc:"Goblin wolf rider"},
-{id:11,name:"Ranga",icon:"🐺⚡",priceCoin:900,role:"Fighter",voice:"Master!",desc:"Tempest wolf"},
-{id:12,name:"Testarossa",icon:"😈🤍",priceCoin:1500,role:"Mage",voice:"White Queen!",desc:"White primordial"},
-{id:13,name:"Ultima",icon:"😈💜",priceCoin:1500,role:"Assassin",voice:"Violet death!",desc:"Violet primordial"},
-{id:14,name:"Carrera",icon:"😈💛",priceCoin:1500,role:"Mage",voice:"Golden gun!",desc:"Yellow primordial - nuke"},
-{id:15,name:"Guy Crimson",icon:"👑🔴",priceCoin:2000,role:"Mage",voice:"Red Primordial!",desc:"Strongest demon lord"},
-{id:16,name:"Velzard",icon:"❄️🐉",priceCoin:1800,role:"Mage",voice:"Frost Queen!",desc:"Ice dragon"},
-{id:17,name:"Velgrynd",icon:"🔥🐉",priceCoin:1800,role:"Mage",voice:"Scorch Queen!",desc:"Fire dragon"},
-{id:18,name:"Hinata Sakaguchi",icon:"⚔️✝️",priceCoin:1300,role:"Fighter",voice:"Disintegration!",desc:"Holy knight"},
-{id:19,name:"Luminous Valentine",icon:"🧛‍♀️",priceCoin:1600,role:"Support",voice:"Night Queen!",desc:"Vampire queen"},
-{id:20,name:"Leon Cromwell",icon:"⚔️💛",priceCoin:1700,role:"Fighter",voice:"Platinum!",desc:"Platinum demon lord"},
-{id:21,name:"Dagruel",icon:"🗿",priceCoin:1400,role:"Tank",voice:"Earthquake!",desc:"Titan lord"},
-{id:22,name:"Dino",icon:"😴⚔️",priceCoin:1300,role:"Fighter",voice:"Sleepy...",desc:"Fallen angel"},
-{id:23,name:"Frey",icon:"🦅",priceCoin:1100,role:"Marksman",voice:"Sky Queen!",desc:"Harpy queen"},
-{id:24,name:"Clayman",icon:"🤡",priceCoin:1000,role:"Mage",voice:"Marionette!",desc:"Mad clown"},
-{id:25,name:"Feldway",icon:"👼",priceCoin:1900,role:"Fighter",voice:"Seraphim!",desc:"Angel chief"},
-{id:26,name:"Zegion",icon:"🪲",priceCoin:1200,role:"Tank",voice:"...",desc:"Insect king"},
-{id:27,name:"Adalman",icon:"💀",priceCoin:900,role:"Mage",voice:"Undead!",desc:"Wight king"},
-{id:28,name:"Kumara",icon:"🦊",priceCoin:1100,role:"Mage",voice:"Nine tails!",desc:"Fox beast"},
-{id:29,name:"TIMOTHY RIMURU GOD - OWNER ONLY",icon:"👑🍥💥",priceCoin:999999,hp:99999,dmg:99999,role:"GOD",voice:"I AM TIMOTHY GOD! UNLI DIAMONDS!",desc:"99999 POWER! OWNER ONLY! UNLI 9999999 DIAMONDS &
+<!-- GAME -->
+<div id="game"><canvas id="cvs"></canvas><div id="hud"><span id="hudLeft">💎 9,999,999 | 🪙 999,999 | ❤️ <span id="hp">600</span> | K <span id="kills">0</span>/10</span><span id="heroName">RIMURU</span></div><div id="voiceBox"></div><div id="joyW"><div id="joy"></div></div><div id="skills"><button class="sk" style="background:radial-gradient(#44aaff,#004488)" onclick="cast(0)">💥<b id="sk1">SK1</b></button><button class="sk" style="background:radial-gradient(#ffaa44,#884400)" onclick="cast(1)">⚡<b id="sk2">SK2</b></button><button class="sk" style="background:radial-gradient(#ff44
