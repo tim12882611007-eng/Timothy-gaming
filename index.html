@@ -1,70 +1,156 @@
 <!DOCTYPE html>
 <html lang="tl">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Rimuru MOBA FINAL COMPLETE SET</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>RIMURU MOBA FINAL - FIXED 100%</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;touch-action:manipulation}body{background:#02030a;color:#fff;font-family:Arial;overflow:hidden}
-#bg{position:fixed;inset:0;background:radial-gradient(ellipse at center,#0e1a40,#02030a)}
-.screen{position:fixed;inset:0;display:none;flex-direction:column;z-index:10;overflow-y:auto}.screen.active{display:flex}
-#wrap{justify-content:center;align-items:center;padding:12px}
-.card{width:100%;max-width:400px;background:linear-gradient(145deg,#151a3a,#0e1230);border:2px solid #2a5aff;border-radius:22px;padding:14px;box-shadow:0 0 35px #2a5aff99;text-align:center;margin:auto}
-.crown{font-size:44px}h1{color:#00f7ff;font-size:18px;text-shadow:0 0 12px #0ff}.sub{color:#888;font-size:9px;margin-bottom:10px}
-.owner{border:2px solid #ff00ff;background:linear-gradient(90deg,#1a0033,#2a0044);border-radius:14px;padding:8px;margin-bottom:10px}
-.owner b{font-size:12px}.stats{display:flex;gap:5px;justify-content:center;margin:8px 0;flex-wrap:wrap}
-.stat{background:#000a;border:1px solid #2a5aff;border-radius:10px;padding:4px 8px;font-size:8px;font-weight:900}
-.input{width:100%;background:#000c;border:2px solid #2a5aff;border-radius:12px;padding:11px 12px;color:#fff;font-size:12px;outline:none;margin-bottom:8px}
-.btn{width:100%;background:linear-gradient(90deg,#00e5ff,#0072ff);border:none;border-radius:14px;padding:12px 0;color:#000;font-weight:900;font-size:12px;cursor:pointer;pointer-events:auto!important;z-index:999;margin-bottom:6px;box-shadow:0 3px 0 #003399;display:block;text-align:center}
-.btn:active{transform:translateY(2px)} .btn2{background:linear-gradient(90deg,#ffaa00,#ff6600)} .btn3{background:linear-gradient(90deg,#ff00ff,#aa00ff);color:#fff}
-.head{position:sticky;top:0;background:linear-gradient(#0a0e2a,#02030a);border-bottom:2px solid #2a5aff;padding:8px;text-align:center;z-index:5}
-.tabs{display:flex;gap:4px;justify-content:center;margin-top:6px;flex-wrap:wrap}
-.tab{padding:5px 10px;border-radius:20px;border:2px solid #2a5aff;background:#000a;color:#fff;font-size:8px;font-weight:900;pointer-events:auto}.tab.active{background:#2a5aff;color:#fff}
-.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:8px;overflow-y:auto;flex:1}
-.shopGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px;overflow-y:auto;max-width:720px;margin:0 auto;width:100%;flex:1}
-.hero{background:linear-gradient(145deg,#1a1f4a,#0f1433);border:2px solid #2a4aff;border-radius:10px;padding:6px;text-align:center;pointer-events:auto;min-height:115px}
-.hero.selected{border-color:#00f7ff;box-shadow:0 0 12px #0ff}.hero.op{border-color:#ff00ff;box-shadow:0 0 16px #f0f8}.hero.vip{border-color:#ffaa00}
-.human{width:36px;height:46px;margin:0 auto;position:relative}.hhead{width:16px;height:16px;background:#ffdbac;border-radius:50%;margin:0 auto}.body{width:20px;height:16px;background:var(--c1);margin:1px auto 0;border-radius:3px}.legs{display:flex;gap:2px;justify-content:center;margin-top:1px}.leg{width:7px;height:12px;background:var(--c2);border-radius:0 0 3px 3px}
-.scard{background:linear-gradient(145deg,#1a1f3a,#0f1433);border:2px solid #2a4aff;border-radius:12px;padding:8px;text-align:center;min-height:145px}
-.scard.vip{border-color:#ffaa00;box-shadow:0 0 12px #fa06}.scard.god{border-color:#ff00ff;box-shadow:0 0 18px #f0f;animation:glow 1.5s infinite}
-@keyframes glow{0%,100%{box-shadow:0 0 18px #f0f}50%{box-shadow:0 0 28px #f0f}}
-.ic{font-size:24px}.scard h3{font-size:7px;margin:3px 0}.scard p{font-size:6px;opacity:.8;min-height:16px}
-.pr{border:1px solid #ffd700;color:#ffd700;padding:2px 6px;border-radius:10px;font-size:8px;font-weight:900;display:inline-block;margin-top:2px}.pr2{border-color:#ffaa00;color:#ffaa00}
-.buy{margin-top:4px;background:linear-gradient(#ffd700,#ff8c00);border:none;width:100%;padding:5px 0;border-radius:7px;font-weight:900;color:#000;font-size:8px;pointer-events:auto}.eq{background:linear-gradient(#00ffaa,#00aa66)}
-.playerRow{display:flex;align-items:center;gap:8px;background:#000a;border:1px solid #2a4aff;border-radius:12px;padding:8px;margin:4px 0;pointer-events:auto}
-#game{position:fixed;inset:0;background:#0c1a0c;display:none;z-index:30}
+*{margin:0;padding:0;box-sizing:border-box;touch-action:manipulation}
+body{background:#02030a;color:#fff;font-family:Arial,sans-serif;overflow:hidden;min-height:100vh}
+#bg{position:fixed;inset:0;background:radial-gradient(ellipse at center,#0e1a40 0%,#02030a 70%)}
+.screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:14px;z-index:10;overflow-y:auto}
+.card{width:100%;max-width:380px;background:linear-gradient(145deg,#151a3a,#0e1230);border:2px solid #2a5aff;border-radius:22px;padding:16px;box-shadow:0 0 35px #2a5aff99;text-align:center}
+h1{color:#00f7ff;font-size:19px;text-shadow:0 0 12px #0ff;margin:6px 0}
+.sub{color:#888;font-size:9px;margin-bottom:10px}
+.wallet{border:2px solid #ff00ff;background:linear-gradient(90deg,#1a0033,#2a0044);border-radius:14px;padding:10px;margin-bottom:10px}
+.wallet b{color:#ffd700;font-size:14px}
+.stats{display:flex;gap:5px;justify-content:center;margin:8px 0;flex-wrap:wrap}
+.stat{background:#000c;border:1px solid #2a5aff;border-radius:10px;padding:4px 8px;font-size:8px;font-weight:900}
+.input{width:100%;background:#000c;border:2px solid #2a5aff;border-radius:12px;padding:12px;color:#fff;font-size:13px;margin-bottom:8px;outline:none}
+.btn{width:100%;border:none;border-radius:14px;padding:14px 0;font-weight:900;font-size:12px;cursor:pointer;margin-bottom:8px;display:block;pointer-events:auto!important;position:relative;z-index:999}
+.btn:active{transform:translateY(2px)}
+.b1{background:linear-gradient(90deg,#00e5ff,#0072ff);color:#000;box-shadow:0 4px 0 #003399}
+.b2{background:linear-gradient(90deg,#ffaa00,#ff6600);color:#000;box-shadow:0 4px 0 #884400}
+.b3{background:linear-gradient(90deg,#ff00ff,#aa00ff);color:#fff;box-shadow:0 4px 0 #660066}
+.note{color:#555;font-size:7px;margin-top:6px}
+
+#lobby,#shop,#game,#statsPage{display:none}
+#lHead{position:sticky;top:0;background:linear-gradient(#0a0e2a,#02030a);border-bottom:2px solid #2a5aff;padding:10px;text-align:center;z-index:5;width:100%}
+.tabs{display:flex;gap:5px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+.tab{padding:6px 12px;border-radius:20px;border:2px solid #2a5aff;background:#000a;color:#fff;font-size:9px;font-weight:900;pointer-events:auto}
+.tab.active{background:#2a5aff}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;padding:10px;overflow-y:auto;flex:1;width:100%;max-width:500px;margin:0 auto}
+.hero{background:linear-gradient(145deg,#1a1f4a,#0f1433);border:2px solid #2a4aff;border-radius:12px;padding:8px;text-align:center;pointer-events:auto;min-height:110px}
+.hero.sel{border-color:#00f7ff;box-shadow:0 0 14px #0ff}
+.hero.op{border-color:#ff00ff;box-shadow:0 0 16px #f0f8}
+.hero h3{font-size:7px;margin:4px 0}.hero p{font-size:6px;opacity:.8}
+.human{width:38px;height:46px;margin:0 auto;position:relative}
+.head{width:16px;height:16px;background:#ffdbac;border-radius:50%;margin:0 auto}.body{width:20px;height:16px;background:var(--c1);margin:1px auto 0;border-radius:3px}.legs{display:flex;gap:2px;justify-content:center;margin-top:1px}.leg{width:7px;height:12px;background:var(--c2);border-radius:0 0 3px 3px}
+
+.shopGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px;overflow-y:auto;width:100%;max-width:700px;margin:0 auto}
+.scard{background:linear-gradient(145deg,#1a1f3a,#0f1433);border:2px solid #2a4aff;border-radius:12px;padding:10px;text-align:center;min-height:140px}
+.scard.vip{border-color:#ffaa00}.scard.god{border-color:#ff00ff;box-shadow:0 0 18px #f0f}
+
 #cvs{position:absolute;inset:0;width:100%;height:100%}
-#hud{position:absolute;top:0;left:0;right:0;height:46px;background:#000e;border-bottom:2px solid #2aff2a;display:flex;justify-content:space-between;align-items:center;padding:0 8px;font-size:8px;font-weight:900;z-index:5}
-#voiceBox{position:absolute;top:50px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#1a0033,#0a0e2a);border:2px solid #ff00ff;border-radius:20px;padding:6px 14px;font-size:11px;font-weight:900;color:#ffccff;display:none;z-index:60;box-shadow:0 0 15px #f0f}
-#joyW{position:absolute;bottom:16px;left:16px;width:110px;height:110px;background:#ffffff12;border:2px solid #ffffff22;border-radius:50%;z-index:40;pointer-events:auto}
+#hud{position:absolute;top:0;left:0;right:0;height:44px;background:#000d;border-bottom:2px solid #2aff2a;display:flex;justify-content:space-between;align-items:center;padding:0 10px;font-size:9px;font-weight:900;z-index:5}
+#joyW{position:absolute;bottom:18px;left:18px;width:110px;height:110px;background:#ffffff12;border:2px solid #ffffff22;border-radius:50%;z-index:40;pointer-events:auto}
 #joy{position:absolute;width:48px;height:48px;background:radial-gradient(#8f8,#2a2);border-radius:50%;left:31px;top:31px}
-#atk{position:absolute;bottom:18px;right:16px;width:70px;height:70px;background:radial-gradient(#f44,#800);border:2px solid #fff;border-radius:50%;font-size:22px;z-index:40;pointer-events:auto}
-#skills{position:absolute;bottom:18px;right:94px;display:flex;gap:6px;z-index:40}.sk{width:54px;height:54px;border-radius:12px;border:2px solid #fff;font-size:16px;pointer-events:auto;position:relative}.sk b{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);background:#000;font-size:4px;padding:1px 3px;border-radius:6px;border:1px solid #fff;white-space:nowrap}
-#endScreen{position:fixed;inset:0;background:#000000f0;backdrop-filter:blur(12px);z-index:100;display:none;align-items:center;justify-content:center;padding:16px}
-#endCard{width:100%;max-width:380px;background:linear-gradient(145deg,#1a2a4a,#0f1433);border:3px solid #00ff88;border-radius:22px;padding:18px;text-align:center;box-shadow:0 0 40px #0f86}
+#atk{position:absolute;bottom:20px;right:18px;width:72px;height:72px;background:radial-gradient(#f44,#800);border:2px solid #fff;border-radius:50%;font-size:24px;z-index:40;pointer-events:auto}
+#skills{position:absolute;bottom:20px;right:100px;display:flex;gap:6px;z-index:40}
+.sk{width:54px;height:54px;border-radius:12px;border:2px solid #fff;font-size:18px;pointer-events:auto}
+#voice{position:absolute;top:50px;left:50%;transform:translateX(-50%);background:#1a0033;border:2px solid #f0f;border-radius:20px;padding:6px 14px;font-size:11px;font-weight:900;color:#fcc;display:none;z-index:60}
 </style>
 </head>
 <body>
 <div id="bg"></div>
 
-<!-- START SCREEN -->
-<div class="screen active" id="startScreen"><div class="card" style="margin:auto">
-<div class="crown">👑</div><h1>RIMURU MOBA FINAL</h1><div class="sub">30 Heroes | 100 Skins | Shop | Stats | Send Diamonds</div>
-<div class="owner"><div style="color:#ffd700;font-weight:900" id="topCurr">💎 9,999,999 | 🪙 999,999</div><div style="font-size:8px;color:#ccc">Timothy Owner Account</div></div>
-<div class="stats"><div class="stat">🏆 WINS: <span id="wins">0</span></div><div class="stat">💀 LOSS: <span id="loss">0</span></div><div class="stat">⚔️ KILLS: <span id="tkills">0</span></div><div class="stat">📊 WR: <span id="wr">0%</span></div></div>
-<input id="pname" class="input" value="Timothy moba"><button class="btn" id="enterBtn">▶️ ENTER LOBBY</button>
-<button class="btn btn2" onclick="showScreen('shopScreen')">🛒 SHOP - HERO (🪙) & SKIN (💎)</button>
-<button class="btn btn3" onclick="showScreen('statsScreen')">📊 MY STATS & STALK PLAYERS</button>
-<div style="color:#555;font-size:7px;margin-top:8px">Coins 999,999 pang bili HERO | Diamonds 9,999,999 pang bili SKIN - FINAL COMPLETE SET!</div>
-</div></div>
+<div id="home" class="screen">
+<div class="card">
+<div style="font-size:48px">👑</div>
+<h1>RIMURU MOBA FINAL</h1>
+<div class="sub">30 Heroes | 100 Skins | Shop | Stats | Send Diamonds - FIXED!</div>
+<div class="wallet"><b>💎 9,999,999 | 🪙 999,999</b><div style="font-size:8px;color:#ccc">Timothy Owner Account</div></div>
+<div class="stats"><div class="stat">🏆 WINS: <span id="w">0</span></div><div class="stat">💀 LOSS: <span id="l">0</span></div><div class="stat">⚔️ KILLS: <span id="k">0</span></div><div class="stat">📊 WR: <span id="wr">0%</span></div></div>
+<input id="pname" class="input" value="Timothy moba">
+<button class="btn b1" onclick="goLobby()">▶️ ENTER LOBBY</button>
+<button class="btn b2" onclick="goShop()">🛒 SHOP - HERO (🪙) & SKIN (💎)</button>
+<button class="btn b3" onclick="goStats()">📊 MY STATS & STALK PLAYERS</button>
+<div class="note">Coins 999,999 pang bili HERO | Diamonds 9,999,999 pang bili SKIN - FINAL COMPLETE SET!</div>
+</div>
+</div>
 
-<!-- LOBBY -->
-<div class="screen" id="lobbyScreen"><div class="head"><div style="color:#00f7ff;font-weight:900">🧍 30 HUMAN HEROES - FINAL!</div><div style="color:#ffd700;font-size:9px" id="lobbyCurr">💎 9,999,999 | 🪙 999,999</div><div class="tabs"><button class="tab active" onclick="setFilter('all',this)">ALL (30)</button><button class="tab" onclick="setFilter('tank',this)">TANK</button><button class="tab" onclick="setFilter('mage',this)">MAGE</button><button class="tab" onclick="setFilter('marks',this)">MARKS</button></div></div><div class="grid" id="heroGrid"></div><button class="btn" style="margin:10px;background:linear-gradient(90deg,#00ff88,#00aa66);color:#000" id="startBtn">▶️ START BATTLE - 5v5!</button><button class="btn" style="margin:0 10px 10px;background:#222;color:#fff" onclick="showScreen('startScreen')">⬅️ BACK TO MENU</button></div>
+<div id="lobby" class="screen" style="flex-direction:column;justify-content:flex-start;padding:0">
+<div id="lHead"><div style="color:#00f7ff;font-weight:900">🧍 30 HUMAN HEROES!</div><div class="tabs"><button class="tab active" onclick="filt('all',this)">ALL (30)</button><button class="tab" onclick="filt('tank',this)">TANK</button><button class="tab" onclick="filt('mage',this)">MAGE</button><button class="tab" onclick="filt('marks',this)">MARKS</button></div></div>
+<div class="grid" id="hGrid"></div>
+<div style="padding:10px;width:100%;max-width:500px;margin:0 auto"><button class="btn b1" style="background:linear-gradient(90deg,#00ff88,#00aa66)" onclick="startGame()">▶️ START BATTLE - 5v5!</button><button class="btn" style="background:#222;color:#fff" onclick="goHome()">⬅️ BACK</button></div>
+</div>
 
-<!-- SHOP -->
-<div class="screen" id="shopScreen"><div class="head"><div style="color:#ffaa00;font-weight:900;font-size:14px">🛒 FINAL SHOP - 100 SKINS + 30 HEROES!</div><div style="color:#fff;font-size:9px"><span style="color:#ffd700">💎 <span id="shopDiam">9,999,999</span> pang SKIN</span> | <span style="color:#ffaa00">🪙 <span id="shopCoin">999,999</span> pang HERO</span></div><div class="tabs"><button class="tab active" onclick="setShopTab('skin',this)">SKINS (100) - 💎</button><button class="tab" onclick="setShopTab('hero',this)">HEROES (30) - 🪙</button><button class="tab" onclick="setShopTab('send',this)">SEND 💎</button></div></div><div class="shopGrid" id="shopGrid"></div><button class="btn" style="margin:10px;background:#222;color:#fff" onclick="showScreen('startScreen')">✕ BACK TO MENU</button></div>
+<div id="shop" class="screen" style="flex-direction:column;justify-content:flex-start;padding:0;background:#000000f5">
+<div id="lHead"><div style="color:#ffaa00;font-weight:900;font-size:15px">🛒 SHOP - FULL SET!</div><div class="tabs"><button class="tab active" onclick="shopF('hero',this)">HEROES</button><button class="tab" onclick="shopF('skin',this)">SKINS</button><button class="tab" onclick="shopF('send',this)">SEND DIAMONDS</button></div></div>
+<div class="shopGrid" id="sGrid"></div>
+<div style="padding:10px;width:100%;max-width:700px;margin:0 auto"><button class="btn" style="background:#222;color:#fff" onclick="goHome()">⬅️ BACK TO HOME</button></div>
+</div>
 
-<!-- STATS / STALK -->
-<div class="screen" id="statsScreen"><div class="head"><div style="color:#00ff88;font-weight:900">📊 STATS & STALK PLAYERS</div><div class="tabs"><button class="tab active" onclick="setStatsTab('me',this)">MY STATS</button><button class="tab" onclick="setStatsTab('players',this)">OTHER PLAYERS (STALK)</button></div></div><div style="padding:10px;overflow-y:auto;flex:1;max-width:600px;margin:0 auto;width:100%" id="statsContent"></div><button class="btn" style="margin:10px;background:#222;color:#fff" onclick="showScreen('startScreen')">⬅️ BACK</button></div>
+<div id="statsPage" class="screen" style="flex-direction:column">
+<div class="card">
+<div style="font-size:32px">📊</div><h1>MY STATS</h1>
+<div style="text-align:left;background:#000a;border:1px solid #2a5aff;border-radius:12px;padding:12px;margin:12px 0;font-size:12px;line-height:1.8">
+🏆 Wins: <b id="sw">0</b><br>💀 Loss: <b id="sl">0</b><br>⚔️ Total Kills: <b id="sk">0</b><br>📊 Win Rate: <b id="swr">0%</b><br>💎 Diamonds: <b>9,999,999</b><br>🪙 Coins: <b>999,999</b><br>👑 Rank: <b style="color:#ffd700">GOD RANK - OWNER</b>
+</div>
+<div style="background:#1a0033;border:1px solid #f0f;border-radius:12px;padding:10px;margin-bottom:10px"><div style="font-size:10px;font-weight:900;color:#f0f">💎 SEND DIAMONDS CODE:</div><input id="sendAmt" class="input" type="number" placeholder="Ilang diamonds isesend?"><input id="sendTo" class="input" placeholder="Pangalan ng player"><button class="btn b3" onclick="genCode()">💸 GENERATE CODE</button><div id="codeBox" style="display:none;background:#000;border:1px solid #0ff;border-radius:10px;padding:8px;margin-top:8px"><div id="codeTxt" style="color:#0ff;font-size:9px;word-break:break-all"></div><button class="btn b1" style="padding:8px;margin-top:6px" onclick="copyC()">📋 COPY</button></div></div>
+<div style="background:#000a;border:1px solid #2a5aff;border-radius:12px;padding:10px"><div style="font-size:10px;font-weight:900">REDEEM CODE:</div><input id="redeemI" class="input" placeholder="Paste code dito..."><button class="btn b2" onclick="redeem()">💎 REDEEM!</button></div>
+<button class="btn" style="background:#222;color:#fff;margin-top:10px" onclick="goHome()">⬅️ BACK</button>
+</div>
+</div>
 
-<!-- GAME -->
-<div id="game"><canvas id="cvs"></canvas><div id="hud"><span id="hudLeft">💎 9,999,999 | 🪙 999,999 | ❤️ <span id="hp">600</span> | K <span id="kills">0</span>/10</span><span id="heroName">RIMURU</span></div><div id="voiceBox"></div><div id="joyW"><div id="joy"></div></div><div id="skills"><button class="sk" style="background:radial-gradient(#44aaff,#004488)" onclick="cast(0)">💥<b id="sk1">SK1</b></button><button class="sk" style="background:radial-gradient(#ffaa44,#884400)" onclick="cast(1)">⚡<b id="sk2">SK2</b></button><button class="sk" style="background:radial-gradient(#ff44
+<div id="game" class="screen" style="padding:0;background:#0c1a0c;display:none">
+<canvas id="cvs"></canvas>
+<div id="hud"><span>💎 9,999,999 | ❤️ <span id="hp">600</span> | K <span id="kg">0</span></span><span id="hName">RIMURU</span></div>
+<div id="voice"></div>
+<div id="joyW"><div id="joy"></div></div>
+<div id="skills"><button class="sk" style="background:#44aaff" onclick="cast(0)">💥</button><button class="sk" style="background:#ffaa44" onclick="cast(1)">⚡</button><button class="sk" style="background:#ff44ff" onclick="cast(2)">🔥</button></div>
+<button id="atk" onclick="doAtk()">👊</button>
+</div>
+
+<script>
+let diam=9999999,wins=parseInt(localStorage.getItem('w')||'0'),loss=parseInt(localStorage.getItem('l')||'0'),tkills=parseInt(localStorage.getItem('tk')||'0');
+function save(){localStorage.setItem('w',wins);localStorage.setItem('l',loss);localStorage.setItem('tk',tkills);upd();}
+function upd(){document.getElementById('w').innerText=wins;document.getElementById('l').innerText=loss;document.getElementById('k').innerText=tkills;document.getElementById('sw').innerText=wins;document.getElementById('sl').innerText=loss;document.getElementById('sk').innerText=tkills;let wr=wins+loss>0?Math.floor(wins/(wins+loss)*100):0;document.getElementById('wr').innerText=wr+'%';document.getElementById('swr').innerText=wr+'%';}
+upd();
+const heroes=[
+{name:"Rimuru Human",role:"mage",hp:600,dmg:95,c1:"#3a6aff",c2:"#1a2a5a",s1:"Water Blade",s2:"Black Flame",s3:"Beelzebuth!",v1:"Mizukiri!",v2:"Kuroi Honoo!",v3:"BEELZEBUTH!"},
+{name:"Benimaru",role:"mage",hp:580,dmg:92,c1:"#ff4444",c2:"#5a0000",s1:"Flame Slash",s2:"Hell Flare",s3:"Prominence!",v1:"Enzan!",v2:"Hell Flare!",v3:"SHAKUNETSU!"},
+{name:"Shion",role:"tank",hp:750,dmg:85,c1:"#aa44ff",c2:"#440066",s1:"Punch",s2:"Smash",s3:"Ogre Chop!",v1:"Gouriki!",v2:"Omoi!",v3:"SHION!"},
+{name:"Milim",role:"mage",hp:820,dmg:115,c1:"#ff66cc",c2:"#880044",s1:"Drago Nova",s2:"Milim Eye",s3:"Stampede!",v1:"Drago Nova!",v2:"Mitemiro!",v3:"STAMPEDE!"},
+{name:"Veldora",role:"mage",hp:900,dmg:110,c1:"#44ffaa",c2:"#004422",s1:"Storm Blast",s2:"Wind Cutter",s3:"Roar!",v1:"Storm da!",v2:"Kaze!",v3:"KUAHAHA!"},
+{name:"Diablo",role:"mage",hp:700,dmg:118,c1:"#000",c2:"#222",s1:"Hell Fire",s2:"Temptation",s3:"End World!",v1:"Moeyasai...",v2:"Ochita...",v3:"OWARI DA!"},
+{name:"Shuna",role:"mage",hp:500,dmg:80,c1:"#ff88cc",c2:"#aa3366",s1:"Barrier",s2:"Purify",s3:"Blessing!",v1:"Kekkai!",v2:"Jouka!",v3:"Shukufuku!"},
+{name:"Souei",role:"marks",hp:560,dmg:98,c1:"#222266",c2:"#000022",s1:"Shadow Move",s2:"Thread Cut",s3:"Shadow Kill!",v1:"Kageido!",v2:"Ito Kiru!",v3:"KAGE DE!"},
+{name:"Hakurou",role:"tank",hp:660,dmg:96,c1:"#ddd",c2:"#666",s1:"Iaido",s2:"Swift",s3:"Zangetsu!",v1:"Iai!",v2:"Hayai!",v3:"ZANGETSU!"},
+{name:"Gobta",role:"marks",hp:540,dmg:88,c1:"#88aa44",c2:"#334422",s1:"Wolf Fang",s2:"Union",s3:"Ranga!",v1:"Kiba!",v2:"Yugo!",v3:"RANGA IKO!"},
+{name:"Ranga",role:"tank",hp:720,dmg:94,c1:"#333344",c2:"#111122",s1:"Lightning",s2:"Howl",s3:"Death Howl!",v1:"Kaminari!",v2:"Tooboe!",v3:"SHI NO!"},
+{name:"Geld",role:"tank",hp:850,dmg:70,c1:"#aaaa66",c2:"#555522",s1:"Shield Bash",s2:"Iron Wall",s3:"Unbreakable!",v1:"Tate!",v2:"Kabe!",v3:"KOWAREN!"},
+{name:"Gabiru",role:"marks",hp:600,dmg:90,c1:"#44aaff",c2:"#003366",s1:"Vortex",s2:"Water Shot",s3:"Supreme!",v1:"Uzumaki!",v2:"Mizu!",v3:"SAIKYO!"},
+{name:"Guy Crimson",role:"mage",hp:1000,dmg:135,c1:"#f00",c2:"#600",s1:"Crimson Ray",s2:"Abyss",s3:"Rouge Death!",v1:"Shinku!",v2:"Shin'en!",v3:"AKAI SHI!"},
+{name:"Ramiris",role:"mage",hp:480,dmg:102,c1:"#ffcc00",c2:"#886600",s1:"Fairy Dust",s2:"Labyrinth",s3:"Maze World!",v1:"Kona!",v2:"Meikyuu!",v3:"MEIKYUU!"},
+{name:"Hinata",role:"tank",hp:700,dmg:110,c1:"#fff",c2:"#aaa",s1:"Holy Slash",s2:"Judgment",s3:"Divine!",v1:"Seiken!",v2:"Sabaki!",v3:"KAMI NO!"},
+{name:"Leon",role:"marks",hp:880,dmg:125,c1:"#ffcc44",c2:"#885500",s1:"Flame Sword",s2:"Hero Light",s3:"Hero King!",v1:"Honoo Ken!",v2:"Hikari!",v3:"YUUSHA OU!"},
+{name:"Chloe",role:"marks",hp:740,dmg:118,c1:"#44ff44",c2:"#226622",s1:"Time Leap",s2:"Dimension",s3:"Infinity!",v1:"Toki Tobu!",v2:"Jigen!",v3:"MUGEN!"},
+{name:"Velzard",role:"mage",hp:980,dmg:145,c1:"#aaffff",c2:"#226688",s1:"Frost Nova",s2:"Ice Age",s3:"Absolute Zero!",v1:"Koori!",v2:"Hyouga!",v3:"ZETTAI REIDO!"},
+{name:"Velgrynd",role:"marks",hp:960,dmg:150,c1:"#ff6644",c2:"#882200",s1:"Flame Nova",s2:"Scorch",s3:"Sun Flame!",v1:"Honoo!",v2:"Shaku!",v3:"TAIYOU!"},
+{name:"Veldanava",role:"mage",hp:1050,dmg:160,c1:"#ffff88",c2:"#888844",s1:"Star Light",s2:"Creation",s3:"Genesis!",v1:"Hoshi!",v2:"Sozo!",v3:"SOUSEI!"},
+{name:"TIMOTHY GOD 99999",role:"all",hp:99999,dmg:99999,c1:"#ff00ff",c2:"#440044",s1:"Timothy Slash 99k",s2:"Davao Destroyer",s3:"GOD FINISH!",v1:"TIMOTHY SLASH!",v2:"DAVAO HATSU!",v3:"99,999 DAMAGE!!!",owner:true}
+];
+const skins=[
+{name:"Rimuru Demon Lord",hero:0,price:2000,icon:"😈",c1:"#aa00ff",c2:"#440066"},
+{name:"Rimuru Galaxy God",hero:0,price:5000,icon:"🌌",c1:"#ff00ff",c2:"#00ffff",god:true},
+{name:"Benimaru Samurai",hero:1,price:1500,icon:"🔥",c1:"#ff2222",c2:"#880000"},
+{name:"Milim Swimsuit",hero:3,price:2500,icon:"👙",c1:"#ff66cc",c2:"#ffaa66"},
+{name:"Diablo God",hero:5,price:6000,icon:"🤵",c1:"#000",c2:"#f0f",god:true},
+{name:"Timothy God Skin",hero:21,price:0,icon:"👑💥",c1:"#ffd700",c2:"#f0f",god:true,owner:true}
+];
+let sel=0,filter='all',shopTab='hero',owned=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21],eqSkin={};
+function goHome(){hideAll();document.getElementById('home').style.display='flex';}
+function goLobby(){hideAll();document.getElementById('lobby').style.display='flex';renderH();}
+function goShop(){hideAll();document.getElementById('shop').style.display='flex';renderS();}
+function goStats(){hideAll();document.getElementById('statsPage').style.display='flex';upd();}
+function hideAll(){document.querySelectorAll('.screen').forEach(s=>s.style.display='none');}
+function filt(f,el){filter=f;document.querySelectorAll('#lobby.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderH();}
+function shopF(f,el){shopTab=f;document.querySelectorAll('#shop.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderS();}
+function renderH(){
+let g=document.getElementById('hGrid');g.innerHTML='';
+let list=filter==='all'?heroes:heroes.filter(h=>h.role===filter||h.owner);
+list.forEach(h=>{
+let real=heroes.indexOf(h);let skin=eqSkin[real];let c1=skin?skin.c1:h.c1,c2=skin?skin.c2:h.c2;
+let d=document.createElement('div');d.className='hero'+(real===sel?' sel':'')+(h.owner?' op':'');
+d.innerHTML=`<div class="human" style="--c1:${c1};--c2:${c2}"><div class="head"></div><div class="body"></div><div class="legs"><div class="leg"></div><div class="leg"></div></div></div><h3>${h.name}</h3><p>💥${h.dmg} ❤️${h.hp}</p><p style="color:#0ff">${h.s1}</p>${h.owner?'<div style="background:#f0f;color:#fff;font-size:
