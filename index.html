@@ -1,43 +1,63 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-<title>DUEL 999K FULL</title><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#060c20;color:#fff;font-family:Arial;overflow:hidden}
-.top{position:fixed;top:0;left:0;right:0;height:46px;background:#000;border-bottom:2px solid gold;display:flex;justify-content:space-between;align-items:center;padding:0 10px;z-index:99;font-weight:900}
-#lobby{padding:52px 6px;height:100vh;overflow-y:auto;text-align:center}
-.tabs{display:flex;gap:4px;justify-content:center;margin:8px}
-.tab{padding:7px 12px;border-radius:20px;border:2px solid #333;background:#111;color:#fff;font-weight:900;font-size:11px}
-.tab.on{border-color:gold;background:#332a00;color:gold}
-.grid{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:430px;margin:auto}
-.card{width:104px;background:#131a30;border:2px solid #333;border-radius:12px;padding:6px;position:relative}
-.card.sel{border-color:lime;box-shadow:0 0 12px lime}.card.own{border-color:#0ff}
-.card .emo{font-size:28px}.card b{font-size:9px;display:block}.card .pr{font-size:10px;color:cyan;font-weight:900}.card .eff{font-size:7px;color:gold}
-.lock{position:absolute;inset:0;background:rgba(0,0,0,.8);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-direction:column}
-.btn{padding:10px 14px;border:none;border-radius:12px;font-weight:900;margin:3px}
-.y{background:gold;color:#000}.b{background:#1e2a4a;color:#fff;border:1px solid #555}.v{background:linear-gradient(90deg,#f0f,#fa0);color:#000}
-#battle{position:fixed;inset:0;background:#000;z-index:90;display:none;flex-direction:column;padding-top:46px}
-.bar{height:12px;background:#222;border-radius:10px;border:1px solid #555;overflow:hidden}.fill{height:100%;transition:width .2s}
-#cv{background:radial-gradient(#1a2e6a,#080b18);display:block;margin:0 auto;border:2px solid gold;border-radius:12px}
-.float{position:absolute;pointer-events:none;font-weight:900;animation:up .7s forwards}
-@keyframes up{0%{transform:translateY(0);opacity:1}100%{transform:translateY(-60px) scale(1.5);opacity:0}}
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><title>GOD DUEL FULL</title><style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}body{background:#040a1e;color:#fff;overflow:hidden}
+.top{position:fixed;top:0;left:0;right:0;height:50px;background:linear-gradient(90deg,#0d1b3e,#000);border-bottom:2px solid gold;display:flex;justify-content:space-between;align-items:center;padding:0 12px;z-index:100;font-weight:900}
+.tabBar{display:flex;gap:6px;justify-content:center;margin:10px 0}
+.tab{padding:10px 18px;border-radius:25px;border:2px solid #2a3a6a;background:#111b36;color:#fff;font-weight:900}
+.tab.on{background:gold;color:#000;border-color:gold;box-shadow:0 0 12px gold}
+#lobby{padding:58px 8px 10px;height:100vh;overflow:auto;background:radial-gradient(at center,#10265a,#040a1e 70%);text-align:center}
+.grid{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:430px;margin:auto}
+.card{width:108px;background:linear-gradient(180deg,#1d2b52,#0f1730);border:2px solid #30407a;border-radius:16px;padding:10px 4px;position:relative}
+.card.sel{border-color:#00ff9c;box-shadow:0 0 15px #00ff9c;transform:scale(1.06)}
+.card.own{border-color:#00c8ff}
+.lock{position:absolute;inset:0;background:rgba(0,0,0,.88);border-radius:14px;display:flex;flex-direction:column;justify-content:center;align-items:center;font-size:11px;font-weight:900}
+.btn{padding:12px 18px;border:0;border-radius:14px;font-weight:900;margin:5px}
+.y{background:linear-gradient(180deg,#ffdf00,#ff9d00);color:#000;box-shadow:0 0 12px gold}.b{background:#1a274e;color:#fff;border:1px solid #3a4e8a}.v{background:linear-gradient(90deg,#ff00ff,#ffaa00);color:#000}
+#arena{position:fixed;inset:0;background:#000;z-index:90;display:none;flex-direction:column;padding-top:50px}
+.cv{width:360px;height:330px;background:radial-gradient(at center,#1a3a7a,#0a1430 65%,#050a18);border:2px solid gold;border-radius:18px;display:block;margin:auto;box-shadow:0 0 22px rgba(255,215,0,.35)}
+.hp{height:12px;background:#111;border-radius:10px;border:1px solid #444;overflow:hidden}.hpFill{height:100%;transition:width.25s}
+.fx{position:absolute;pointer-events:none;font-weight:900;animation:pop.7s forwards;text-shadow:0 2px 6px #000}
+@keyframes pop{0%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-80px) scale(1.7);opacity:0}}
 </style></head><body>
-<div class="top"><span>⚔️ FULL SET</span><span><span id="dia">💎 999999</span> <span id="gol">💰 999999</span></span></div>
+<div class="top"><span>🔥 GOD FULL SET</span><span>💎<span id="D" style="color:cyan">999999</span> 💰<span id="G" style="color:gold">999999</span></span></div>
 <div id="lobby">
-<div class="tabs"><button class="tab on" id="tH" onclick="tab('H')">HERO</button><button class="tab" id="tK" onclick="tab('K')">SKIN</button><button class="tab" id="tS" onclick="tab('S')">SWORD</button><button class="tab" id="tP" onclick="tab('P')">DUEL</button></div>
+<h2 style="color:gold;text-shadow:0 0 12px gold">TIMOTHY GOD DUEL</h2>
+<div class="tabBar"><button class="tab on" id="tH" onclick="showTab('H')">HERO</button><button class="tab" id="tK" onclick="showTab('K')">SKIN</button><button class="tab" id="tS" onclick="showTab('S')">SWORD</button><button class="tab" id="tP" onclick="showTab('P')">PLAY</button></div>
 <div id="gH" class="grid"></div><div id="gK" class="grid" style="display:none"></div><div id="gS" class="grid" style="display:none"></div>
-<div id="gP" style="display:none"><div style="background:#101a33;border:2px solid gold;border-radius:14px;padding:12px;max-width:380px;margin:10px auto">
-<div style="font-size:12px">Hero: <b id="pH" style="color:lime"></b> | Skin: <b id="pK" style="color:#f0f"></b> | Sword: <b id="pS" style="color:cyan"></b></div>
-<div id="pre" style="font-size:42px;margin:8px">🦸</div><div id="preEff" style="font-size:11px;color:gold"></div>
-<button class="btn y" style="width:92%" onclick="startBattle(0)">⚔️ DUEL VS BOT</button>
-<button class="btn v" style="width:92%" onclick="startBattle(1)">👑 VS BOSS - 2000 DIAS</button>
-<button class="btn b" style="width:92%" onclick="dia=999999;gol=999999;save();renderTop()">💎 ADD 999999 AGAIN</button>
+<div id="gP" style="display:none"><div style="background:linear-gradient(180deg,#1e2f5a,#111936);border:2px solid gold;border-radius:20px;padding:14px;max-width:380px;margin:12px auto">
+<div id="pickInfo" style="font-size:12px;color:#aaa"></div><div id="pickIcon" style="font-size:60px;margin:10px;filter:drop-shadow(0 0 18px cyan)">🦸</div><div id="pickEf" style="font-size:11px;background:#0009;border:1px solid #333;border-radius:10px;padding:8px;color:gold"></div>
+<button class="btn y" style="width:94%" onclick="goFight(0)">⚔️ DUEL BOT +500💎</button>
+<button class="btn v" style="width:94%" onclick="goFight(1)">👑 VS BOSS +2000💎</button>
 </div></div>
 </div>
-<div id="battle"><div style="display:flex;gap:6px;padding:6px"><div style="flex:1"><div id="n1">YOU</div><div class="bar"><div id="hp1" class="fill" style="width:100%;background:lime"></div></div></div><div style="color:gold;font-weight:900">VS</div><div style="flex:1;text-align:right"><div id="n2">BOT</div><div class="bar"><div id="hp2" class="fill" style="width:100%;background:red"></div></div></div></div>
-<canvas id="cv" width="360" height="300"></canvas>
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;max-width:380px;margin:6px auto;width:100%;padding:0 6px">
-<button class="btn b" onclick="hit(0)">👊<br>PUNCH</button><button class="btn b" onclick="hit(1)">🔥<br>SKILL</button><button class="btn y" onclick="hit(2)">⚡<br>ULTI</button><button class="btn b" onclick="hit(3)" id="swBtn">🗡️<br>SWORD</button>
-</div><button class="btn b" style="margin:auto;display:block" onclick="closeBat()">EXIT</button></div>
+<div id="arena"><div style="display:flex;gap:8px;padding:8px 10px"><div style="flex:1"><b id="n1">YOU</b><div class="hp"><div id="hp1" class="hpFill" style="width:100%;background:linear-gradient(90deg,#00ff88,#00e5ff)"></div></div></div><div style="color:gold;font-weight:900">VS</div><div style="flex:1;text-align:right"><b id="n2">BOT</b><div class="hp"><div id="hp2" class="hpFill" style="width:100%;background:linear-gradient(90deg,#ff4444,#ffaa00)"></div></div></div></div>
+<canvas id="c" width="360" height="330" class="cv"></canvas>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;max-width:380px;margin:10px auto;padding:0 8px"><button class="btn b" onclick="act(0)">👊<br>PUNCH</button><button class="btn b" onclick="act(1)">🔥<br>SKILL</button><button class="btn y" onclick="act(2)">⚡<br>ULTI</button><button class="btn b" onclick="act(3)" id="swB">🗡️<br>SWORD</button></div><button class="btn b" style="margin:auto;display:block" onclick="closeF()">🏠 LOBBY</button></div>
 <script>
-let dia=999999,gol=999999;
-let HERO=[{n:"Timothy",e:"🦸",hp:100,p:12,c:"#0ff",pr:0,ef:"dash fast"},{n:"Rimuru",e:"💧",hp:135,p:15,c:"#0ff",pr:0,ef:"heal 25%"},{n:"Sasuke",e:"🔥",hp:95,p:19,c:"#f40",pr:200,ef:"burn 30 dmg"},{n:"Goku",e:"🐉",hp:125,p:22,c:"#ff0",pr:350,ef:"kamehameha 80"},{n:"Naruto",e:"🍥",hp:110,p:18,c:"#f80",pr:300,ef:"clone attack"},{n:"Luffy",e:"👒",hp:140,p:16,c:"#f00",pr:400,ef:"gomu shield"},{n:"Ichigo",e:"⚔️",hp:115,p:24,c:"#fff",pr:500,ef:"bankai 100"},{n:"Madara",e:"👁️",hp:150,p:26,c:"#a0f",pr:800,ef:"susanoo 120"}];
-let SKIN=[{n:"Default",e:"👕",c:"#fff",pr:0,ef:"normal"},{n:"Gold Armor",e:"👑",c:"#ffd700",pr:300,ef:"+30 HP"},{n:"Ice Armor",e:"❄️",c:"#0ff",pr:350,ef:"slow enemy"},{n:"Fire Cloak",e:"🧥",c:"#f40",pr:400,ef:"+15% fire dmg"},{n:"Void Suit",e:"🌌",c:"#a0f",pr:600,ef:"+20% all dmg"},{n:"Neon Cyber",e:"🤖",c:"#0f0",pr:700,ef:"speed x1.2"},{n:"God Skin",e:"✨",c:"#ff0",pr:999,ef:"+50 HP +20 dmg"}];
-let SWORD=[{n:"Basic",e:"🗡️",d:15,c:"#aaa",pr:0,ef:"normal slash"},{n:"Flame",e:"🔥",d:28,c:"#f40",pr:200,ef:"burn effect"},{n:"Ice Blade",e:"❄️",d:34,c:"#0ff",pr:350,ef:"freeze 1s"},{n:"Thunder",e:"⚡",d:45,c:"#ff0",pr:500,ef:"lightning chain"},{n:"Dragon Slayer",e:"🐲",d:60,c:"#f00",pr:800,ef:"dragon fire 80"},{n:"Void Reaper",e:"💀",d:85,c:"#a0f",pr:1200,ef:"void explode"},{n:"GOD TIMO",e:"👑",d:150,c:"#ffd700",pr:2000,ef:"GOD slash 150"}];
-let ownH
+let dia=999999,gold=999999;
+let HEROS=[{n:"Timothy",i:"🦸",hp:120,p:16,c:"#00e5ff",pr:0,e:"Dash x1.3 speed"},{n:"Rimuru Slime",i:"💧",hp:160,p:18,c:"#00ffff",pr:0,e:"Heal 30% on ulti"},{n:"Sasuke",i:"🔥",hp:110,p:24,c:"#ff4400",pr:250,e:"Burn 40 dmg 3s"},{n:"Goku",i:"🐉",hp:140,p:28,c:"#ffe600",pr:400,e:"Kamehameha 90"},{n:"Luffy",i:"👒",hp:170,p:22,c:"#ff0000",pr:450,e:"Shield -30% dmg"},{n:"Ichigo",i:"⚔️",hp:135,p:32,c:"#fff",pr:600,e:"Bankai 110 dmg"},{n:"Madara",i:"👁️",hp:180,p:36,c:"#a000ff",pr:900,e:"Susanoo 130"},{n:"GOD Timothy",i:"👑",hp:260,p:52,c:"#ffd700",pr:1500,e:"GOD MODE 200 dmg"}];
+let SKINS=[{n:"Default",i:"👕",pr:0,e:"Normal"},{n:"Gold Armor",i:"👑",pr:300,e:"+40 HP + glow"},{n:"Ice",i:"❄️",pr:400,e:"Freeze 1s"},{n:"Fire Cloak",i:"🧣",pr:450,e:"+20% fire"},{n:"Void",i:"🌌",pr:700,e:"+25% all dmg"},{n:"GOD Skin",i:"✨",pr:1200,e:"+80 HP rainbow"}];
+let SWORDS=[{n:"Wood",i:"🪵",d:12,pr:0,e:"Normal",col:"#8a5a2b"},{n:"Flame Blade",i:"🔥",d:32,pr:250,e:"Burn + trail",col:"#ff4400"},{n:"Ice Fang",i:"❄️",d:40,pr:400,e:"Ice burst",col:"#00e5ff"},{n:"Thunder",i:"⚡",d:55,pr:600,e:"Lightning",col:"#ffea00"},{n:"Dragon",i:"🐲",d:75,pr:900,e:"Dragon fire 90",col:"#ff0000"},{n:"Void Reaper",i:"💀",d:100,pr:1300,e:"Void explode",col:"#a000ff"},{n:"GOD SLAYER",i:"👑",d:160,pr:2500,e:"GOD SLASH 180",col:"#ffd700"}];
+let ownH=[0,1],ownK=[0],ownS=[0,1],selH=0,selK=0,selS=1;
+let ctx=document.getElementById('c').getContext('2d');
+function save(){localStorage.setItem('god999',JSON.stringify({ownH,ownK,ownS,selH,selK,selS}))}
+function load(){let d=JSON.parse(localStorage.getItem('god999')||'null');if(d){ownH=d.ownH;ownK=d.ownK;ownS=d.ownS;selH=d.selH;selK=d.selK;selS=d.selS;}}
+load();
+function render(){document.getElementById('D').textContent=dia;document.getElementById('G').textContent=gold;
+let hHTML='';HEROS.forEach((h,i)=>{let o=ownH.includes(i);let s=selH==i;hHTML+=`<div class="card ${s?'sel':''} ${o?'own':''}" onclick="buyH(${i})"><div style="font-size:38px;filter:drop-shadow(0 0 8px ${h.c})">${h.i}</div><b style="font-size:10px">${h.n}</b><span style="font-size:9px;color:cyan">${h.e}</span><span style="font-size:9px;color:${o?'#0f8':'gold'}">${o?(s?'EQUIPPED':'OWNED'):'💎'+h.pr}</span>${!o?`<div class="lock"><span>${h.pr==0?'FREE':'💎'+h.pr}</span><span style="font-size:8px;margin-top:3px;background:gold;color:#000;padding:3px 8px;border-radius:10px">BUY</span></div>`:''}</div>`});document.getElementById('gH').innerHTML=hHTML;
+let kHTML='';SKINS.forEach((k,i)=>{let o=ownK.includes(i);let s=selK==i;kHTML+=`<div class="card ${s?'sel':''} ${o?'own':''}" onclick="buyK(${i})"><div style="font-size:38px">${k.i}</div><b style="font-size:10px">${k.n}</b><span style="font-size:8px;color:gold">${k.e}</span><span style="font-size:9px">${o?(s?'EQUIPPED':'OWNED'):'💎'+k.pr}</span>${!o?`<div class="lock"><span>💎${k.pr}</span><span style="font-size:8px;margin-top:3px;background:gold;color:#000;padding:3px 8px;border-radius:10px">BUY</span></div>`:''}</div>`});document.getElementById('gK').innerHTML=kHTML;
+let sHTML='';SWORDS.forEach((s,i)=>{let o=ownS.includes(i);let se=selS==i;sHTML+=`<div class="card ${se?'sel':''} ${o?'own':''}" onclick="buyS(${i})"><div style="font-size:38px;filter:drop-shadow(0 0 8px ${s.col})">${s.i}</div><b style="font-size:10px">${s.n}</b><span style="font-size:9px;color:${s.col}">ATK+${s.d}</span><span style="font-size:8px;color:gold">${s.e}</span><span style="font-size:9px">${o?(se?'EQUIPPED':'OWNED'):'💎'+s.pr}</span>${!o?`<div class="lock"><span>💎${s.pr}</span><span style="font-size:8px;margin-top:3px;background:gold;color:#000;padding:3px 8px;border-radius:10px">BUY</span></div>`:''}</div>`});document.getElementById('gS').innerHTML=sHTML;
+let h=HEROS[selH],k=SKINS[selK],sw=SWORDS[selS];document.getElementById('pickInfo').innerHTML=`Hero: <b style="color:#0f8">${h.n}</b> | Skin: <b style="color:#f0f">${k.n}</b> | Sword: <b style="color:cyan">${sw.n}</b>`;document.getElementById('pickIcon').textContent=h.i;document.getElementById('pickEf').innerHTML=`<b>${h.e}</b><br><b>${k.e}</b><br><b>${sw.e} (+${sw.d})</b>`;document.getElementById('swB').innerHTML=sw.i+`<br>${sw.n}`;}
+function buyH(i){let h=HEROS[i];if(ownH.includes(i)){selH=i;save();render();return;}if(dia>=h.pr){dia-=h.pr;ownH.push(i);selH=i;save();render();popFx('BOUGHT!');}}
+function buyK(i){let k=SKINS[i];if(ownK.includes(i)){selK=i;save();render();return;}if(dia>=k.pr){dia-=k.pr;ownK.push(i);selK=i;save();render();popFx('BOUGHT!');}}
+function buyS(i){let s=SWORDS[i];if(ownS.includes(i)){selS=i;save();render();return;}if(dia>=s.pr){dia-=s.pr;ownS.push(i);selS=i;save();render();popFx('BOUGHT!');}}
+function showTab(t){['H','K','S','P'].forEach(x=>{document.getElementById('g'+x).style.display=x==t?'flex':'none';document.getElementById('t'+x).classList.toggle('on',x==t);});}
+let myHP=120,enHP=200,anim=0,myX=90,enX=270;
+function goFight(isBoss){let h=HEROS[selH],k=SKINS[selK];myHP=h.hp+(k.n.includes('Gold')?40:0)+(k.n.includes('GOD')?80:0);enHP=isBoss?420:200;document.getElementById('arena').style.display='flex';document.getElementById('n1').textContent=h.n;document.getElementById('n2').textContent=isBoss?'BOSS GOD':'BOT';myX=90;enX=270;anim=0;loop();}
+function closeF(){document.getElementById('arena').style.display='none';}
+function act(type){let h=HEROS[selH],sw=SWORDS[selS],dmg=h.p+sw.d+(type==0?5:type==1?25:type==2?60:35);if(type==2)myHP=Math.min(myHP+myHP*0.15,300);enHP-=dmg;myX+=20;setTimeout(()=>myX-=20,120);popFx('-'+dmg,'#ff0',enX,120);drawSword(sw.col);updateBar();if(enHP<=0){dia+=500;popFx('WIN +500💎','#0f8',180,80);setTimeout(closeF,900);render();}}
+function drawSword(col){ctx.save();ctx.strokeStyle=col;ctx.lineWidth=6;ctx.shadowBlur=20;ctx.shadowColor=col;ctx.beginPath();ctx.moveTo(myX,170);ctx.lineTo(enX,170);ctx.stroke();ctx.restore();}
+function popFx(t,c='#fff',x=180,y=150){let d=document.createElement('div');d.className='fx';d.textContent=t;d.style.left=x+'px';d.style.top=y+'px';d.style.color=c;document.getElementById('arena').appendChild(d);setTimeout(()=>d.remove(),700);}
+function updateBar(){document.getElementById('hp1').style.width=Math.max(0,myHP/3)+'%';document.getElementById('hp2').style.width=Math.max(0,enHP/4.2)+'%';}
+function loop(){ctx.clearRect(0,0,360,330);anim+=0.12;let bob=Math.sin(anim)*6;ctx.fillStyle=HEROS[selH].c;ctx.shadowBlur=18;ctx.shadowColor=HEROS[selH].c;ctx.beginPath();ctx.arc(myX,160+bob,28,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.font='28px serif';ctx.fillText(HEROS[selH].i,myX-16,168+bob);ctx.fillStyle='#ff3333';ctx.beginPath();ctx.arc(enX,160-Math.sin(anim+1)*6,26,0,Math.PI*2);ctx.fill();ctx.fillText('👾',enX-14,168);if(enHP>0&&myHP>0)requestAnimationFrame(loop);}
+render();
+</script></body></html>
