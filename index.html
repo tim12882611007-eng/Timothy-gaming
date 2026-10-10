@@ -118,40 +118,4 @@ let blockSwing=p.block?-35:0;
 // shadow
 ctx.fillStyle='rgba(0,0,0,.3)';ctx.beginPath();ctx.ellipse(0,90,28,8,0,0,Math.PI*2);ctx.fill();
 // legs - tao talaga porma
-ctx.save();ctx.translate(-6,50);ctx.rotate((runSwing*0.6)*Math.PI/180); html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TIMOTHY</title><style>
-body{margin:0;background:#0a0a14;color:#fff;font-family:Arial;text-align:center}
-.top{background:#111;padding:8px;display:flex;justify-content:space-around;border-bottom:2px solid gold;position:sticky;top:0}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:8px}
-.card{background:#1a1a33;border:2px solid #444;border-radius:12px;padding:8px}
-.card.on{border-color:#0f0;box-shadow:0 0 10px #0f0}
-.arena{display:flex;justify-content:space-around;align-items:end;background:#1a1a2e;margin:10px;border-radius:16px;border:2px solid gold;min-height:310px;padding:15px}
-.hero{width:80px;height:100px;background:#2a2a4a;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:44px;border:2px solid #fff;position:relative}
-.boss{width:85px;height:110px;background:#5a1a1a;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:50px;border:3px solid red;animation:bM 1.2s infinite}
-@keyframes bM{0%,100%{transform:translateY(0) translateX(0)}25%{transform:translateY(-20px) translateX(10px) scale(1.1) rotate(3deg)}50%{transform:translateY(-5px) translateX(-8px) scale(0.95) rotate(-3deg)}75%{transform:translateY(-15px) translateX(5px)}}
-@keyframes hA{0%{transform:translateX(0)}50%{transform:translateX(70px) scale(1.2)}100%{transform:translateX(0)}}
-.atk{animation:hA.35s}
-.sw{position:absolute;right:-15px;top:12px;font-size:34px;transform:rotate(-30deg);filter:drop-shadow(0 0 5px gold)}
-.hp{width:80px;height:12px;background:#333;border-radius:6px;overflow:hidden;margin:0 auto 5px;border:1px solid #555}
-.hp div{height:100%;background:#0f0;width:100%;transition:.4s}
-.hp.e div{background:red}
-.btn{background:gold;color:#000;border:none;padding:13px 26px;border-radius:25px;font-weight:bold;margin:6px;font-size:17px}
-</style></head><body>
-<div class="top"><span>💰 <b id="g">500</b> Gold</span><span>🏆 <b id="w">0</b> Wins</span></div>
-<h3 style="color:gold">⚔️ TIMOTHY SHOP + BATTLE ⚔️</h3>
-<div class="grid" id="hg"></div>
-<p style="color:gold">🗡️ SHOP SWORD</p>
-<div class="grid" style="grid-template-columns:repeat(4,1fr)" id="sg"></div>
-<div class="arena"><div><div class="hp"><div id="ph"></div></div><div class="hero" id="pb"></div><div id="pn"></div></div><div style="color:gold;font-size:24px">VS</div><div><div class="hp e"><div id="eh"></div></div><div class="boss" id="eb">👹</div><div style="color:red;font-size:11px">BOSS GUMAGALAW!</div></div></div>
-<button class="btn" onclick="atk()">⚔️ ATTACK</button><button class="btn" style="background:#555;color:#fff" onclick="reset()">🔄 RESET</button><p id="log" style="color:gold;font-weight:bold">READY BOSS!</p>
-<script>
-const H=[{id:'Timothy',i:'🤴'},{id:'Shadow',i:'🥷'},{id:'Blaze',i:'🔥'},{id:'Frost',i:'❄️'},{id:'Viper',i:'🐍'},{id:'Titan',i:'🗿'}];
-const S=[{id:'Basic',i:'🗡️',d:30,c:0},{id:'Flame',i:'🔥',d:45,c:100},{id:'Ice',i:'❄️',d:55,c:200},{id:'Thunder',i:'⚡',d:70,c:350},{id:'Dragon',i:'🐉',d:90,c:500},{id:'God',i:'👑',d:130,c:800}];
-let ch=H[0],cs=S[0],p=100,e=100,gold=500,wins=0,owned=['Basic'];
-function rH(){hg.innerHTML=H.map(h=>`<div class="card ${ch.id==h.id?'on':''}" onclick="sH('${h.id}')"><div style="font-size:26px">${h.i}</div><div style="font-size:9px">${h.id}</div></div>`).join('')}
-function rS(){sg.innerHTML=S.map(s=>{let o=owned.includes(s.id);return `<div class="card ${cs.id==s.id?'on':''}" onclick="sS('${s.id}')"><div style="font-size:22px">${s.i}</div><div style="font-size:7px">${s.id}</div><div style="font-size:7px;color:${o?'#0f0':'gold'}">${o?'OWNED':s.c+'G'}</div><div style="font-size:7px">${s.d} DMG</div></div>`}).join('')}
-function sH(id){ch=H.find(x=>x.id==id);pb.innerHTML=ch.i+`<span class=sw>${cs.i}</span>`;pn.innerText=ch.id;rH()}
-function sS(id){let s=S.find(x=>x.id==id);if(!owned.includes(id)){if(gold>=s.c){gold-=s.c;owned.push(id);g.innerText=gold}else{log.innerText='❌ KULANG GOLD!';return}}cs=s;pb.innerHTML=ch.i+`<span class=sw>${cs.i}</span>`;rS();rH()}
-function atk(){if(p<=0||e<=0)return;let h=document.getElementById('pb');h.classList.add('atk');setTimeout(()=>{h.classList.remove('atk');e=Math.max(0,e-cs.d/2);eh.style.width=e+'%';if(e<=0){wins++;w.innerText=wins;gold+=100;g.innerText=gold;log.innerText='🎉 PANALO! +100 GOLD!';eb.innerText='💀';eb.style.animation='none';return}setTimeout(()=>{p=Math.max(0,p-12);ph.style.width=p+'%';if(p<=0)log.innerText='💀 TALO!'},400)},300)}
-function reset(){p=100;e=100;ph.style.width='100%';eh.style.width='100%';eb.innerText='👹';eb.style.animation='bM 1.2s infinite';log.innerText='🔄 NEW BATTLE!'}
-rH();rS();sH(H[0].id);ph.style.width='100%';eh.style.width='100%';
-</script></body></html>
+ctx.save();ctx.translate(-6,50);ctx.rotate((runSwing*0.6)*Math.PI/180);
