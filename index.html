@@ -1,204 +1,141 @@
 <!DOCTYPE html>
 <html lang="tl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Timothy Realms V5 - Rimuru Full Set</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Rimuru MOBA Online - 30 Heroes - Timothy Owner 9999999</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;touch-action:none}
-body{background:#0a1620;overflow:hidden;font-family:Arial;color:#fff}
+*{margin:0;padding:0;box-sizing:border-box;touch-action:none}body{background:#050a14;overflow:hidden;font-family:Arial;color:#fff}
 #game{position:absolute;inset:0;width:100%;height:100%}
-#ui{position:absolute;inset:0;pointer-events:none}
-#top{position:absolute;top:0;left:0;right:0;height:58px;background:linear-gradient(#162e4a,#0a1620);border-bottom:2px solid #2a6aaa;display:flex;justify-content:space-between;align-items:center;padding:0 10px;pointer-events:auto}
-.badge{background:#000c;border:1px solid #2a6aaa;padding:5px 9px;border-radius:20px;font-size:11px;font-weight:900}
-#shopBtn{background:linear-gradient(#00d4ff,#0077ff);color:#fff;border:none;padding:8px 16px;border-radius:20px;font-weight:900;font-size:12px;box-shadow:0 3px 0 #004488}
-#expWrap{position:absolute;top:62px;left:10px;right:110px;height:10px;background:#000a;border:1px solid #00ffff;border-radius:10px;overflow:hidden;pointer-events:none}
-#expBar{height:100%;background:linear-gradient(90deg,#00ffff,#0088ff);width:0%;transition:width.3s}
-#joyWrap{position:absolute;bottom:18px;left:18px;width:130px;height:130px;background:radial-gradient(#ffffff18,#00000030);border:2px solid #ffffff22;border-radius:50%;pointer-events:auto}
-#joy{position:absolute;width:56px;height:56px;background:radial-gradient(#7af,#25a);border-radius:50%;left:37px;top:37px;box-shadow:0 0 18px #25af}
-#acts{position:absolute;bottom:18px;right:18px;display:flex;flex-direction:column;gap:9px;pointer-events:auto}
-.act{width:68px;height:68px;border-radius:50%;border:3px solid #fff;font-size:22px;font-weight:900;box-shadow:0 4px 0 #0005}
-#pred{background:radial-gradient(#00ff88,#009944)} #shoot{background:radial-gradient(#ff4444,#990000)} #ult{background:radial-gradient(#ffaa00,#aa4400);width:78px;height:78px;margin-left:-5px}
-#floatShop{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);background:linear-gradient(#00ffaa,#00aa66);color:#000;padding:12px 22px;border-radius:30px;font-weight:900;border:3px solid #fff;display:none;pointer-events:auto;box-shadow:0 0 30px #0fa;animation:pulse.8s infinite}
-@keyframes pulse{0%,100%{scale:1}50%{scale:1.07}}
-#lvlUp{position:absolute;top:48%;left:50%;transform:translate(-50%,-50%);background:linear-gradient(#ffd700,#ff8c00);color:#000;padding:16px 28px;border-radius:22px;font-weight:900;font-size:18px;display:none;box-shadow:0 0 40px #ff0;z-index:20;text-align:center}
-#sage{position:absolute;top:78px;left:50%;transform:translateX(-50%);background:#001a1aee;border:1px solid #00ffff;color:#00ffff;padding:5px 14px;border-radius:20px;font-size:10px;display:none;pointer-events:none}
-#shop{position:absolute;inset:0;background:#000f;backdrop-filter:blur(14px);display:none;pointer-events:auto;overflow-y:auto;padding:66px 8px 20px}
-.tabs{display:flex;gap:6px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
-.tab{padding:7px 14px;border-radius:20px;border:1px solid #2a6aaa;background:#000a;color:#fff;font-size:11px;font-weight:900}
-.tab.active{background:#00aaff;color:#000}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;max-width:560px;margin:0 auto}
-.card{background:linear-gradient(145deg,#1e2e4e,#0f1f3f);border:2px solid #2a5aaa;border-radius:14px;padding:9px;text-align:center;position:relative}
-.card.owned{border-color:#00ffff;box-shadow:0 0 10px #0ff6}
-.card.ic{font-size:36px}.card h3{font-size:11px;margin:3px 0}.card p{font-size:9px;opacity:.7}
-.pr{background:#000a;border:1px solid #ffd700;color:#ffd700;padding:3px 7px;border-radius:10px;font-size:10px;font-weight:900;display:inline-block;margin-top:4px}
-.buy{margin-top:6px;background:linear-gradient(#ffd700,#ff8c00);border:none;width:100%;padding:6px 0;border-radius:9px;font-weight:900;color:#000;font-size:11px}
+.screen{position:absolute;inset:0;background:radial-gradient(ellipse at top,#0a1830,#04080f);display:none;overflow-y:auto;padding:0;z-index:10}
+.screen.active{display:block}
+#loginScreen{display:flex;align-items:center;justify-content:center}
+.loginBox{background:linear-gradient(145deg,#1a1f3d,#0f1430);border:2px solid #3a6aff;border-radius:20px;padding:20px;width:90%;max-width:360px;text-align:center;box-shadow:0 0 30px #3a6aff88}
+.topBar{position:sticky;top:0;background:linear-gradient(#0f1830,#070a14);border-bottom:2px solid #3a6aff;padding:10px 8px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+.badge{background:#000c;border:1px solid #3a6aff;padding:4px 8px;border-radius:20px;font-size:9px;font-weight:900}
+.btn{background:linear-gradient(#3a6aff,#00ffff);color:#000;border:none;padding:8px 16px;border-radius:20px;font-weight:900;font-size:11px}
+.btnGold{background:linear-gradient(#ffd700,#ff8c00);color:#000}
+.btnPink{background:linear-gradient(#ff00ff,#aa00ff);color:#fff}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px;max-width:720px;margin:0 auto}
+.card{background:linear-gradient(145deg,#1a1f3d,#0f1430);border:2px solid #2a4aff;border-radius:12px;padding:8px;text-align:center;min-height:140px;position:relative}
+.card.owned{border-color:#00ffff;box-shadow:0 0 10px #0ff6}.card.vip{border-color:#ffd700;box-shadow:0 0 12px #fa06}.card.op{border-color:#ff00ff;box-shadow:0 0 20px #f0f;animation:glow 1s infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 15px #f0f}50%{box-shadow:0 0 30px #f0f}}
+.ic{font-size:30px}.card h3{font-size:9px;margin:3px 0}.card p{font-size:7px;opacity:.8;min-height:18px}
+.pr{border:1px solid #ffd700;color:#ffd700;padding:2px 6px;border-radius:10px;font-size:8px;font-weight:900;display:inline-block;margin:2px}
+.buy{margin-top:4px;background:linear-gradient(#ffd700,#ff8c00);border:none;width:100%;padding:6px 0;border-radius:8px;font-weight:900;color:#000;font-size:9px}
 .eq{background:linear-gradient(#00ffaa,#00aa66)}
-#mini{position:absolute;top:64px;right:8px;width:90px;height:90px;background:#000b;border:2px solid #2a6aaa;border-radius:10px;pointer-events:none}
+.skinDot{width:10px;height:10px;border-radius:50%;display:inline-block;margin:2px;border:1px solid #fff}
+.tabs{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin:8px 0}
+.tab{padding:6px 12px;border-radius:20px;border:2px solid #3a6aff;background:#000a;color:#fff;font-size:10px;font-weight:900}.tab.active{background:#3a6aff}
+#joyW{position:absolute;bottom:14px;left:14px;width:118px;height:118px;background:radial-gradient(#ffffff12,#00000030);border:2px solid #ffffff22;border-radius:50%;pointer-events:auto;z-index:20}
+#joy{position:absolute;width:50px;height:50px;background:radial-gradient(#8af,#24a);border-radius:50%;left:34px;top:34px}
+#skills{position:absolute;bottom:10px;right:6px;display:flex;gap:5px;pointer-events:auto;z-index:20;flex-wrap:wrap;max-width:190px;justify-content:flex-end}
+.sk{width:54px;height:54px;border-radius:12px;border:2px solid #fff;font-size:16px;font-weight:900;box-shadow:0 3px 0 #0008;position:relative}
+#lobbyStats{background:#000a;border:1px solid #3a6aff;border-radius:12px;padding:10px;margin:10px}
+.matchRow{background:#111a33;border:1px solid #2a4aff;border-radius:8px;padding:6px;margin:4px 0;font-size:9px;display:flex;justify-content:space-between}
+input{width:100%;background:#000a;border:1px solid #3a6aff;color:#fff;padding:8px;border-radius:10px;margin:4px 0;font-size:12px}
+#mini{position:absolute;top:54px;right:6px;width:86px;height:86px;background:#000c;border:2px solid #3a6aff;border-radius:8px;pointer-events:none;z-index:20}
+#endScreen{position:absolute;inset:0;background:#000000ee;display:none;align-items:center;justify-content:center;z-index:30;flex-direction:column;text-align:center}
 </style>
 </head>
 <body>
-<canvas id="game"></canvas>
-<canvas id="mini"></canvas>
-<div id="ui">
-<div id="top"><div class="badge">💎<span id="diam">500</span> | LV<span id="lvl">1</span> | <span id="formTxt">SLIME</span></div><button id="shopBtn" onclick="toggleShop()">🛒 FULL SHOP</button><div class="badge">❤️<span id="hp">100</span> | K<span id="kills">0</span></div></div>
-<div id="expWrap"><div id="expBar"></div></div>
-<div id="joyWrap"><div id="joy"></div></div>
-<div id="acts"><button class="act" id="ult" ontouchstart="doUlt()">🔥</button><button class="act" id="pred" ontouchstart="doPred()">👄</button><button class="act" id="shoot" ontouchstart="shooting=true" ontouchend="shooting=false" onmousedown="shooting=true" onmouseup="shooting=false">💧</button></div>
-<button id="floatShop" onclick="toggleShop()">🏰 OPEN TEMPEST SHOP</button>
-<div id="lvlUp"></div><div id="sage"></div>
+<canvas id="game"></canvas><canvas id="mini"></canvas>
+
+<!-- LOGIN / OWNER AUTO -->
+<div id="loginScreen" class="screen active">
+<div class="loginBox">
+<div style="font-size:42px">👑</div>
+<div style="font-size:18px;font-weight:900;color:#00ffff">RIMURU MOBA ONLINE</div>
+<div style="font-size:10px;color:#aaa;margin:6px 0">30 Heroes + Skins + Voice + Effects</div>
+<div style="background:#000a;border:1px solid #ff00ff;border-radius:10px;padding:8px;margin:10px 0">
+<div style="color:#ff00ff;font-size:11px;font-weight:900">👑 OWNER ACCOUNT DETECTED!</div>
+<div style="font-size:9px">Timothy - Unli Diamonds & Coins</div>
+<div style="color:#ffd700;font-size:12px;font-weight:900;margin-top:4px">💎 9,999,999 | 🪙 9,999,999</div>
 </div>
-<div id="shop">
-<div style="text-align:center;color:#00ffff;font-weight:900;font-size:18px;margin-bottom:6px">🌀 RIMURU FULL SHOP - LAHAT NANDITO!</div>
-<div class="tabs"><button class="tab active" onclick="setTab('hero')" id="t-hero">HEROES</button><button class="tab" onclick="setTab('weapon')" id="t-weapon">WEAPONS</button><button class="tab" onclick="setTab('pet')" id="t-pet">PETS</button><button class="tab" onclick="setTab('skill')" id="t-skill">SKILLS</button></div>
-<div class="grid" id="grid"></div>
-<button onclick="toggleShop()" style="display:block;margin:16px auto;background:#222;color:#fff;border:1px solid #555;padding:9px 28px;border-radius:20px">✕ CLOSE</button>
+<input id="playerName" placeholder="Enter name (Timothy auto owner)" value="Timothy">
+<button class="btn" style="width:100%;margin-top:8px" onclick="enterLobby()">▶️ ENTER LOBBY - ONLINE</button>
+<div style="font-size:8px;color:#666;margin-top:8px">Online game - real players worldwide (simulated)</div>
 </div>
+</div>
+
+<!-- LOBBY -->
+<div id="lobbyScreen" class="screen">
+<div class="topBar"><div class="badge">💎<span id="lDiam">9999999</span> | 🪙<span id="lCoin">9999999</span> | <span id="lName">Timothy</span> 👑</div><button class="btn btnGold" onclick="openSend()">📤 SEND DIAMOND</button></div>
+<div style="text-align:center;padding:12px 8px 0"><div style="font-size:20px;font-weight:900;color:#00ffff">🏰 LOBBY - RIMURU TEMPEST</div><div style="font-size:9px;color:#aaa">30 Heroes | Skins with effects & voice | Online</div></div>
+<div class="tabs"><button class="tab active" onclick="setLobbyTab('heroes')" id="lt-heroes">HEROES (30)</button><button class="tab" onclick="setLobbyTab('skins')" id="lt-skins">SKINS SHOP</button><button class="tab" onclick="setLobbyTab('stats')" id="lt-stats">STATS & MATCHES</button><button class="tab" onclick="setLobbyTab('achieve')" id="lt-achieve">ACHIEVEMENT</button></div>
+<div id="lobbyContent"></div>
+<div style="padding:0 10px 20px;max-width:720px;margin:0 auto"><button class="btn" style="width:100%;padding:12px;font-size:14px" onclick="startMatch()">⚔️ START RANK MATCH - ONLINE 5v5!</button><div style="font-size:8px;color:#666;text-align:center;margin-top:4px">Auto matchmaking - 10 players online</div></div>
+</div>
+
+<!-- SEND DIAMOND MODAL -->
+<div id="sendScreen" class="screen" style="background:#000000f0;display:none;align-items:center;justify-content:center;z-index:15">
+<div class="loginBox">
+<div style="font-size:16px;font-weight:900">📤 SEND DIAMONDS TO PLAYER</div>
+<input id="sendTo" placeholder="Player name (ex: Benimaru123)">
+<input id="sendAmt" type="number" placeholder="Amount (ex: 100)">
+<button class="btn btnGold" style="width:100%;margin-top:6px" onclick="doSend()">SEND 💎</button>
+<button class="btn" style="width:100%;margin-top:6px;background:#333;color:#fff" onclick="closeSend()">CLOSE</button>
+<div style="font-size:8px;color:#aaa;margin-top:6px">Online transfer - instant!</div>
+</div>
+</div>
+
+<!-- GAME UI -->
+<div id="gameUI" style="position:absolute;inset:0;pointer-events:none;display:none;z-index:5">
+<div class="topBar" style="pointer-events:auto"><div class="badge">💎<span id="gDiam">9999999</span> | 🪙<span id="gCoin">9999999</span> | LV<span id="gLvl">1</span></div><button class="btn" style="padding:4px 8px;font-size:9px" onclick="goLobby()">🏠 LOBBY</button><div class="badge">❤️<span id="gHp">1000</span> | K<span id="gKills">0</span> | <span id="gHero">Rimuru</span></div></div>
+<div id="joyW"><div id="joy"></div></div>
+<div id="skills">
+<button class="sk" id="sAtk" ontouchstart="doAtk()" onmousedown="doAtk()">👊<b>ATK</b></button>
+<button class="sk" id="s1" ontouchstart="cast(0)" onmousedown="cast(0)">💥<b>SK1</b></button>
+<button class="sk" id="s2" ontouchstart="cast(1)" onmousedown="cast(1)">⚡<b>SK2</b></button>
+<button class="sk" id="s3" ontouchstart="cast(2)" onmousedown="cast(2)">🔥<b>ULTI</b></button>
+</div>
+</div>
+
+<div id="endScreen">
+<div style="font-size:28px;font-weight:900" id="endTitle">VICTORY!</div>
+<div style="font-size:14px;margin:8px 0" id="endDesc">Base destroyed!</div>
+<div id="endStats" style="background:#111a33;border:1px solid #3a6aff;border-radius:12px;padding:10px;margin:10px;width:80%;max-width:320px;font-size:11px"></div>
+<button class="btn" style="padding:10px 24px;font-size:14px" onclick="backToLobbyAfter()">🏰 BACK TO LOBBY</button>
+</div>
+
 <script>
 const cvs=document.getElementById('game'),ctx=cvs.getContext('2d');
 const mini=document.getElementById('mini'),mctx=mini.getContext('2d');
 let W=innerWidth,H=innerHeight,dpr=Math.min(devicePixelRatio,2);
-function resize(){W=innerWidth;H=innerHeight;cvs.width=W*dpr;cvs.height=H*dpr;cvs.style.width=W+'px';cvs.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);mini.width=90*dpr;mini.height=90*dpr;mini.style.width='90px';mini.style.height='90px';mctx.setTransform(dpr,0,0,dpr,0,0);} resize();addEventListener('resize',resize);
-let diamonds=500,hp=100,maxHp=100,exp=0,level=1,kills=0,damageBonus=0,speedBonus=0;
-let player={x:0,y:0,vx:0,vy:0,angle:0,form:0},camera={x:0,y:0},keys={},joy={dx:0,dy:0,active:false},shooting=false,shootCd=0;
-let bullets=[],enemies=[],particles=[],decor=[],buildings=1,currentTab='hero';
-let ownedHero=[0,1],ownedWeap=[0],ownedPet=[],ownedSkill=[0],equipped=0,equippedWeap=0,equippedPet=-1;
+function resize(){W=innerWidth;H=innerHeight;cvs.width=W*dpr;cvs.height=H*dpr;cvs.style.width=W+'px';cvs.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);mini.width=86*dpr;mini.height=86*dpr;mini.style.width='86px';mini.style.height='86px';mctx.setTransform(dpr,0,0,dpr,0,0);}resize();addEventListener('resize',resize);
+
+let diamonds=9999999,coins=9999999,playerName="Timothy",isOwner=true;
+let ownedHeroes=[0,1,2,3,4,5,6,7,8,9],ownedSkins=[0],equippedHero=0,equippedSkin=0;
+let lobbyTab='heroes',gameActive=false,player={x:0,y:0,vx:0,vy:0,angle:0},camera={x:0,y:0},keys={},joy={dx:0,dy:0,active:false},bullets=[],enemies=[],towers=[],minions=[],particles=[],skillCd=[0,0,0],atkCd=0,hp=1000,maxHp=1000,level=1,exp=0,kills=0,matchTimer=0;
+let stats={matches:0,wins:0,losses:0,kills:0,deaths:0,mvp:0,history:[]},achievements={firstWin:false,killer10:false,collector:false,rich:false};
+
 const HEROES=[
-{id:0,name:"Rimuru Slime",icon:"🔵",price:0,power:100,desc:"Starter - Predator"},
-{id:1,name:"Rimuru Human",icon:"🧑‍🦱",price:0,power:120,desc:"Silver hair + rapier"},
-{id:2,name:"Benimaru",icon:"🔥",price:800,power:160,desc:"Flame Sword"},
-{id:3,name:"Shion",icon:"💜",price:1200,power:180,desc:"Big sword + heal"},
-{id:4,name:"Milim Nava",icon:"🐉",price:3000,power:220,desc:"Dragonoid - explosion"},
-{id:5,name:"Veldora",icon:"🌪️",price:5000,power:250,desc:"Storm Dragon"},
-{id:6,name:"Diablo",icon:"😈",price:7000,power:290,desc:"Primordial Demon"},
-{id:7,name:"Demon Lord Rimuru",icon:"👑",price:10000,power:350,desc:"True Demon Lord!"}
-];
-const WEAPONS=[
-{id:0,name:"Water Blade",icon:"💧",price:0,dmg:20,desc:"Rimuru basic"},
-{id:1,name:"Flame Sword",icon:"🗡️🔥",price:400,dmg:35,desc:"Benimaru fire"},
-{id:2,name:"Ice Spear",icon:"❄️",price:900,dmg:50,desc:"Freeze enemy"},
-{id:3,name:"Thunder Gun",icon:"⚡",price:1800,dmg:70,desc:"Fast + stun"},
-{id:4,name:"Dragon Buster",icon:"🐉💥",price:3500,dmg:110,desc:"Veldora breath"}
-];
-const PETS=[
-{id:0,name:"Ranga Wolf",icon:"🐺",price:600,desc:"Bite enemy"},
-{id:1,name:"Slime Pet",icon:"🟢",price:1000,desc:"+10% exp"},
-{id:2,name:"Mini Veldora",icon:"🐲",price:2500,desc:"Burn all"}
-];
-const SKILLS=[
-{id:0,name:"Predator",icon:"👄",price:0,desc:"Eat enemy + skill"},
-{id:1,name:"Great Sage",icon:"🧠",price:500,desc:"Show weakness"},
-{id:2,name:"Shadow Step",icon:"👤",price:1200,desc:"Dash x2"},
-{id:3,name:"Beelzebuth",icon:"🌀",price:4000,desc:"Ultimate eat all"}
-];
-const ET={slime:{hp:35,speed:55,color:"#00aaff",size:14,reward:6,exp:10},orc:{hp:95,speed:72,color:"#8B4513",size:20,reward:16,exp:25},demon:{hp:140,speed:84,color:"#6a1b9a",size:22,reward:32,exp:50},dragon:{hp:450,speed:58,color:"#cc0000",size:38,reward:130,exp:200}};
-function init(){
-decor=[];for(let i=0;i<110;i++){let x=(Math.random()-0.5)*5000,y=(Math.random()-0.5)*5000;if(Math.hypot(x,y)<280)continue;decor.push({x,y,r:18+Math.random()*24,t:Math.floor(Math.random()*3)});}
-enemies=[];for(let i=0;i<16;i++)enemies.push({x:(Math.random()-0.5)*1600,y:(Math.random()-0.5)*1600,type:"slime",hp:ET.slime.hp,max:ET.slime.hp});
-for(let i=0;i<12;i++){let a=Math.random()*6.28,d=1100+Math.random()*900;enemies.push({x:Math.cos(a)*d,y:Math.sin(a)*d,type:"orc",hp:ET.orc.hp,max:ET.orc.hp});}
-for(let i=0;i<9;i++){let a=Math.random()*6.28,d=1900+Math.random()*900;enemies.push({x:Math.cos(a)*d,y:Math.sin(a)*d,type:"demon",hp:ET.demon.hp,max:ET.demon.hp});}
-for(let i=0;i<3;i++){let a=Math.random()*6.28,d=2600+Math.random()*700;enemies.push({x:Math.cos(a)*d,y:Math.sin(a)*d,type:"dragon",hp:ET.dragon.hp,max:ET.dragon.hp});}
-} init();
-function drawRimuru(x,y,ang,form,scale=1){
-ctx.save();ctx.translate(x,y);ctx.rotate(ang);ctx.scale(scale,scale);ctx.imageSmoothingQuality='high';
-ctx.fillStyle='rgba(0,0,0,0.35)';ctx.beginPath();ctx.ellipse(0,14,12,5,0,0,6.28);ctx.fill();
-if(form==0){ // slime
-ctx.fillStyle='#00aaff';ctx.beginPath();ctx.arc(0,0,14,0,6.28);ctx.fill();ctx.fillStyle='#6dd8ff';ctx.beginPath();ctx.arc(-4,-4,5,0,6.28);ctx.fill();
-ctx.fillStyle='#fff';ctx.beginPath();ctx.ellipse(-4,-2,3,3.5,0,0,6.28);ctx.fill();ctx.beginPath();ctx.ellipse(4,-2,3,3.5,0,0,6.28);ctx.fill();
-ctx.fillStyle='#000';ctx.beginPath();ctx.arc(-4,-1,1.4,0,6.28);ctx.fill();ctx.beginPath();ctx.arc(4,-1,1.4,0,6.28);ctx.fill();
-}else{
-let col=form==2?'#000':'#1a1a2a';let skin='#ffdbac';
-ctx.fillStyle=col;ctx.fillRect(-6,2,5,11);ctx.fillRect(1,2,5,11);ctx.fillStyle='#111';ctx.fillRect(-6,12,5,4);ctx.fillRect(1,12,5,4);
-ctx.fillStyle=form==2?'#111':'#2a4a8a';ctx.beginPath();ctx.roundRect(-8,-8,16,14,4);ctx.fill();
-ctx.fillStyle=skin;ctx.beginPath();ctx.roundRect(-11,-5,5,10,3);ctx.fill();ctx.beginPath();ctx.roundRect(6,-5,5,10,3);ctx.fill();
-ctx.fillStyle='#2b2b2b';ctx.fillRect(9,-3,18,4);
-ctx.fillStyle=skin;ctx.beginPath();ctx.arc(0,-13,9,0,6.28);ctx.fill();
-ctx.fillStyle='#fff';ctx.beginPath();ctx.ellipse(-3,-14,2.2,2.8,0,0,6.28);ctx.fill();ctx.beginPath();ctx.ellipse(3,-14,2.2,2.8,0,0,6.28);ctx.fill();
-ctx.fillStyle='#00aaff';ctx.beginPath();ctx.arc(-3,-13.5,1.3,0,6.28);ctx.fill();ctx.beginPath();ctx.arc(3,-13.5,1.3,0,6.28);ctx.fill();
-if(form==2){ctx.fillStyle='#ffd700';ctx.beginPath();ctx.moveTo(-7,-22);ctx.lineTo(0,-30);ctx.lineTo(7,-22);ctx.fill();}
-else{ctx.fillStyle='#c0c0ff';ctx.fillRect(-9,-20,18,6);}
-}
-ctx.restore();
-}
-function drawEnemy(sx,sy,en){
-const t=ET[en.type];ctx.save();ctx.translate(sx,sy);
-ctx.fillStyle='rgba(0,0,0,0.35)';ctx.beginPath();ctx.ellipse(0,t.size*0.6,t.size*0.7,t.size*0.35,0,0,6.28);ctx.fill();
-if(en.type=='slime'){ctx.fillStyle=t.color;ctx.beginPath();ctx.arc(0,0,t.size,0,6.28);ctx.fill();ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(-4,-3,2.8,0,6.28);ctx.fill();ctx.beginPath();ctx.arc(4,-3,2.8,0,6.28);ctx.fill();ctx.fillStyle='#000';ctx.beginPath();ctx.arc(-4,-2,1.3,0,6.28);ctx.fill();ctx.beginPath();ctx.arc(4,-2,1.3,0,6.28);ctx.fill();}
-else if(en.type=='orc'){ctx.fillStyle='#7bb37b';ctx.beginPath();ctx.arc(0,-2,t.size*0.7,0,6.28);ctx.fill();ctx.fillStyle=t.color;ctx.fillRect(-t.size*0.8,t.size*0.2,t.size*1.6,t.size*0.9);}
-else if(en.type=='demon'){ctx.fillStyle='#9c27b0';ctx.beginPath();ctx.arc(0,0,t.size,0,6.28);ctx.fill();ctx.fillStyle='#ff0000';ctx.beginPath();ctx.arc(-5,-3,2.5,0,6.28);ctx.fill();ctx.beginPath();ctx.arc(5,-3,2.5,0,6.28);ctx.fill();}
-else{ctx.fillStyle='#b71c1c';ctx.beginPath();ctx.ellipse(0,0,t.size*1.2,t.size,0,0,6.28);ctx.fill();ctx.fillStyle='#ffeb3b';ctx.beginPath();ctx.arc(-8,-6,2,0,6.28);ctx.fill();ctx.beginPath();ctx.arc(8,-6,2,0,6.28);ctx.fill();}
-ctx.fillStyle='#000';ctx.fillRect(-t.size,-t.size-10,t.size*2,5);ctx.fillStyle=en.type=='dragon'?'#f00':'#0f0';ctx.fillRect(-t.size,-t.size-10,t.size*2*en.hp/en.max,5);
-ctx.restore();
-}
-function drawWorld(){
-let dist=Math.hypot(camera.x,camera.y);
-if(dist<900)ctx.fillStyle='#1b3d1b';else if(dist<1700)ctx.fillStyle='#2d3d1b';else if(dist<2500)ctx.fillStyle='#3d2a3a';else ctx.fillStyle='#3d1a1a';
-ctx.fillRect(0,0,W,H);
-ctx.fillStyle='rgba(255,255,255,0.04)';for(let i=0;i<400;i++){let sx=((i*137)%W+camera.x*0.08)%W,sy=((i*239)%H+camera.y*0.08)%H;ctx.fillRect(sx,sy,2,2);}
-let gx=W/2-camera.x,gy=H/2-camera.y;
-ctx.fillStyle='rgba(0,0,0,0.4)';ctx.fillRect(gx-62,gy+42,124,18);
-ctx.fillStyle='#8B5A2B';ctx.fillRect(gx-56,gy-22,112,72);ctx.fillStyle='#5D4037';ctx.fillRect(gx-62,gy-32,124,18);
-ctx.fillStyle='#ffd700';ctx.fillRect(gx-8,gy+12,16,26);ctx.fillStyle='#fff';ctx.font='bold 11px Arial';ctx.fillText('TEMPEST',gx-26,gy-36);
-for(let i=0;i<buildings;i++){let bx=gx-50+i*16%100,by=gy-50-Math.floor(i/6)*16;ctx.fillStyle='#6a4a2a';ctx.fillRect(bx,by,10,10);}
-for(let d of decor){let sx=W/2+d.x-camera.x,sy=H/2+d.y-camera.y;if(sx<-60||sx>W+60||sy<-60||sy>H+60)continue;ctx.fillStyle='rgba(0,0,0,0.3)';ctx.beginPath();ctx.ellipse(sx+5,sy+8,d.r*0.6,d.r*0.3,0,0,6.28);ctx.fill();ctx.fillStyle='#4a2c17';ctx.fillRect(sx-5,sy-4,10,18);ctx.fillStyle=d.t==0?'#2d7a2d':d.t==1?'#1e5e1e':'#3a8a3a';ctx.beginPath();ctx.arc(sx,sy-14,d.r,0,6.28);ctx.fill();}
-}
-let last=performance.now();
-function loop(now){
-let dt=Math.min((now-last)/1000,0.05);last=now;
-let mx=joy.dx,my=joy.dy;if(keys['w']||keys['arrowup'])my=-1;if(keys['s']||keys['arrowdown'])my=1;if(keys['a']||keys['arrowleft'])mx=-1;if(keys['d']||keys['arrowright'])mx=1;
-let baseSpeed=200+speedBonus*100+level*2;player.vx=mx*baseSpeed;player.vy=my*baseSpeed;if(mx||my)player.angle=Math.atan2(my,mx);
-player.x+=player.vx*dt;player.y+=player.vy*dt;camera.x+=(player.x-camera.x)*0.09;camera.y+=(player.y-camera.y)*0.09;
-shootCd-=dt;if(shooting&&shootCd<=0){shootCd=0.18;let we=WEAPONS[equippedWeap]||WEAPONS[0];let dmg=we.dmg+HEROES[equipped].power*0.12+damageBonus*50;bullets.push({x:player.x+20*Math.cos(player.angle),y:player.y+20*Math.sin(player.angle),vx:Math.cos(player.angle)*540,vy:Math.sin(player.angle)*540,dmg,life:1.2});}
-bullets.forEach(b=>{b.x+=b.vx*dt;b.y+=b.vy*dt;b.life-=dt;});bullets=bullets.filter(b=>b.life>0);
-enemies.forEach(en=>{let t=ET[en.type],dx=player.x-en.x,dy=player.y-en.y,d=Math.hypot(dx,dy);if(d<650){en.x+=dx/d*t.speed*dt;en.y+=dy/d*t.speed*dt;}
-bullets.forEach(b=>{if(Math.hypot(b.x-en.x,b.y-en.y)<t.size+6){en.hp-=b.dmg;b.life=0;particles.push({x:en.x,y:en.y,vx:(Math.random()-0.5)*200,vy:(Math.random()-0.5)*200,life:0.3,color:t.color});}});
-if(d<t.size+12){hp-=t.reward*0.4*dt*5;if(navigator.vibrate)navigator.vibrate(20);}
-if(en.hp<=0){let expGain=t.exp,need=level*50;diamonds+=t.reward;kills++;exp+=expGain;if(exp>=need){exp-=need;level++;maxHp+=6;hp=maxHp;damageBonus+=0.03;speedBonus+=0.015;buildings=Math.min(30,level);let lu=document.getElementById('lvlUp');lu.innerHTML='LEVEL UP!<br>LVL '+level+'<br>'+(level>=11?'DEMON LORD!':'RIMURU POWER!');lu.style.display='block';let sg=document.getElementById('sage');sg.innerText='Great Sage: Level increased to '+level+'! Predator success!';sg.style.display='block';setTimeout(()=>{lu.style.display='none';sg.style.display='none';},2200);if(navigator.vibrate)navigator.vibrate([80,40,80]);if(level>=6)player.form=1;if(level>=11)player.form=2;}en.x=(Math.random()-0.5)*5000;en.y=(Math.random()-0.5)*5000;let nd=Math.hypot(en.x,en.y);if(nd<900)en.type='slime';else if(nd<1800)en.type=Math.random()<0.7?'orc':'slime';else if(nd<2600)en.type=Math.random()<0.6?'demon':'orc';else en.type=Math.random()<0.5?'dragon':'demon';en.max=ET[en.type].hp;en.hp=en.max;particles.push({x:en.x,y:en.y,text:'+'+t.reward+'💎 +'+t.exp+'EXP',life:1,vy:-70});}
-});
-particles.forEach(p=>{p.x+=(p.vx||0)*dt;p.y+=(p.vy||0)*dt;p.life-=dt;});particles=particles.filter(p=>p.life>0);
-// minimap
-mctx.clearRect(0,0,90,90);mctx.fillStyle='#0a1620';mctx.fillRect(0,0,90,90);enemies.forEach(en=>{let mx=45+en.x/90,my=45+en.y/90;if(mx<0||mx>90||my<0||my>90)return;mctx.fillStyle=ET[en.type].color;mctx.fillRect(mx,my,en.type=='dragon'?4:2,en.type=='dragon'?4:2);});mctx.fillStyle='#fff';mctx.fillRect(45+player.x/90-1,45+player.y/90-1,3,3);mctx.fillStyle='#ffd700';mctx.fillRect(45-2,45-2,4,4);
-let distG=Math.hypot(player.x,player.y);document.getElementById('floatShop').style.display=distG<130?'block':'none';
-ctx.clearRect(0,0,W,H);drawWorld();
-enemies.forEach(en=>{let sx=W/2+en.x-camera.x,sy=H/2+en.y-camera.y;if(sx<-80||sx>W+80||sy<-80||sy>H+80)return;drawEnemy(sx,sy,en);});
-ctx.fillStyle='#00ffff';bullets.forEach(b=>{let sx=W/2+b.x-camera.x,sy=H/2+b.y-camera.y;ctx.shadowColor='#0ff';ctx.shadowBlur=10;ctx.beginPath();ctx.arc(sx,sy,5,0,6.28);ctx.fill();ctx.shadowBlur=0;});
-particles.forEach(p=>{let sx=W/2+p.x-camera.x,sy=H/2+p.y-camera.y;if(p.text){ctx.fillStyle='#ffd700';ctx.font='bold 11px Arial';ctx.fillText(p.text,sx,sy);}else{ctx.fillStyle=p.color||'#0ff';ctx.fillRect(sx,sy,4,4);}});
-drawRimuru(W/2,H/2,player.angle,player.form,1.35);
-document.getElementById('diam').innerText=diamonds;document.getElementById('hp').innerText=Math.max(0,Math.floor(hp));document.getElementById('lvl').innerText=level;document.getElementById('kills').innerText=kills;document.getElementById('expBar').style.width=(exp/(level*50)*100)+'%';document.getElementById('formTxt').innerText=player.form==0?'SLIME':player.form==1?'RIMURU':'DEMON LORD';
-if(hp<=0){hp=maxHp;player.x=0;player.y=150;exp=Math.max(0,exp-20);}
-requestAnimationFrame(loop);
-} requestAnimationFrame(loop);
-const jw=document.getElementById('joyWrap'),j=document.getElementById('joy');
-function setJoy(e){let r=jw.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;let x=(e.touches?e.touches[0].clientX:e.clientX)-cx,y=(e.touches?e.touches[0].clientY:e.clientY)-cy;let d=Math.hypot(x,y),max=42;if(d>max){x=x/d*max;y=y/d*max;}j.style.left=37+x+'px';j.style.top=37+y+'px';joy.dx=x/max;joy.dy=y/max;joy.active=true;}
-function resetJoy(){j.style.left='37px';j.style.top='37px';joy.dx=0;joy.dy=0;joy.active=false;}
-jw.addEventListener('touchstart',e=>{e.preventDefault();setJoy(e);});jw.addEventListener('touchmove',e=>{e.preventDefault();setJoy(e);});jw.addEventListener('touchend',e=>{e.preventDefault();resetJoy();});
-jw.addEventListener('mousedown',e=>setJoy(e));addEventListener('mousemove',e=>{if(joy.active)setJoy(e);});addEventListener('mouseup',resetJoy);
-addEventListener('keydown',e=>keys[e.key.toLowerCase()]=true);addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);
-function doPred(){enemies.forEach(en=>{if(Math.hypot(player.x-en.x,player.y-en.y)<60){en.hp-=80;let sg=document.getElementById('sage');sg.innerText='Great Sage: Predator activated! Skill '+en.type+' acquired!';sg.style.display='block';setTimeout(()=>sg.style.display='none',1500);}});if(navigator.vibrate)navigator.vibrate(50);}
-function doUlt(){let dmg=100+level*10+damageBonus*100;for(let k=0;k<18;k++){let a=k/18*6.28;bullets.push({x:player.x,y:player.y,vx:Math.cos(a)*420,vy:Math.sin(a)*420,dmg,life:1.2});}if(navigator.vibrate)navigator.vibrate([60,40,90]);}
-function toggleShop(){let m=document.getElementById('shop');m.style.display=m.style.display=='block'?'none':'block';render();}
-function setTab(t){currentTab=t;document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));document.getElementById('t-'+t).classList.add('active');render();}
-function render(){
-let g=document.getElementById('grid');g.innerHTML='';let list=currentTab=='hero'?HEROES:currentTab=='weapon'?WEAPONS:currentTab=='pet'?PETS:SKILLS;
-list.forEach(it=>{
-let owned=currentTab=='hero'?ownedHero.includes(it.id):currentTab=='weapon'?ownedWeap.includes(it.id):currentTab=='pet'?ownedPet.includes(it.id):ownedSkill.includes(it.id);
-let isEq=(currentTab=='hero'&&equipped==it.id)||(currentTab=='weapon'&&equippedWeap==it.id);
-let div=document.createElement('div');div.className='card'+(owned?' owned':'');
-div.innerHTML=`<div class="ic">${it.icon}</div><h3>${it.name}</h3><p>${it.desc}</p>${currentTab=='hero'?'<p>⚔️ '+it.power+'</p>':currentTab=='weapon'?'<p>💥 '+it.dmg+'</p>':''}${owned?(isEq?'<div class="pr" style="background:#0f8;color:#000">✅ EQUIPPED</div>':'<button class="buy eq" onclick="equipIt('+it.id+')">EQUIP</button>'):'<div class="pr">💎 '+it.price+'</div><button class="buy" onclick="buyIt('+it.id+')">BUY</button>'}`;
-g.appendChild(div);
-});
-}
-function buyIt(id){
-let list=currentTab=='hero'?HEROES:currentTab=='weapon'?WEAPONS:currentTab=='pet'?PETS:SKILLS;
-let it=list.find(x=>x.id==id);if(diamonds>=it.price){diamonds-=it.price;
-if(currentTab=='hero'){ownedHero.push(id);equipped=id;}else if(currentTab=='weapon'){ownedWeap.push(id);equippedWeap=id;}else if(currentTab=='pet'){ownedPet.push(id);equippedPet=id;}else{ownedSkill.push(id);}
-render();}else alert('Kulang diamonds boss! Patay ka muna slime/orc! 💎');
-}
-function equipIt(id){
-if(currentTab=='hero')equipped=id;else if(currentTab=='weapon')equippedWeap=id;else if(currentTab=='pet')equippedPet=id;
-render();if(currentTab=='hero')toggleShop();
-}
-render();
-</script>
-</body>
-</html>
+{id:0,name:"Rimuru Tempest",icon:"🍥",priceCoin:0,role:"Mage/Tank",voice:"Kukuku! Beelzebuth!",desc:"Slime Demon Lord - Predator"},
+{id:1,name:"Benimaru",icon:"🔥👹",priceCoin:0,role:"Fighter",voice:"Flare Lord!",desc:"Ogre fire commander"},
+{id:2,name:"Shion",icon:"💜👹",priceCoin:500,role:"Tank",voice:"Shion's cooking!",desc:"Wrath - big sword"},
+{id:3,name:"Shuna",icon:"🌸👹",priceCoin:500,role:"Support",voice:"Bless you!",desc:"Princess - barrier"},
+{id:4,name:"Souei",icon:"🌑👹",priceCoin:600,role:"Assassin",voice:"Shadow move!",desc:"Spy - fast"},
+{id:5,name:"Hakurou",icon:"⚔️👴",priceCoin:600,role:"Fighter",voice:"Sword art!",desc:"Sword master"},
+{id:6,name:"Gabiru",icon:"🐉",priceCoin:700,role:"Fighter",voice:"Gabiru-sama!",desc:"Lizard spear"},
+{id:7,name:"Diablo",icon:"😈🖤",priceCoin:1000,role:"Mage",voice:"My Lord Rimuru!",desc:"Black primordial - OP"},
+{id:8,name:"Milim Nava",icon:"🐉💥",priceCoin:1200,role:"Mage",voice:"Milim Burst!",desc:"Dragonoid - destroyer"},
+{id:9,name:"Veldora Tempest",icon:"🐉🌪️",priceCoin:1200,role:"Tank/Mage",voice:"Kwahaha!",desc:"Storm dragon"},
+{id:10,name:"Gobta",icon:"🐺",priceCoin:800,role:"Assassin",voice:"Gobta run!",desc:"Goblin wolf rider"},
+{id:11,name:"Ranga",icon:"🐺⚡",priceCoin:900,role:"Fighter",voice:"Master!",desc:"Tempest wolf"},
+{id:12,name:"Testarossa",icon:"😈🤍",priceCoin:1500,role:"Mage",voice:"White Queen!",desc:"White primordial"},
+{id:13,name:"Ultima",icon:"😈💜",priceCoin:1500,role:"Assassin",voice:"Violet death!",desc:"Violet primordial"},
+{id:14,name:"Carrera",icon:"😈💛",priceCoin:1500,role:"Mage",voice:"Golden gun!",desc:"Yellow primordial - nuke"},
+{id:15,name:"Guy Crimson",icon:"👑🔴",priceCoin:2000,role:"Mage",voice:"Red Primordial!",desc:"Strongest demon lord"},
+{id:16,name:"Velzard",icon:"❄️🐉",priceCoin:1800,role:"Mage",voice:"Frost Queen!",desc:"Ice dragon"},
+{id:17,name:"Velgrynd",icon:"🔥🐉",priceCoin:1800,role:"Mage",voice:"Scorch Queen!",desc:"Fire dragon"},
+{id:18,name:"Hinata Sakaguchi",icon:"⚔️✝️",priceCoin:1300,role:"Fighter",voice:"Disintegration!",desc:"Holy knight"},
+{id:19,name:"Luminous Valentine",icon:"🧛‍♀️",priceCoin:1600,role:"Support",voice:"Night Queen!",desc:"Vampire queen"},
+{id:20,name:"Leon Cromwell",icon:"⚔️💛",priceCoin:1700,role:"Fighter",voice:"Platinum!",desc:"Platinum demon lord"},
+{id:21,name:"Dagruel",icon:"🗿",priceCoin:1400,role:"Tank",voice:"Earthquake!",desc:"Titan lord"},
+{id:22,name:"Dino",icon:"😴⚔️",priceCoin:1300,role:"Fighter",voice:"Sleepy...",desc:"Fallen angel"},
+{id:23,name:"Frey",icon:"🦅",priceCoin:1100,role:"Marksman",voice:"Sky Queen!",desc:"Harpy queen"},
+{id:24,name:"Clayman",icon:"🤡",priceCoin:1000,role:"Mage",voice:"Marionette!",desc:"Mad clown"},
+{id:25,name:"Feldway",icon:"👼",priceCoin:1900,role:"Fighter",voice:"Seraphim!",desc:"Angel chief"},
+{id:26,name:"Zegion",icon:"🪲",priceCoin:1200,role:"Tank",voice:"...",desc:"Insect king"},
+{id:27,name:"Adalman",icon:"💀",priceCoin:900,role:"Mage",voice:"Undead!",desc:"Wight king"},
+{id:28,name:"Kumara",icon:"🦊",priceCoin:1100,role:"Mage",voice:"Nine tails!",desc:"Fox beast"},
+{id:29,name:"TIMOTHY RIMURU GOD - OWNER ONLY",icon:"👑🍥💥",priceCoin:999999,hp:99999,dmg:99999,role:"GOD",voice:"I AM TIMOTHY GOD! UNLI DIAMONDS!",desc:"99999 POWER! OWNER ONLY! UNLI 9999999 DIAMONDS &
