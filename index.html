@@ -1,121 +1,21 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><title>TIMOTHY REAL SWORD DUEL</title><style>
-*{margin:0;padding:0;box-sizing:border-box;touch-action:none}body{background:#0a0a0a;color:#fff;font-family:Arial;overflow:hidden;height:100vh}
-.top{position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.9);padding:6px;display:flex;justify-content:space-around;z-index:100;border-bottom:2px solid gold;font-size:11px}
-.top b{color:gold}
-.season{position:absolute;top:28px;left:0;right:0;height:22px;background:linear-gradient(90deg,#ff6a00,gold);color:#000;display:flex;align-items:center;justify-content:space-between;padding:0 10px;font-size:10px;font-weight:900;z-index:101}
-#game{width:100vw;height:100vh;background:linear-gradient(180deg,#1a2a4a 0%,#0f1f3a 40%,#2a3a1a 40%,#1a2a0a 100%);display:block}
-.controls{position:absolute;bottom:0;left:0;right:0;height:140px;background:linear-gradient(0deg,rgba(0,0,0,.9),transparent);display:flex;justify-content:space-between;align-items:flex-end;padding:10px;z-index:50}
-.joy{width:110px;height:110px;background:rgba(255,255,255,.1);border-radius:50%;border:2px solid rgba(255,255,255,.2);position:relative}
-.stick{width:46px;height:46px;background:gold;border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);box-shadow:0 0 10px gold}
-.btns{display:flex;gap:8px}
-.sbtn{width:62px;height:62px;border-radius:50%;border:3px solid gold;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;box-shadow:0 0 8px gold}
-.sbtn:active{transform:scale(.88);background:rgba(255,215,0,.5)}
-.sbtn.block{border-color:#0af}.sbtn.dash{border-color:#0f0}
-.lobby{position:absolute;inset:0;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:200;padding:12px;text-align:center}
-.lobby.hide{display:none}
-.btn{background:gold;color:#000;border:none;padding:11px 22px;border-radius:24px;font-weight:900;margin:5px}
-.hpBar{position:absolute;top:55px;left:10px;right:10px;display:flex;justify-content:space-between;z-index:60}
-.hpBox{width:44%;height:18px;background:#222;border:2px solid #555;border-radius:10px;overflow:hidden;position:relative}
-.hpFill{height:100%;background:linear-gradient(90deg,#0f0,#0a0);width:100%;transition:.3s}
-.hpBox.e.hpFill{background:linear-gradient(90deg,red,#800)}
-.hpName{position:absolute;top:-14px;left:4px;font-size:9px;font-weight:900}
-</style></head><body>
-<div class="top"><span>💰 <b id="gold">1500</b></span><span>⭐ LV<b id="lv">1</b></span><span>⚔️ <b id="dmg">30</b></span><span>🏆 <b id="wins">0</b></span><span id="rank">🥉 Bronze 0</span></div>
-<div class="season"><span id="sName">🔥 SEASON 10 - OCT 2026</span><span id="sTime">29d left</span><span id="sPts">0 PTS</span></div>
-<div class="hpBar"><div class="hpBox"><div class="hpName" id="pName">🤴 Timothy LV1</div><div class="hpFill" id="ph"></div></div><div class="hpBox e"><div class="hpName" id="bName" style="right:4px;left:auto">👹 BOSS LV1</div><div class="hpFill" id="eh"></div></div></div>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>REAL DUEL</title><style>*{margin:0;padding:0;box-sizing:border-box;touch-action:none}body{background:#000;color:#fff;font-family:Arial;overflow:hidden;height:100vh}.top{position:absolute;top:0;left:0;right:0;background:#000;padding:6px;display:flex;justify-content:space-around;z-index:10;border-bottom:2px solid gold;font-size:11px}.top b{color:gold}#game{width:100vw;height:100vh;background:linear-gradient(#1a2a4a 45%,#1a2a0a 45%);display:block}.controls{position:absolute;bottom:0;left:0;right:0;height:130px;display:flex;justify-content:space-between;padding:10px;z-index:10}.joy{width:100px;height:100px;background:rgba(255,255,255,.1);border-radius:50%;border:2px solid #fff3;position:relative}.stick{width:44px;height:44px;background:gold;border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}.sbtn{width:60px;height:60px;border-radius:50%;border:3px solid gold;background:#000a;display:flex;align-items:center;justify-content:center;font-size:22px}.lobby{position:absolute;inset:0;background:#000e;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:20;text-align:center}.lobby.hide{display:none}.btn{background:gold;color:#000;border:none;padding:12px 24px;border-radius:24px;font-weight:900;margin:8px}.hpBar{position:absolute;top:35px;left:10px;right:10px;display:flex;justify-content:space-between;z-index:10}.hpBox{width:44%;height:14px;background:#222;border:2px solid #555;border-radius:8px;overflow:hidden}.hpFill{height:100%;background:#0f0;width:100%;transition:.3s}.hpBox.e.hpFill{background:red}</style></head><body>
+<div class="top"><span>💰<b id="gold">1500</b></span><span>⭐LV<b id="lv">1</b></span><span>🏆<b id="wins">0</b></span><span id="rank">Bronze</span></div>
+<div class="hpBar"><div class="hpBox"><div class="hpFill" id="ph"></div></div><div class="hpBox e"><div class="hpFill" id="eh"></div></div></div>
 <canvas id="game"></canvas>
-<div class="controls">
-<div class="joy" id="joy"><div class="stick" id="stick"></div></div>
-<div class="btns"><div class="sbtn block" id="blockBtn">🛡️</div><div class="sbtn" id="atkBtn">⚔️</div><div class="sbtn dash" id="dashBtn">💨</div><div class="sbtn" style="border-color:red" id="ultBtn">👑</div></div>
-</div>
-<div class="lobby" id="lobby">
-<h2 style="color:gold">⚔️ REAL HUMAN SWORD DUEL ⚔️</h2>
-<p style="color:#0f0;font-size:11px">Tao talaga porma - may ulo, katawan, braso, paa, espada na nagbabanggaan!</p>
-<div style="display:flex;gap:6px;margin:10px 0">
-<div style="background:#1a1a3a;border:2px solid gold;border-radius:10px;padding:8px;width:110px"><div style="font-size:24px">🤴</div><div style="font-size:9px">IKAW<br>May espada<br>Gagalaw paa kamay</div></div>
-<div style="background:#3a1a1a;border:2px solid red;border-radius:10px;padding:8px;width:110px"><div style="font-size:24px">👹</div><div style="font-size:9px">KALABAN<br>Marunong mag block<br>Mag espadahan kayo!</div></div>
-</div>
-<div style="background:rgba(255,215,0,.1);border:1px solid gold;border-radius:10px;padding:8px;font-size:10px;width:90%;max-width:320px">
-<b style="color:gold">CONTROLS - PARANG REAL!</b><br>
-🕹️ Joystick / A-D = Takbo kaliwa kanan<br>
-⚔️ = Slash ng espada - tatama sa kalaban!<br>
-🛡️ = Block - harangin espada nya!<br>
-💨 = Dash - iwas!<br>
-👑 = Ultimate spin!
-</div>
-<button class="btn" onclick="start()">▶️ DUEL NA! MAG ESPADAHAN!</button>
-<p id="log" style="color:gold;font-size:11px;margin-top:8px">Ready boss - tao vs tao talaga to!</p>
-</div>
-<div class="lobby hide" id="winLob"><h1 style="color:gold">🎉 PANALO SA DUEL!</h1><p id="winTxt" style="color:#0f0"></p><p id="seasonGain" style="color:gold"></p><button class="btn" onclick="nextDuel()">⚔️ NEXT DUEL - CLAIM</button></div>
+<div class="controls"><div class="joy" id="joy"><div class="stick" id="stick"></div></div><div style="display:flex;gap:8px"><div class="sbtn" id="blockBtn">🛡️</div><div class="sbtn" id="atkBtn">⚔️</div><div class="sbtn" id="dashBtn">💨</div><div class="sbtn" id="ultBtn">👑</div></div></div>
+<div class="lobby" id="lobby"><h2 style="color:gold">⚔️ REAL TAO DUEL ⚔️</h2><p style="font-size:11px;color:#0f0">Tao talaga porma - may kamay paa espada!</p><button class="btn" onclick="start()">▶️ PLAY DUEL</button></div>
+<div class="lobby hide" id="winLob"><h1 style="color:gold">PANALO!</h1><button class="btn" onclick="nextDuel()">NEXT</button></div>
 <script>
-const cvs=document.getElementById('game'),ctx=cvs.getContext('2d');
-function rs(){cvs.width=innerWidth;cvs.height=innerHeight}rs();addEventListener('resize',rs);
-let gold=1500,wins=0,level=1,xp=0,xpNeed=100,sPts=0,curMap=0,run=false,keys={};
-const MAPS=[{name:'FOREST DOJO',bg1:'#1a2a4a',bg2:'#1a2a0a'},{name:'DESERT ARENA',bg1:'#4a3a1a',bg2:'#6a4a2a'},{name:'SNOW TEMPLE',bg1:'#2a3a4a',bg2:'#a0c0d0'},{name:'LAVA PIT',bg1:'#2a0a0a',bg2:'#4a1a0a'}];
-let player={x:200,y:0,hp:100,max:100,dmg:30,spd:5,dir:1,state:'idle',atkT:0,block:false,dashT:0,anim:0,onGround:true,vy:0};
-let enemy={x:600,y:0,hp:100,max:100,dmg:22,spd:2.8,dir:-1,state:'idle',atkT:0,block:false,anim:0,aiT:0,vy:0,onGround:true};
-let particles=[],slashes=[],ground=0;
-function getStats(l){return {hp:100+(l-1)*12,dmg:30+(l-1)*6,spd:5+(l-1)*0.1}}
-function start(){
-let st=getStats(level);player.max=st.hp;player.hp=st.hp;player.dmg=st.dmg;player.spd=st.spd;player.x=200;enemy.x=innerWidth-200;enemy.max=100+level*18;enemy.hp=enemy.max;ground=innerHeight-140;player.y=ground-90;enemy.y=ground-90;run=true;lobby.classList.add('hide');updateUI();loop();
-}
-function updateUI(){document.getElementById('gold').innerText=gold;document.getElementById('lv').innerText=level;document.getElementById('dmg').innerText=getStats(level).dmg;document.getElementById('wins').innerText=wins;document.getElementById('rank').innerText=getRank(sPts).rank+' '+sPts;document.getElementById('pName').innerText=`🤴 LV${level} HP:${Math.floor(player.hp)}`;document.getElementById('bName').innerText=`👹 LV${level} HP:${Math.floor(enemy.hp)}`;ph.style.width=(player.hp/player.max*100)+'%';eh.style.width=(enemy.hp/enemy.max*100)+'%';}
-function getRank(p){if(p>=600)return{rank:'👑 Legend'};if(p>=300)return{rank:'🥇 Gold'};if(p>=100)return{rank:'🥈 Silver'};return{rank:'🥉 Bronze'};}
-let joy={x:0,y:0,active:false};
+cvs=document.getElementById('game');ctx=cvs.getContext('2d');function rs(){cvs.width=innerWidth;cvs.height=innerHeight}rs();addEventListener('resize',rs);
+let gold=1500,wins=0,level=1,run=false,keys={};let player={x:200,y:0,hp:100,max:100,dir:1,state:'idle',atkT:0,block:false,dashT:0,anim:0,vy:0},enemy={x:600,y:0,hp:100,max:100,dir:-1,state:'idle',atkT:0,block:false,anim:0,aiT:0,vy:0},slashes=[],particles=[],ground=0,joy={x:0,y:0,active:false};
+function start(){player.hp=100;enemy.hp=100;ground=innerHeight-130;player.y=ground-90;enemy.y=ground-90;player.x=200;enemy.x=innerWidth-200;run=true;lobby.classList.add('hide');loop()}
 function loop(){if(!run)return;upd();draw();requestAnimationFrame(loop)}
-function upd(){
-let ix=0;if(keys['a']||keys['ArrowLeft']||joy.x<0)ix=-1;if(keys['d']||keys['ArrowRight']||joy.x>0)ix=1;
-if(joy.active)ix=joy.x;
-if(player.state!='atk' && player.dashT<=0){player.x+=ix*player.spd;if(ix!=0)player.dir=ix>0?1:-1;if(ix!=0 && player.onGround)player.state='run';else if(player.onGround)player.state='idle';}
-player.anim+=player.state=='run'?0.25:0.08;
-if(player.atkT>0){player.atkT--;if(player.atkT==0)player.state='idle'}
-if(player.dashT>0){player.dashT--;player.x+=player.dir*10;if(player.dashT==0)player.state='idle'}
-if(player.block)player.state='block';
-player.vy+=0.8;player.y+=player.vy;if(player.y>=ground-90){player.y=ground-90;player.vy=0;player.onGround=true}else player.onGround=false;
-player.x=Math.max(40,Math.min(innerWidth-40,player.x));
-enemy.aiT++;if(enemy.aiT>20){let d=enemy.x-player.x;if(Math.abs(d)>90){let mv=Math.sign(-d)*enemy.spd;enemy.x+=mv;enemy.dir=mv>0?1:-1;enemy.state='run'}else{enemy.state='idle';if(Math.random()<0.04 && enemy.atkT<=0){enemyAttack()}}if(Math.random()<0.02)enemy.block=Math.random()<0.3;else if(Math.random()<0.05)enemy.block=false;enemy.aiT=0}
-enemy.anim+=enemy.state=='run'?0.22:0.08;if(enemy.atkT>0){enemy.atkT--;if(enemy.atkT==0)enemy.state='idle'}
-enemy.vy+=0.8;enemy.y+=enemy.vy;if(enemy.y>=ground-90){enemy.y=ground-90;enemy.vy=0;enemy.onGround=true}else enemy.onGround=false;
-enemy.x=Math.max(40,Math.min(innerWidth-40,enemy.x));
-slashes.forEach((s,i)=>{s.t--;if(s.t<=0)slashes.splice(i,1)});
-particles.forEach((p,i)=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.3;p.life--;if(p.life<=0)particles.splice(i,1)});
-let dist=Math.abs(player.x-enemy.x);
-if(player.state=='atk' && player.atkT==10 && dist<110){
-if(enemy.block){slashes.push({x:(player.x+enemy.x)/2,y:ground-60,t:12,type:'block'});particles.push({x:enemy.x,y:enemy.y+20,vx:(Math.random()-0.5)*6,vy:-3,life:18,t:'✨'});enemy.x+=player.dir*15}
-else{let d=getStats(level).dmg;if(Math.random()<0.3)d*=1.5;enemy.hp-=d;slashes.push({x:enemy.x,y:enemy.y+10,t:14,type:'hit'});for(let k=0;k<8;k++)particles.push({x:enemy.x,y:enemy.y+15,vx:(Math.random()-0.5)*8,vy:(Math.random()-1)*6,life:22,t:Math.random()<0.5?'💥':'🩸'});enemy.x+=player.dir*22;if(enemy.hp<=0){enemy.hp=0;win()}}
-}
-if(enemy.state=='atk' && enemy.atkT==10 && dist<110){
-if(player.block){slashes.push({x:(player.x+enemy.x)/2,y:ground-60,t:12,type:'block'});player.x+=enemy.dir*12}
-else{player.hp-=enemy.dmg;slashes.push({x:player.x,y:player.y+10,t:14,type:'hit'});for(let k=0;k<6;k++)particles.push({x:player.x,y:player.y+15,vx:(Math.random()-0.5)*6,vy:(Math.random()-1)*5,life:20,t:'💥'});player.x+=enemy.dir*20;if(player.hp<=0){player.hp=0;gameOver()}}
-}
-updateUI();
-}
-function playerAttack(type){
-if(player.atkT>0||player.dashT>0)return;
-if(type=='atk'){player.state='atk';player.atkT=24;slashes.push({x:player.x+player.dir*55,y:player.y+18,t:18,type:'slash'})}
-if(type=='ult'){player.state='atk';player.atkT=36;for(let k=0;k<3;k++)setTimeout(()=>slashes.push({x:player.x+player.dir*50,y:player.y+10,t:16,type:'slash'}),k*120)}
-}
-function enemyAttack(){enemy.state='atk';enemy.atkT=24;slashes.push({x:enemy.x+enemy.dir*50,y:enemy.y+18,t:18,type:'slash'})}
-function draw(){
-let m=MAPS[curMap];let grad=ctx.createLinearGradient(0,0,0,innerHeight);grad.addColorStop(0,m.bg1);grad.addColorStop(0.45,m.bg1);grad.addColorStop(0.45,m.bg2);grad.addColorStop(1,m.bg2);ctx.fillStyle=grad;ctx.fillRect(0,0,innerWidth,innerHeight);
-ctx.fillStyle='rgba(0,0,0,.2)';ctx.fillRect(0,ground,innerWidth,innerHeight-ground);
-ctx.fillStyle='rgba(255,215,0,.08)';for(let i=0;i<innerWidth;i+=80){ctx.fillRect(i,ground,40,8)}
-drawHuman(player.x,player.y,player,'#3a6aff','🤴',true);
-drawHuman(enemy.x,enemy.y,enemy,'#ff3a3a','👹',false);
-slashes.forEach(s=>{
-if(s.type=='slash'){ctx.save();ctx.translate(s.x,s.y);ctx.rotate((s.t%6)*15*Math.PI/180);ctx.strokeStyle=s.t>10?'gold':'white';ctx.lineWidth=4;ctx.beginPath();ctx.arc(0,0,45,-0.8,0.8);ctx.stroke();ctx.fillStyle='rgba(255,215,0,.6)';ctx.beginPath();ctx.arc(0,0,45,-0.8,0.8);ctx.lineTo(0,0);ctx.fill();ctx.restore();}
-else if(s.type=='hit'){ctx.font='28px Arial';ctx.fillText('💥',s.x-14,s.y-10);ctx.font='18px Arial';ctx.fillStyle='#ff0';ctx.fillText('-'+getStats(level).dmg,s.x-10,s.y-30)}
-else if(s.type=='block'){ctx.font='26px Arial';ctx.fillText('🛡️ CLANG!',s.x-40,s.y)}
-});
-particles.forEach(p=>{ctx.globalAlpha=p.life/22;ctx.font='16px Arial';ctx.fillText(p.t,p.x,p.y);ctx.globalAlpha=1});
-}
-function drawHuman(x,y,p,col,head,isP){
-ctx.save();ctx.translate(x,y);
-if(p.dir<0)ctx.scale(-1,1);
-let runSwing=p.state=='run'?Math.sin(p.anim)*22:0;
-let atkSwing=p.state=='atk'?Math.sin((24-p.atkT)/24*Math.PI)* -75:0;
-let blockSwing=p.block?-35:0;
-// shadow
-ctx.fillStyle='rgba(0,0,0,.3)';ctx.beginPath();ctx.ellipse(0,90,28,8,0,0,Math.PI*2);ctx.fill();
-// legs - tao talaga porma
-ctx.save();ctx.translate(-6,50);ctx.rotate((runSwing*0.6)*Math.PI/180);
+function upd(){let ix=0;if(keys['a']||joy.x<0)ix=-1;if(keys['d']||joy.x>0)ix=1;if(joy.active)ix=joy.x;if(player.state!='atk'&&player.dashT<=0){player.x+=ix*5;if(ix!=0)player.dir=ix>0?1:-1;player.state=ix!=0?'run':'idle'}player.anim+=player.state=='run'?0.25:0.08;if(player.atkT>0){player.atkT--;if(player.atkT==0)player.state='idle'}if(player.dashT>0){player.dashT--;player.x+=player.dir*10}player.y=ground-90;player.x=Math.max(40,Math.min(innerWidth-40,player.x));enemy.aiT++;if(enemy.aiT>20){let d=enemy.x-player.x;if(Math.abs(d)>90){enemy.x+=Math.sign(-d)*2.8;enemy.dir=Math.sign(-d)>0?1:-1;enemy.state='run'}else if(Math.random()<0.05){enemy.state='atk';enemy.atkT=24;slashes.push({x:enemy.x+enemy.dir*50,y:enemy.y+18,t:18})}enemy.aiT=0}enemy.anim+=0.1;if(enemy.atkT>0){enemy.atkT--;if(enemy.atkT==0)enemy.state='idle'}enemy.y=ground-90;enemy.x=Math.max(40,Math.min(innerWidth-40,enemy.x));slashes.forEach((s,i)=>{s.t--;if(s.t<=0)slashes.splice(i,1)});let dist=Math.abs(player.x-enemy.x);if(player.state=='atk'&&player.atkT==10&&dist<110){if(!enemy.block){enemy.hp-=30;slashes.push({x:enemy.x,y:enemy.y+10,t:14,type:'hit'});enemy.x+=player.dir*22;if(enemy.hp<=0)win()}else{slashes.push({x:(player.x+enemy.x)/2,y:ground-60,t:12,type:'block'})}}if(enemy.state=='atk'&&enemy.atkT==10&&dist<110){if(!player.block){player.hp-=20;slashes.push({x:player.x,y:player.y+10,t:14,type:'hit'});player.x+=enemy.dir*20;if(player.hp<=0)gameOver()}else{slashes.push({x:(player.x+enemy.x)/2,y:ground-60,t:12,type:'block'})}}ph.style.width=(player.hp)+'%';eh.style.width=(enemy.hp)+'%';goldEl();}function goldEl(){document.getElementById('gold').innerText=gold;document.getElementById('lv').innerText=level;document.getElementById('wins').innerText=wins}
+function draw(){ctx.fillStyle='#1a2a4a';ctx.fillRect(0,0,innerWidth,ground);ctx.fillStyle='#1a2a0a';ctx.fillRect(0,ground,innerWidth,innerHeight-ground);drawHuman(player.x,player.y,player,'#3a6aff','🤴');drawHuman(enemy.x,enemy.y,enemy,'#ff3a3a','👹');slashes.forEach(s=>{if(!s.type||s.type!='block'){ctx.save();ctx.translate(s.x,s.y);ctx.strokeStyle='gold';ctx.lineWidth=4;ctx.beginPath();ctx.arc(0,0,40,-0.8,0.8);ctx.stroke();ctx.restore()}else{ctx.font='18px Arial';ctx.fillText('🛡️ CLANG!',s.x-30,s.y)}if(s.type=='hit'){ctx.font='24px Arial';ctx.fillText('💥',s.x-12,s.y-10)}})}
+function drawHuman(x,y,p,col,head){ctx.save();ctx.translate(x,y);if(p.dir<0)ctx.scale(-1,1);let run=Math.sin(p.anim)*20;let atk=p.state=='atk'?Math.sin((24-p.atkT)/24*Math.PI)*-70:0;ctx.fillStyle='#0006';ctx.beginPath();ctx.ellipse(0,90,26,7,0,0,6.28);ctx.fill();ctx.save();ctx.translate(-6,50);ctx.rotate(run*0.6*Math.PI/180);ctx.fillStyle='#222';ctx.fillRect(-5,0,10,30);ctx.restore();ctx.save();ctx.translate(6,50);ctx.rotate(-run*0.6*Math.PI/180);ctx.fillStyle='#222';ctx.fillRect(-5,0,10,30);ctx.restore();ctx.fillStyle=col;ctx.fillRect(-12,6,24,42);ctx.fillStyle='gold';ctx.fillRect(-13,36,26,4);ctx.save();ctx.translate(-13,14);ctx.rotate(run*0.3*Math.PI/180);ctx.fillStyle='#ffdbac';ctx.fillRect(-4,-4,8,24);ctx.restore();ctx.save();ctx.translate(13,14);ctx.rotate((atk+run*-0.2)*Math.PI/180);ctx.fillStyle='#ffdbac';ctx.fillRect(-4,-4,8,26);ctx.save();ctx.translate(2,26);ctx.rotate(-20*Math.PI/180);ctx.fillStyle='#ccc';ctx.fillRect(-2,0,4,44);ctx.fillStyle='gold';ctx.fillRect(-5,0,10,6);ctx.restore();ctx.restore();ctx.fillStyle='#ffdbac';ctx.beginPath();ctx.arc(0,-8,13,0,6.28);ctx.fill();ctx.font='16px Arial';ctx.fillText(head,-8,-3);}ctx.restore()}
+function playerAtk(t){if(player.atkT>0)return;player.state='atk';player.atkT=24;slashes.push({x:player.x+player.dir*50,y:player.y+18,t:18})}
+addEventListener('keydown',e=>{keys[e.key]=true;if(e.key==' ')playerAtk()});addEventListener('keyup',e=>{keys[e.key]=false});
+atkBtn.ontouchstart=()=>playerAtk();dashBtn.ontouchstart=()=>{player.dashT=14};blockBtn.ontouchstart=()=>player.block=true;blockBtn.ontouchend=()=>player.block=false;ultBtn.ontouchstart=()=>{player.state='atk';player.atkT=36;for(let k=0;k<3;k++)setTimeout(()=>slashes.push({x:player.x+player.dir*50,y:player.y+10,t:16}),k*100)};
+joyEl=document.getElementById('joy');stickEl=document.getElementById('stick');joyEl.addEventListener('touchstart',()=>joy.active=true);joyEl.addEventListener('touchmove',e=>{let r=joyEl.getBoundingClientRect(),t=e.touches[0],dx=t.clientX-(r.left+r.width/2),dy=t.clientY-(r.top+r.height/2),d=Math.hypot(dx,dy),m=35;if(d>m){dx=dx/d*m;dy=dy/d*m}joy.x=dx/m;stickEl.style.transform=`translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`});joyEl.addEventListener('touchend',()=>{joy.active=false;joy.x=0;stickEl.style.transform='translate(-50%,-50%)'});
+function win(){run=false;wins++;gold+=150;winLob.classList.remove('hide')}function nextDuel(){winLob.classList.add('hide');start()}function gameOver(){run=false;alert('TALO!');lobby.classList.remove('hide')}
+</script></body></html>
